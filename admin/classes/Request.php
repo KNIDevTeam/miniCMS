@@ -87,6 +87,6 @@ class Request
             if ($i++ != count($paths))
                 $path .= $single.'/';
 
-        return 'http://'.$_SERVER['SERVER_ADDR'].$path;
+        return 'http://'.$_SERVER['HTTP_HOST'].$path;
     }
 }

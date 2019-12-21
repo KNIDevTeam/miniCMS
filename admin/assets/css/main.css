@@ -91,7 +91,11 @@ ul {
 /* Wrapper */
 
     #wrapper {
-    
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: #fdfdfd;
     }
 
 /* Header */
@@ -119,7 +123,6 @@ ul {
     main {
         padding: 0 10% 0 15%;
         font-size: 13pt;
-        background-color: #fdfdfd;
     }
 
     .logo {
@@ -237,8 +240,6 @@ ul {
 
     footer {
         font-size: 12pt;
-        position: absolute;
-        margin-bottom: 0;
         padding: 0 0 2em 2em;
         z-index: 2;
     }

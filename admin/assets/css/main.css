@@ -233,6 +233,7 @@ ul {
     }
 
     .expand-button {
+        position: relative;
         float: right;
         padding-right: 2em;
     }

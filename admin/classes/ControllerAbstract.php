@@ -14,14 +14,13 @@ abstract class ControllerAbstract implements ControllerInterface
      * ControllerAbstract constructor.
      *
      * @param $request
-     * @param $view
      * @param $router
      */
     public function __construct($request, $router)
     {
         $this->request = $request;
-        $this->view = new View($this->request);
         $this->router = $router;
+        $this->view = new View($this->router->getMenu());
         $this->view->setRouter($this->router);
 
         $this->setParams();

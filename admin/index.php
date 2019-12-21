@@ -23,7 +23,7 @@ $router = new Classes\Router($request);
 // Set errors routes
 $router->setErrorsRoutes();
 
-// Set routes from controllers and plugins
-$router->setRoutes();
+// Set routes and menu from controllers and plugins
+$router->setUp();
 
 $router->dispatch();

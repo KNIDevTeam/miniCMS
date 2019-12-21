@@ -4,7 +4,7 @@ namespace Admin\Classes;
 
 class ErrorsController extends ControllerAbstract
 {
-    public static function setRoutes($router)
+    public static function setUp($router)
     {
         $router->addRoute('error404', 'error/404', 'get', 'error404');
         $router->addRoute('error500', 'error/500', 'get', 'error500');

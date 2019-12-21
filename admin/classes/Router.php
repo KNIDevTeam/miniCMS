@@ -5,6 +5,7 @@ namespace Admin\Classes;
 class Router
 {
     private $routes = [];
+    private $menu = [];
     private $request;
     private $security;
     private $currentRoute;
@@ -27,15 +28,15 @@ class Router
     {
         if (file_exists(ABS_PATH . '/admin/classes/ErrorsController.php')) {
             $class = 'Admin\Classes\ErrorsController';
-            $class::setRoutes($this);
+            $class::setUp($this);
         } else
             die('Errors controller is broken!');
     }
 
     /**
-     * Set routes from controllers and plugins.
+     * Set routes and menu from controllers and plugins.
      */
-    public function setRoutes()
+    public function setUp()
     {
         $files = scandir(ABS_PATH.'/admin/pages');
 
@@ -43,7 +44,7 @@ class Router
             if (strpos($file, '.php')) {
                 $fileName = explode('.', $file)[0];
                 $class = 'Admin\Pages\\'.$fileName;
-                $class::setRoutes($this);
+                $class::setUp($this);
             }
         }
     }
@@ -60,6 +61,41 @@ class Router
     {
         $backtrace = debug_backtrace();
         $this->routes[$name] = ['path' => strtolower($path), 'httpMethod' => strtolower($httpMethod), 'controllerClass' => $backtrace[1]['class'], 'controllerMethod' => $controllerMethod];
+    }
+
+    /**
+     * Add item to menu.
+     *
+     * @param $name
+     * @param $routeName
+     * @param $icon
+     * @param int $parent
+     *
+     * @throws \Exception
+     */
+    public function addMenu($name, $routeName, $icon, $parent = -1)
+    {
+        if ($parent == -1) {
+            if ($routeName != '')
+                $this->menu[$name] = ['routeName' => $routeName, 'href' => $this->route($routeName), 'icon' => $icon, 'children' => []];
+            else
+                $this->menu[$name] = ['routeName' => $routeName, 'href' => '', 'icon' => $icon, 'children' => []];
+        } else {
+            if (isset($this->menu[$parent]))
+                $this->menu[$parent]['children'][$name] = ['routeName' => $routeName, 'href' => $this->route($routeName), 'icon' => $icon];
+            else
+                throw new \Exception("Parent menu: ".$parent." does not exists");
+        }
+    }
+
+    /**
+     * Get menu property.
+     *
+     * @return array
+     */
+    public function getMenu()
+    {
+        return $this->menu;
     }
 
     /**
@@ -91,10 +127,15 @@ class Router
      * @param $routeName
      *
      * @return mixed|string
+     *
+     * @throws \Exception
      */
     public function getRoute($routeName)
     {
-        return isset($this->routes[$routeName]) ? $this->routes[$routeName]['path'] : 'error/404';
+        if (isset($this->routes[$routeName]))
+            return $this->routes[$routeName]['path'];
+        else
+            throw new \Exception("Route: ".$routeName." not found");
     }
 
     /**
@@ -103,6 +144,8 @@ class Router
      * @param $routeName
      *
      * @return string
+     *
+     * @throws \Exception
      */
     public function route($routeName)
     {

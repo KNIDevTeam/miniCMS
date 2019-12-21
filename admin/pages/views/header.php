@@ -18,10 +18,11 @@
         </header>
 
         <nav id="menu">
-            <ul>
-                <li <?php echo $this->router->getActive('home') ?>><a href="<?php echo $this->router->route('home') ?>"><i class="fas fa-home"></i>Home</a></li>
-                <li <?php echo $this->router->getActive('test') ?>><a href="<?php echo $this->router->route('test') ?>"><i class="fas fa-pen"></i>Form test</a></li>
-                <li <?php echo $this->router->getActive('error404') ?>><a href="<?php echo $this->router->route('error404') ?>"><i class="fas fa-times"></i>Error404</a></li>
+            <?php echo $menu; ?>
+            <!--<ul>
+                <li <?php /*echo $this->router->getActive('home') */?>><a href="<?php /*echo $this->router->route('home') */?>"><i class="fas fa-home"></i>Home</a></li>
+                <li <?php /*echo $this->router->getActive('test') */?>><a href="<?php /*echo $this->router->route('test') */?>"><i class="fas fa-pen"></i>Form test</a></li>
+                <li <?php /*echo $this->router->getActive('error404') */?>><a href="<?php /*echo $this->router->route('error404') */?>"><i class="fas fa-times"></i>Error404</a></li>
                 <li><a class="expand" id="expand1">Rozwijanie</a></li>
                 <li class="submenu expand1"><a>Lorem</a></li>
                 <li class="submenu expand1"><a>Ipsum</a></li>
@@ -33,5 +34,5 @@
                 <li class="submenu expand2"><a>Of</a></li>
                 <li class="submenu expand2"><a>Black</a></li>
                 <li class="submenu expand2"><a>Quartz</a></li>
-            </ul>
+            </ul>-->
         </nav>

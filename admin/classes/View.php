@@ -2,21 +2,22 @@
 
 namespace Admin\Classes;
 
-use http\Exception;
-
 class View
 {
     private $viewsPath;
-    private $router;
     private $security;
+    private $router;
 
     /**
      * View constructor.
+     *
+     * @param $router
      */
-    public function __construct()
+    public function __construct($router)
     {
         $this->viewsPath = ABS_PATH.'/admin/pages/views/';
         $this->security = new Security();
+        $this->router = $router;
     }
 
     /**
@@ -83,6 +84,37 @@ class View
      */
     private function header()
     {
+        $menu = '<ul>';
+
+        foreach ($this->router->getMenu() as $name => $single) {
+            // Single item
+            if ($single['routeName'] != '') {
+                $menu .= '<li'.$this->router->getActive($single['routeName']).'><a href="'.$single['href'].'">';
+                if ($single['icon'] != '')
+                    $menu .= '<i class="fas '.$single['icon'].'"></i>';
+                $menu .= $name.'</a></li>';
+
+            } else { // Submenu
+                $isActive = false;
+                $submenu = '';
+
+                foreach ($single['children'] as $subName => $subSingle) {
+                    if ($this->router->getActive($subSingle['routeName']) != '') $isActive = true;
+                    $submenu .= '<li class="submenu '.trim($name).'"><a href="'.$subSingle['href'].'">';
+                    if ($subSingle['icon'] != '')
+                        $submenu .= '<i class="fas '.$subSingle['icon'].'"></i>';
+                    $submenu .= $subName.'</a></li>';
+                }
+
+                $menu .= '<li class="'.($isActive ? 'active ' : '').'expand" id="'.trim($name).'">';
+                if ($single['icon'] != '')
+                    $menu .= '<i class="fas '.$single['icon'].'"></i>';
+                $menu .= $name.'</li>'.$submenu;
+            }
+        }
+
+        $menu .= '</ul>';
+
         include_once($this->viewsPath.'header.php');
     }
 

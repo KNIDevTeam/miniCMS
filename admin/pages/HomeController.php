@@ -6,9 +6,10 @@ use Admin\Classes\ControllerAbstract;
 
 class HomeController extends ControllerAbstract
 {
-    public static function setRoutes($router)
+    public static function setUp($router)
     {
         $router->addRoute('home', '', 'get', 'home');
+        $router->addMenu('Strona główna', 'home', 'fa-home', -1);
     }
 
     public function home()

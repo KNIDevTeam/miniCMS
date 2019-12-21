@@ -14,7 +14,7 @@ class TestController extends ControllerAbstract
 
     public function index()
     {
-        $this->view->get('test.index');
+        $this->view->render('test.index');
     }
 
     public function post()
@@ -22,6 +22,6 @@ class TestController extends ControllerAbstract
         $input = $this->postParams['cebula'];
 
         $this->view->set(['var' => $input]);
-        $this->view->get('test.result');
+        $this->view->render('test.result');
     }
 }

@@ -2,25 +2,21 @@
 
 namespace Admin\Classes;
 
+use http\Exception;
+
 class View
 {
     private $viewsPath;
-    private $baseUrl;
-    private $request;
     private $router;
     private $security;
 
     /**
      * View constructor.
-     *
-     * @param $request
-     * @param $security
      */
-    public function __construct($request, $security)
+    public function __construct()
     {
         $this->viewsPath = ABS_PATH.'/admin/pages/views/';
-        $this->request = $request;
-        $this->security = $security;
+        $this->security = new Security();
     }
 
     /**
@@ -34,11 +30,13 @@ class View
     }
 
     /**
-     * Get specific view.
+     * Render specific view.
      *
      * @param $fileName
+     *
+     * @throws \Exception
      */
-    public function get($fileName)
+    public function render($fileName)
     {
         if (!empty($this->params))
             extract($this->params);
@@ -50,7 +48,7 @@ class View
             include_once($this->viewsPath.$fileName.'.php');
             $this->footer();
         } else
-            echo 'Podany view nie istnieje';
+            throw new \Exception("View: ".$fileName." does not exists.");
     }
 
     /**
@@ -62,7 +60,7 @@ class View
      */
     public function asset($path)
     {
-        return $this->request->baseUrl.$path;
+        return BASE_URL.$path;
     }
 
     /**

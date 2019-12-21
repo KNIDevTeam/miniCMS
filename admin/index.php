@@ -1,14 +1,29 @@
 <?php
 
-require('../config.php');
-require('classes/AutoLoader.php');
+session_start();
 
 use Admin\Classes as Classes;
 
+require('classes/AutoLoader.php');
 $autoLoader = new Classes\AutoLoader();
-$security = new Classes\Security();
+
+require('../config.php');
+
+if (DEBUG)
+    error_reporting(E_ALL);
+else
+    error_reporting(0);
+
+set_error_handler('Admin\Classes\Error::errorHandler');
+set_exception_handler('Admin\Classes\Error::exceptionHandler');
+
 $request = new Classes\Request();
-$view = new Classes\View($request, $security);
-$router = new Classes\Router($request, $view, $security);
+$router = new Classes\Router($request);
+
+// Set errors routes
+$router->setErrorsRoutes();
+
+// Set routes from controllers and plugins
+$router->setRoutes();
 
 $router->dispatch();

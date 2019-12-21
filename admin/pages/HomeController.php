@@ -14,6 +14,6 @@ class HomeController extends ControllerAbstract
     public function home()
     {
         $this->view->set(['maslo' => ['cos' => 'xd']]);
-        $this->view->get('home');
+        $this->view->render('home');
     }
 }

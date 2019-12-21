@@ -10,6 +10,7 @@ class Request
     private $routePath;
     private $queryString;
     private $baseUrl;
+    private $abortPaths;
 
     /**
      * Request constructor.
@@ -22,6 +23,9 @@ class Request
         $this->routePath = strtolower(substr($_SERVER['QUERY_STRING'], 2));
         $this->queryString = $this->parseGetVars();
         $this->baseUrl = $this->getBaseUrl();
+
+        if (!defined('BASE_URL'))
+            define('BASE_URL', $this->baseUrl);
     }
 
     /**
@@ -46,7 +50,17 @@ class Request
      */
     public function redirect($path)
     {
-        die(header('Location: '.$this->baseUrl.$path));
+        die(header('Location: '.BASE_URL.$path));
+    }
+
+    /**
+     * Abort.
+     *
+     * @param $codeNum
+     */
+    public function abort($codeNum)
+    {
+        return isset($this->abortPaths[$codeNum]) ? $this->redirect($this->abortPaths[$codeNum]) : $this->redirect('error/404');
     }
 
     /**

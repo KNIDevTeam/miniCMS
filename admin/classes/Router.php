@@ -6,7 +6,6 @@ class Router
 {
     private $routes = [];
     private $request;
-    private $view;
     private $security;
     private $currentRoute;
 
@@ -14,15 +13,30 @@ class Router
      * Router constructor.
      *
      * @param $request
-     * @param $view
-     * @param $security
      */
-    public function __construct($request, $view, $security)
+    public function __construct($request)
     {
         $this->request = $request;
-        $this->view = $view;
-        $this->security = $security;
+        $this->security = new Security();
+    }
 
+    /**
+     * Set routes for errors.
+     */
+    public function setErrorsRoutes()
+    {
+        if (file_exists(ABS_PATH . '/admin/classes/ErrorsController.php')) {
+            $class = 'Admin\Classes\ErrorsController';
+            $class::setRoutes($this);
+        } else
+            die('Errors controller is broken!');
+    }
+
+    /**
+     * Set routes from controllers and plugins.
+     */
+    public function setRoutes()
+    {
         $files = scandir(ABS_PATH.'/admin/pages');
 
         foreach ($files as $file) {
@@ -55,20 +69,20 @@ class Router
     {
         if ($route = $this->isRoute()) {
             if (class_exists($route['controllerClass'])) {
-                $controller = new $route['controllerClass']($this->request, $this->view, $this);
+                $controller = new $route['controllerClass']($this->request, $this);
                 if (method_exists($controller, $route['controllerMethod'])) {
                     if ($route['httpMethod'] == 'post' && !$this->security->isValidCRSF()) {
-                        echo 'CRSF ERROR!';
+                        throw new \Exception("CRSF token not found");
                     } else {
                         $controllerMethod = $route['controllerMethod'];
                         $controller->$controllerMethod();
                     }
                 } else
-                    echo 'brak takiej metody: '.$route['controllerMethod'];
+                    throw new \Exception("Method: ".$route['controllerMethod']." does not exist");
             } else
-                echo 'brak takiej klasy: '.$route['controllerClass'];
+                throw new \Exception("Class: ".$route['controllerC  lass']." does not exist");
         } else
-            $this->request->redirect($this->getRoute('error404'));
+            throw new \Exception("Site not found", 404);
     }
 
     /**
@@ -80,7 +94,7 @@ class Router
      */
     public function getRoute($routeName)
     {
-        return isset($this->routes[$routeName]) ? $this->routes[$routeName]['path'] : '/error404';
+        return isset($this->routes[$routeName]) ? $this->routes[$routeName]['path'] : 'error/404';
     }
 
     /**
@@ -92,7 +106,7 @@ class Router
      */
     public function route($routeName)
     {
-        return $this->request->baseUrl.$this->getRoute($routeName);
+        return BASE_URL.$this->getRoute($routeName);
     }
 
     /**

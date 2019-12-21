@@ -11,8 +11,6 @@ class Security
      */
     public function __construct()
     {
-        session_start();
-
         $this->setCRSF();
     }
 

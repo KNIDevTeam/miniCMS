@@ -2,7 +2,7 @@
 
 namespace Admin\Classes;
 
-abstract class ControllerAbstract
+abstract class ControllerAbstract implements ControllerInterface
 {
     protected $request;
     protected $view;
@@ -17,10 +17,10 @@ abstract class ControllerAbstract
      * @param $view
      * @param $router
      */
-    public function __construct($request, $view, $router)
+    public function __construct($request, $router)
     {
         $this->request = $request;
-        $this->view = $view;
+        $this->view = new View($this->request);
         $this->router = $router;
         $this->view->setRouter($this->router);
 

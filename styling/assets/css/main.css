@@ -43,6 +43,18 @@ ul {
         letter-spacing: -0.05em;
     }
 
+    .gradient {
+        background: linear-gradient(to right, #00f4a4, #00caf4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    nav a {
+        border-bottom: none;
+        font-size: 14pt;
+        font-weight: 700;
+    }
+
     .tile {
         font-size: 30pt;
         font-weight: 700;
@@ -63,6 +75,7 @@ ul {
         margin: 1em 0 1em 0;
         color: #ddd;
     }
+    
 
 /* Wrapper */
 
@@ -95,6 +108,7 @@ ul {
     main {
         padding: 0 10% 0 15%;
         font-size: 13pt;
+        background-color: #fdfdfd;
     }
 
     .logo {
@@ -124,9 +138,8 @@ ul {
         margin: 1em;
         width: 20%;
 
-        border-radius: 2px;
-        border-style: solid;
-        border-width: 1px;
+        border-radius: 5px;
+        border: 1px solid #f0f0f0;
         background-color: #fff;
 
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -134,28 +147,28 @@ ul {
         transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
       
-      .tile::after {
-        content: '';
-        top: 0;
-        left: 0;
-        position: absolute;
-        z-index: -1;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        box-shadow: 0 5px 20px 5px rgba(0, 0, 0, 0.125);
-        -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-        transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-      }
-      
-      .tile:hover {
-        -webkit-transform: scale(1.02, 1.02);
-        transform: scale(1.02, 1.02);
-      }
-      
-      .tile:hover::after {
-          opacity: 1;
-      }
+        .tile::after {
+            content: '';
+            top: 0;
+            left: 0;
+            position: absolute;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            box-shadow: 0 10px 20px 5px #defff4;
+            -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        .tile:hover {
+            -webkit-transform: scale(1.02, 1.02);
+            transform: scale(1.02, 1.02);
+        }
+        
+        .tile:hover::after {
+            opacity: 1;
+        }
 
         .tile i {
             display: inline-block;
@@ -185,12 +198,6 @@ ul {
 
         z-index: 1;
     }
-
-        nav a {
-            border-bottom: none;
-            font-size: 16pt;
-            font-weight: 600;
-        }
 
         nav i {
             display: inline-block;

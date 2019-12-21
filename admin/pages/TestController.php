@@ -19,7 +19,7 @@ class TestController extends ControllerAbstract
 
     public function post()
     {
-        $input = $_POST['cebula'];
+        $input = $this->postParams['cebula'];
 
         $this->view->set(['var' => $input]);
         $this->view->get('test.result');

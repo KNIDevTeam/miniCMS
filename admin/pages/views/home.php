@@ -1,6 +1,6 @@
 <main id="main">
     <div class="logo">
-        <span class="title">mini CMS</span>
+        <span class="title gradient">mini CMS</span>
         Nie zna się zasad gry, a jednak się gra
         <div class="bottom-border"></div>
     </div>

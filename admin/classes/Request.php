@@ -10,7 +10,6 @@ class Request
     private $routePath;
     private $queryString;
     private $baseUrl;
-    private $abortPaths;
 
     /**
      * Request constructor.
@@ -60,7 +59,7 @@ class Request
      */
     public function abort($codeNum)
     {
-        return isset($this->abortPaths[$codeNum]) ? $this->redirect($this->abortPaths[$codeNum]) : $this->redirect('error/404');
+        return $this->redirect('error/'.$codeNum);
     }
 
     /**

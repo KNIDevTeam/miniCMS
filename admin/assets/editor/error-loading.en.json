@@ -39,6 +39,7 @@ blocks: [
                 'Check if page’s file exists',
                 'Check file’s read-write permissions',
                 'Contact website’s administrator',
+                'Catch a vector and live happily ever after :D',
               ],
               style: 'unordered'
             }

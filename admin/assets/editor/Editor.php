@@ -1,45 +1,57 @@
 <?php
 	class Editor
 	{
-		public $pageName;
-		public $pagePath;
+		private $pageName;
+		private $pagePath;
+		private $pageType;
 		
-		function __construct()
+		public function __construct()
 		{
 			//Initializing with default values
 			$this->pageName = "New page";
 			$this->pagePath = "default-content.json";
+			$this->pagePath = 0;
 		}
 		
-		function __destruct()
+		public function __destruct()
 		{
 			//Saving text here
 		}
 		
-		function setName($pageName)
+		public function setName($pageName)
 		{
 			$this->pageName = $pageName;
 		}
 		
-		function getName($pageName)
+		public function getName($pageName)
 		{
 			return $this->pageName;
 		}
 		
-		function setPath($pagePath)
+		public function setPath($pagePath)
 		{
 			$this->pagePath = $pagePath;
 		}
 		
-		function getPath()
+		public function getPath()
 		{
 			return $this->pagePath;
 		}
-		
-		function openEditor()
-		{
-			$pageContent = file_get_contents($this->pagePath);
-			return "
+
+        public function setType($pageType)
+        {
+            $this->pageType = $pageType;
+        }
+
+        public function getType()
+        {
+            return $this->pageType;
+        }
+
+        public function openEditor()
+        {
+            $pageContent = $this->loadFile($this->pagePath);
+            return "
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/header@latest'></script><!-- Header -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest'></script><!-- Image -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest'></script><!-- Delimiter -->
@@ -51,7 +63,6 @@
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/table@latest'></script><!-- Table -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/link@latest'></script><!-- Link -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/warning@latest'></script><!-- Warning -->
-
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/marker@latest'></script><!-- Marker -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest'></script><!-- Inline Code -->
 			
@@ -141,7 +152,6 @@
 			   * Initial Editor data
 			   */
 			  data: { {$pageContent}
-
 			  },
 			  onReady: function(){
 				saveButton.click();
@@ -159,7 +169,49 @@
 			  });
 			});
 			</script>";
-		}
+        }
+
+        private function loadFile($pagePath)
+        {
+            try
+            {
+                if($this->checkFile($pagePath) == TRUE) return file_get_contents($pagePath);
+            }
+            catch(Exception $e)
+            {
+                return file_get_contents("error-loading.en.json");
+            }
+        }
+
+        private function saveFile($pagePath, $pageContent)
+        {
+            if($this->checkFile($pagePath) == TRUE) file_put_contents($pagePath, $pageContent);
+        }
+
+        private function checkFile($pagePath)
+        {
+            $file_is_accessible = TRUE;
+            if(file_exists($pagePath) == FALSE)
+            {
+                throw new Exception("The file {$pagePath} does not exist");
+                //echo "The file {$pagePath} does not exist";
+                $file_is_accessible = FALSE;
+            }
+            elseif(is_readable($pagePath) == FALSE)
+            {
+                throw new Exception("The file {$pagePath} is not readable");
+                //echo "The file {$pagePath} is not readable";
+                $file_is_accessible = FALSE;
+            }
+            elseif(is_writable($pagePath) == FALSE)
+            {
+                throw new Exception("The file {$pagePath} is not writable");
+                //echo "The file {$pagePath} is not writable";
+                $file_is_accessible = FALSE;
+            }
+
+            return $file_is_accessible;
+        }
 	}
 ?>
 
@@ -209,8 +261,9 @@
 	$pageEditor = new Editor();
 	$pageEditor->setName('Test');
 	$pageEditor->setPath('default-content.json');
-	
+    $pageEditor->setType(0);
 	echo $pageEditor->openEditor();
+
 	?>
 </body>
 </html>

@@ -1,0 +1,46 @@
+blocks: [
+          {
+            type: 'header',
+            data: {
+              text: 'Page loading error',
+              level: 2
+            }
+          },
+          {
+            type : 'paragraph',
+            data : {
+              text : 'Something went wrong.'
+            }
+          },
+          {
+          type: 'header',
+          data: {
+            text: 'What has happened?',
+            level: 3
+            }
+          },
+          {
+            type : 'paragraph',
+            data : {
+              text : 'miniCMS has failed to open text editor for requested page. Page’s config file may have been removed or it is inaccessible.'
+            }
+          },
+          {
+            type: 'header',
+            data: {
+              text: 'What can I do?',
+              level: 3
+            }
+          },
+          {
+            type : 'list',
+            data : {
+              items : [
+                'Check if page’s file exists',
+                'Check file’s read-write permissions',
+                'Contact website’s administrator',
+              ],
+              style: 'unordered'
+            }
+          }
+        ]

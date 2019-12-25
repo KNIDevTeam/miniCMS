@@ -20,7 +20,6 @@ ul {
     body {
         color: #555;
         font-family: "Open Sans";
-        font-size: 13pt;
         font-weight: 300;
         line-height: 1.75;
     }
@@ -59,6 +58,10 @@ ul {
         font-size: 13pt;
     }
 
+    footer {
+        font-size: 12pt;
+    }
+
     nav a {
         border-bottom: none;
         font-weight: 700;
@@ -83,6 +86,7 @@ ul {
     }
 
         .tile-description {
+            padding-top: 1em;
             font-size: 13pt;
             font-weight: 300;
             letter-spacing: normal;
@@ -96,6 +100,21 @@ ul {
         color: #ddd;
     }
     
+
+    @media screen and (max-width: 800px) {
+
+        main, nav, .tile-description {
+            font-size: 12pt;
+        }
+
+        footer {
+            font-size: 10pt;
+        }
+
+        .tile {
+            font-size: 15pt;
+        }
+    }
 
 /* Wrapper */
 
@@ -141,6 +160,22 @@ ul {
         width: 100%;
         text-align: center;
         padding: 0 0 2em 0;
+    }
+
+    @media screen and (max-width: 800px) {
+
+        main {
+            padding-left: 20%;
+        }
+
+    }
+
+    @media screen and (max-width: 736px) {
+
+        main {
+            padding-left: 3em;
+        }
+
     }
 
 /* Tiles */
@@ -201,6 +236,14 @@ ul {
             border-bottom: none;
         }
 
+    @media screen and (max-width: 736px) {
+
+        .tile {
+            width: 50%;
+        }
+
+    }
+
 /* Nav */
 
     nav {
@@ -235,6 +278,7 @@ ul {
     }
 
     .expand-button {
+        padding-left: 5px;
         position: relative;
         float: right;
         padding-right: 2em;
@@ -245,10 +289,41 @@ ul {
         padding-left: 1em;
     }
 
+    @media screen and (max-width: 800px) {
+
+        nav {
+            padding-left: 1em;
+            width: 14%;
+        }
+
+    }
+
+    @media screen and (max-width: 736px) {
+
+        nav {
+            padding: 1em 0 0.5em 1em;
+            position: absolute;
+            border-right-style: none;
+            border-bottom-style: solid;
+            width: 100%;
+            height: auto;
+            
+            display: block;
+            overflow: auto;
+        }
+
+        nav ul {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+        }
+
+    }
+
 /* Footer */
 
     footer {
-        font-size: 12pt;
         padding: 0 0 2em 2em;
         z-index: 2;
     }
@@ -256,3 +331,22 @@ ul {
         footer a {
             border-bottom: none;
         }
+
+    @media screen and (max-width: 800px) {
+
+        footer {
+            padding-left: 1em;
+        }
+
+    }
+
+    @media screen and (max-width: 736px) {
+
+        footer {
+            padding-top: 1em;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+    }

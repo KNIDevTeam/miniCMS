@@ -1,3 +1,6 @@
+/**
+ * Each Tool is a Plugin. Pass them via 'class' option with necessary settings {@link docs/tools.md}
+ */
 header: {
 class: Header,
 inlineToolbar: ['link'],
@@ -6,6 +9,9 @@ placeholder: 'Header'
 },
 shortcut: 'CMD+SHIFT+H'
 },
+/**
+ * Or pass class directly without any configuration
+ */
 image: {
 class: SimpleImage,
 inlineToolbar: ['link'],
@@ -48,4 +54,4 @@ table: {
 class: Table,
 inlineToolbar: true,
 shortcut: 'CMD+ALT+T'
-}
+},

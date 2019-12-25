@@ -10,7 +10,7 @@
 			//Initializing with default values
 			$this->pageName = "New page";
 			$this->pagePath = "default-content.json";
-			$this->pagePath = 0;
+			$this->pageType = "default";
 		}
 		
 		public function __destruct()
@@ -51,6 +51,8 @@
         public function openEditor()
         {
             $pageContent = $this->loadFile($this->pagePath);
+            $toolPath = "templates/". $this->pageType . ".tools.json";
+            $pageTools =  file_get_contents($toolPath);
             return "
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/header@latest'></script><!-- Header -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest'></script><!-- Image -->
@@ -85,64 +87,7 @@
 			  /**
 			   * Tools list
 			   */
-			  tools: {
-				/**
-				 * Each Tool is a Plugin. Pass them via 'class' option with necessary settings {@link docs/tools.md}
-				 */
-				header: {
-				  class: Header,
-				  inlineToolbar: ['link'],
-				  config: {
-					placeholder: 'Header'
-				  },
-				  shortcut: 'CMD+SHIFT+H'
-				},
-				/**
-				 * Or pass class directly without any configuration
-				 */
-				image: {
-				  class: SimpleImage,
-				  inlineToolbar: ['link'],
-				},
-				list: {
-				  class: List,
-				  inlineToolbar: true,
-				  shortcut: 'CMD+SHIFT+L'
-				},
-				checklist: {
-				  class: Checklist,
-				  inlineToolbar: true,
-				},
-				quote: {
-				  class: Quote,
-				  inlineToolbar: true,
-				  config: {
-					quotePlaceholder: 'Enter a quote',
-					captionPlaceholder: 'Quote\'s author',
-				  },
-				  shortcut: 'CMD+SHIFT+O'
-				},
-				warning: Warning,
-				marker: {
-				  class:  Marker,
-				  shortcut: 'CMD+SHIFT+M'
-				},
-				code: {
-				  class:  CodeTool,
-				  shortcut: 'CMD+SHIFT+C'
-				},
-				delimiter: Delimiter,
-				inlineCode: {
-				  class: InlineCode,
-				  shortcut: 'CMD+SHIFT+C'
-				},
-				linkTool: LinkTool,
-				embed: Embed,
-				table: {
-				  class: Table,
-				  inlineToolbar: true,
-				  shortcut: 'CMD+ALT+T'
-				},
+			  tools: { {$pageTools}
 			  },
 			  /**
 			   * This Tool will be used as default
@@ -261,7 +206,7 @@
 	$pageEditor = new Editor();
 	$pageEditor->setName('Test');
 	$pageEditor->setPath('default-content.json');
-    $pageEditor->setType(0);
+    $pageEditor->setType('default');
 	echo $pageEditor->openEditor();
 
 	?>

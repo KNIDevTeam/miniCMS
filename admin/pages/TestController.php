@@ -3,6 +3,7 @@
 namespace Admin\Pages;
 
 use Admin\Classes\ControllerAbstract;
+use Admin\Classes\Validator;
 
 class TestController extends ControllerAbstract
 {
@@ -30,6 +31,16 @@ class TestController extends ControllerAbstract
 
     public function post()
     {
+        $validator = new Validator($this->postParams, [
+            'cebula' => 'required|minLength:1|maxLength:5',
+            'maslo' => 'required|number',
+        ]);
+
+        if (!$validator->validate()) {
+            print_r($validator->getErrors());
+            die();
+        }
+
         $input = $this->postParams['cebula'];
 
         $this->view->set(['var' => $input]);

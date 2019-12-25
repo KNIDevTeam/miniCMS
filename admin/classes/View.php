@@ -2,6 +2,8 @@
 
 namespace Admin\Classes;
 
+use Admin\Classes\Utils;
+
 class View
 {
     private $viewsPath;
@@ -45,23 +47,19 @@ class View
         $fileName = str_replace('.', '/', $fileName);
 
         if (file_exists($this->viewsPath.$fileName.'.php')) {
+            // Start output buffering
+            ob_start();
+
             $this->header();
             include_once($this->viewsPath.$fileName.'.php');
             $this->footer();
+
+            // End buffering and return its contents
+            $output = ob_get_clean();
+
+            echo $output;
         } else
             throw new \Exception("View: ".$fileName." does not exists.");
-    }
-
-    /**
-     * Make url to asset.
-     *
-     * @param $path
-     *
-     * @return string
-     */
-    public function asset($path)
-    {
-        return BASE_URL.$path;
     }
 
     /**
@@ -72,11 +70,6 @@ class View
     public function set($array)
     {
         $this->params = $array;
-    }
-
-    public function crsf()
-    {
-        echo '<input type="hidden" name="crsf_token" value="'.$this->security->getCRSF().'"/>';
     }
     
     /**

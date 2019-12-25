@@ -19,6 +19,8 @@ class Router
     {
         $this->request = $request;
         $this->security = new Security();
+
+        $GLOBALS['_route_handler'] = [$this, 'route'];
     }
 
     /**

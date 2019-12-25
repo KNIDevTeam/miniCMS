@@ -4,10 +4,12 @@ session_start();
 
 use Admin\Classes as Classes;
 
-require('classes/AutoLoader.php');
-$autoLoader = new Classes\AutoLoader();
-
 require('../config.php');
+require('classes/Functions.php');
+require('classes/AutoLoader.php');
+
+$autoLoader = new Classes\AutoLoader();
+$utils = new Classes\Utils();
 
 if (DEBUG)
     error_reporting(E_ALL);

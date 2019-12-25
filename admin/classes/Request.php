@@ -9,7 +9,6 @@ class Request
     private $userAgent;
     private $routePath;
     private $queryString;
-    private $baseUrl;
 
     /**
      * Request constructor.
@@ -21,10 +20,6 @@ class Request
         $this->userAgent = $_SERVER['HTTP_USER_AGENT'];
         $this->routePath = strtolower(substr($_SERVER['QUERY_STRING'], 2));
         $this->queryString = $this->parseGetVars();
-        $this->baseUrl = $this->getBaseUrl();
-
-        if (!defined('BASE_URL'))
-            define('BASE_URL', $this->baseUrl);
     }
 
     /**
@@ -42,25 +37,6 @@ class Request
             return null;
     }
 
-    /**
-     * Redirect to specific path.
-     *
-     * @param $path
-     */
-    public function redirect($path)
-    {
-        die(header('Location: '.BASE_URL.$path));
-    }
-
-    /**
-     * Abort.
-     *
-     * @param $codeNum
-     */
-    public function abort($codeNum)
-    {
-        return $this->redirect('error/'.$codeNum);
-    }
 
     /**
      * Parse get vars from url.
@@ -83,23 +59,5 @@ class Request
         }
 
         return $toReturn;
-    }
-
-    /**
-     * Get base url of admin panel.
-     *
-     * @return string
-     */
-    private function getBaseUrl()
-    {
-        $path = '';
-        $i = 1;
-        $paths = explode('/', $_SERVER['SCRIPT_NAME']);
-
-        foreach ($paths as $single)
-            if ($i++ != count($paths))
-                $path .= $single.'/';
-
-        return 'http://'.$_SERVER['HTTP_HOST'].$path;
     }
 }

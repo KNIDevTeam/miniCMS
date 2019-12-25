@@ -40,6 +40,6 @@ class Error
             echo '<p>Thrown in "' . $exception->getFile() . '" on line ' . $exception->getLine() . '</p>';
             die();
         } else
-            header('Location: '.BASE_URL.'error/'.$code);
+            abort($code);
     }
 }

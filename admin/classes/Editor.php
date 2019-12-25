@@ -54,7 +54,7 @@ class Editor
 
     public function openEditor()
     {
-        $pageContent = file_get_contents($this->pagePath); //$this->loadFile($this->pagePath);
+        $pageContent = $this->loadFile($this->pagePath);
         $toolPath = $this->assetsPath . "templates/" . $this->pageType . ".tools.json";
         $pageTools = file_get_contents($toolPath);
         return "
@@ -73,7 +73,6 @@ class Editor
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest'></script><!-- Inline Code -->
 			
 			<script>
-			
 			/**
 			 * Saving button
 			 */
@@ -138,15 +137,15 @@ class Editor
         $fileIsAccessible = true;
         if (!file_exists($pagePath)) {
             throw new \Exception("The file " . $pagePath . " does not exist");
-            //echo "The file {$pagePath} does not exist";
+            echo "The file {$pagePath} does not exist";
             $fileIsAccessible = false;
         } elseif (!is_readable($pagePath)) {
             throw new \Exception("The file " . $pagePath . " is not readable");
-            //echo "The file {$pagePath} is not readable";
+            echo "The file {$pagePath} is not readable";
             $fileIsAccessible = false;
         } elseif (!is_writable($pagePath)) {
             throw new \Exception("The file " . $pagePath . " is not writable");
-            //echo "The file {$pagePath} is not writable";
+            echo "The file {$pagePath} is not writable";
             $fileIsAccessible = false;
         }
 

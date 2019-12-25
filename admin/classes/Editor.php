@@ -137,15 +137,15 @@ class Editor
         $fileIsAccessible = true;
         if (!file_exists($pagePath)) {
             throw new \Exception("The file " . $pagePath . " does not exist");
-            echo "The file {$pagePath} does not exist";
+            //echo "The file {$pagePath} does not exist";
             $fileIsAccessible = false;
         } elseif (!is_readable($pagePath)) {
             throw new \Exception("The file " . $pagePath . " is not readable");
-            echo "The file {$pagePath} is not readable";
+            //echo "The file {$pagePath} is not readable";
             $fileIsAccessible = false;
         } elseif (!is_writable($pagePath)) {
             throw new \Exception("The file " . $pagePath . " is not writable");
-            echo "The file {$pagePath} is not writable";
+            //echo "The file {$pagePath} is not writable";
             $fileIsAccessible = false;
         }
 

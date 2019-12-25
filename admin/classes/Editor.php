@@ -121,7 +121,7 @@ class Editor
     private function loadFile($pagePath)
     {
         try {
-            if ($this->checkFile($pagePath) == TRUE) return file_get_contents($pagePath);
+            if ($this->checkFile($pagePath)) return file_get_contents($pagePath);
         } catch (\Exception $e) {
             return file_get_contents($this->assetsPath . "error-loading.en.json");
         }
@@ -129,26 +129,26 @@ class Editor
 
     private function saveFile($pagePath, $pageContent)
     {
-        if ($this->checkFile($pagePath) == TRUE) file_put_contents($pagePath, $pageContent);
+        if ($this->checkFile($pagePath)) file_put_contents($pagePath, $pageContent);
     }
 
     private function checkFile($pagePath)
     {
-        $file_is_accessible = TRUE;
-        if (file_exists($pagePath) == FALSE) {
-            throw new \Exception("The file {$pagePath} does not exist");
+        $fileIsAccessible = true;
+        if (!file_exists($pagePath)) {
+            throw new \Exception("The file " . $pagePath . " does not exist");
             //echo "The file {$pagePath} does not exist";
-            $file_is_accessible = FALSE;
-        } elseif (is_readable($pagePath) == FALSE) {
-            throw new \Exception("The file {$pagePath} is not readable");
+            $fileIsAccessible = false;
+        } elseif (!is_readable($pagePath)) {
+            throw new \Exception("The file " . $pagePath . " is not readable");
             //echo "The file {$pagePath} is not readable";
-            $file_is_accessible = FALSE;
-        } elseif (is_writable($pagePath) == FALSE) {
-            throw new \Exception("The file {$pagePath} is not writable");
+            $fileIsAccessible = false;
+        } elseif (!is_writable($pagePath)) {
+            throw new \Exception("The file " . $pagePath . " is not writable");
             //echo "The file {$pagePath} is not writable";
-            $file_is_accessible = FALSE;
+            $fileIsAccessible = false;
         }
 
-        return $file_is_accessible;
+        return $fileIsAccessible;
     }
 }

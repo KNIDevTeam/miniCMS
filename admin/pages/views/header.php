@@ -8,8 +8,9 @@
 
     <!-- Editor -->
     <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
-    <link href="<?php echo $this->asset('assets/demo.css') ?>" rel="stylesheet">
-    <script src="<?php echo $this->asset('assets/json-preview.js') ?>"></script>
+    <link href="<?php echo $this->asset('assets/editor/assets/demo.css') ?>" rel="stylesheet">
+    <script src="<?php echo $this->asset('assets/editor/assets/json-preview.js') ?>"></script>
+    <script src="<?php echo $this->asset('assets/editor/editor.min.js') ?>"></script>
 </head>
 
 <body>

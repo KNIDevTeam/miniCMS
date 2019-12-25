@@ -68,7 +68,7 @@
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/marker@latest'></script><!-- Marker -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest'></script><!-- Inline Code -->
 			
-			<script src='editor.min.js'></script>
+
 			
 			<script>
 			/**

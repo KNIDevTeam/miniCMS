@@ -19,7 +19,7 @@ class PagesController extends ControllerAbstract
     {
         $pageEditor = new Editor();
         $pageEditor->setName('Test');
-        $pageEditor->setPath('default-content.json');
+        $pageEditor->setPath(ABS_PATH . '/admin/assets/editor/default-content.json');
         $pageEditor->setType('default');
 
         $this->view->set(['pageEditor' => $pageEditor]);

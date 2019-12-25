@@ -7,12 +7,13 @@ class Editor
     private $pageName;
     private $pagePath;
     private $pageType;
+    private $assetsPath = ABS_PATH . '/admin/assets/editor/';
 
     public function __construct()
     {
         //Initializing with default values
         $this->pageName = "New page";
-        $this->pagePath = "default-content.json";
+        $this->pagePath = $this->assetsPath . "default-content.json";
         $this->pageType = "default";
     }
 
@@ -54,7 +55,7 @@ class Editor
     public function openEditor()
     {
         $pageContent = $this->loadFile($this->pagePath);
-        $toolPath = "templates/" . $this->pageType . ".tools.json";
+        $toolPath = $this->assetsPath . "templates/" . $this->pageType . ".tools.json";
         $pageTools = file_get_contents($toolPath);
         return "
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/header@latest'></script><!-- Header -->
@@ -70,8 +71,6 @@ class Editor
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/warning@latest'></script><!-- Warning -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/marker@latest'></script><!-- Marker -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest'></script><!-- Inline Code -->
-			
-			<script src='editor.js'></script>
 			
 			<script>
 			/**
@@ -124,7 +123,7 @@ class Editor
         try {
             if ($this->checkFile($pagePath) == TRUE) return file_get_contents($pagePath);
         } catch (\Exception $e) {
-            return file_get_contents("error-loading.en.json");
+            return file_get_contents($this->assetsPath . "error-loading.en.json");
         }
     }
 

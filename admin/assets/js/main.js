@@ -1,10 +1,17 @@
+/* Hide/unhide menu */
+
+$("#menu-button").click(function() {
+    $("#menu").toggleClass("show")
+    $("#blur").toggleClass("show");
+});
+
 /* Add buttons to expandable menus */
 
 $(".expand").each(function() {
     $(this).append(`<div class="expand-button expand-button-inactive ${this.id}"><</div>`);
 });
 
-/* Expand menu on click */
+/* Expand submenumenu on click */
 
 $(".expand").click(function() {
     let id = this.id;
@@ -27,3 +34,4 @@ $(".expand").click(function() {
         }
     });
 });
+

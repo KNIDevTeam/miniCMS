@@ -22,7 +22,10 @@
             </div>
         </header>
 
-        <nav id="menu">
+        <div id="menu-button"><a><i class="fa fa-bars"></i></a></div>
+        <div id="blur"></div>
+
+        <nav id="menu" class="slide-in">
             <?php echo $menu; ?>
             <!--<ul>
                 <li <?php /*echo $this->router->getActive('home') */?>><a href="<?php /*echo $this->router->route('home') */?>"><i class="fas fa-home"></i>Home</a></li>

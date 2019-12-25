@@ -5,6 +5,11 @@
     <title>mini CMS</title>
     <link rel="stylesheet" href="<?php echo $this->asset('assets/css/main.css') ?>" />
     <script src="https://kit.fontawesome.com/f59842043a.js" crossorigin="anonymous"></script>
+
+    <!-- Editor -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+    <link href="<?php echo $this->asset('assets/demo.css') ?>" rel="stylesheet">
+    <script src="<?php echo $this->asset('assets/json-preview.js') ?>"></script>
 </head>
 
 <body>

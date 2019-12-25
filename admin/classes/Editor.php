@@ -139,7 +139,11 @@ class Editor
             throw new \Exception("The file " . $pagePath . " does not exist");
             echo "The file {$pagePath} does not exist";
             $fileIsAccessible = false;
-        } 
+        } elseif (!is_readable($pagePath)) {
+            throw new \Exception("The file " . $pagePath . " is not readable");
+            echo "The file {$pagePath} is not readable";
+            $fileIsAccessible = false;
+        }
 
         return $fileIsAccessible;
     }

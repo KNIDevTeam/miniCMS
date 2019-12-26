@@ -57,7 +57,7 @@ class Editor
         $pageContent = $this->loadFile($this->pagePath);
         $toolPath = $this->assetsPath . "templates/" . $this->pageType . ".tools.json";
         $pageTools = file_get_contents($toolPath);
-        $saveToolPath = "'classes/Editor-save.php'";
+        $saveToolPath = "'Editor-save.php'";
         return "
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/header@latest'></script><!-- Header -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest'></script><!-- Image -->

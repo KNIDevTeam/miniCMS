@@ -8,6 +8,7 @@ class Editor
     private $pagePath;
     private $pageType;
     private $assetsPath = ABS_PATH . '/admin/assets/editor/';
+    private $modulesPath = ABS_PATH . '/admin/assets/js/editor/modules/';
 
     public function __construct()
     {

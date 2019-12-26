@@ -5,6 +5,7 @@ namespace Admin\Pages;
 use Admin\Classes\ControllerAbstract;
 use Admin\Classes\Editor;
 
+
 class PagesController extends ControllerAbstract
 {
     public static function setUp($router)

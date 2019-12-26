@@ -27,7 +27,7 @@ class Editor
         $this->pageName = $pageName;
     }
 
-    public function getName($pageName)
+    public function getName()
     {
         return $this->pageName;
     }
@@ -101,8 +101,8 @@ class Editor
 			  /**
 			   * Initial Editor data
 			   */
-			  data: { {$pageContent}
-			  },
+			  data:  {$pageContent}
+			  ,
 			  onReady: function(){
 				saveButton.click();
 			  },
@@ -136,7 +136,7 @@ class Editor
         }
     }
 
-    private function saveFile($pagePath, $pageContent)
+    public function saveFile($pagePath, $pageContent)
     {
         if ($this->checkFile($pagePath)) file_put_contents($pagePath, $pageContent);
     }

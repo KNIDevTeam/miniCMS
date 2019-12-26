@@ -16,7 +16,9 @@
             </div>
         </div>
         <?php
-            echo $pageEditor->openEditor();
+              $_SESSION['pageEditorHandle'] = $pageEditor;
+              echo 'You are editing page: '. $pageEditor->getName() . " | " . $pageEditor->getPath();
+              echo $pageEditor->openEditor();
         ?>
     </div>
 </main>

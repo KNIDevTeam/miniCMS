@@ -57,6 +57,7 @@ class Editor
         $pageContent = $this->loadFile($this->pagePath);
         $toolPath = $this->assetsPath . "templates/" . $this->pageType . ".tools.json";
         $pageTools = file_get_contents($toolPath);
+        $saveToolPath = "'classes/Editor-save.php'";
         return "
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/header@latest'></script><!-- Header -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest'></script><!-- Image -->
@@ -71,6 +72,8 @@ class Editor
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/warning@latest'></script><!-- Warning -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/marker@latest'></script><!-- Marker -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest'></script><!-- Inline Code -->
+			
+			<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>
 			
 			<script>
 			/**
@@ -111,9 +114,15 @@ class Editor
 			 * Saving example
 			 */
 			saveButton.addEventListener('click', function () {
-			  const savedPage = editor.save().then((savedData) => {
-				 cPreview.show(savedData, document.getElementById(\"output\"));
-			  });
+			    editor.save().then((outputData) => {
+                  //console.log('Article data: ', outputData);
+                  $.post( {$saveToolPath} , JSON.stringify(outputData))
+                .done(resp => {
+                    console.log(resp);
+                });
+                }).catch((error) => {
+                  console.log('Saving failed: ', error)
+                });
 			});
 			</script>";
     }

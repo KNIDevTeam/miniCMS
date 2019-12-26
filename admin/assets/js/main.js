@@ -1,8 +1,8 @@
 /* Hide/unhide menu */
 
 $("#menu-button").click(function() {
-    $("#menu").toggleClass("show")
-    $("#blur").toggleClass("show");
+    $("#menu").toggleClass("hide");
+    $("#main").toggleClass("lesspadding");
 });
 
 /* Add buttons to expandable menus */

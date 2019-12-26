@@ -25,7 +25,6 @@
         </header>
 
         <div id="menu-button"><a><i class="fa fa-bars"></i></a></div>
-        <div id="blur"></div>
 
         <nav id="menu" class="slide-in">
             <?php echo $menu; ?>

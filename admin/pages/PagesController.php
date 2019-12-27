@@ -11,6 +11,7 @@ class PagesController extends ControllerAbstract
     public static function setUp($router)
     {
         $router->addRoute('editPage', 'editPage', 'get', 'editPage');
+        $router->addRoute('savePage', 'savePage', 'post', 'savePage');
 
         //Add menu
         $router->addMenu('Edytuj stronę', 'editPage', 'fa-pen', -1);
@@ -25,5 +26,12 @@ class PagesController extends ControllerAbstract
 
         $this->view->set(['pageEditor' => $pageEditor]);
         $this->view->render('pages.edit');
+    }
+
+    public function savePage()
+    {
+        $pageEditor = new Editor();
+
+        //zrob sobie cos
     }
 }

@@ -8,11 +8,13 @@
     <div class="editor">
         <div class="ce-example">
             <div class="ce-example__content _ce-example__content--small">
-                <div id="editorjs"></div>
-
-                <div class="ce-example__button" id="saveButton">
-                    editor.save()
+                <div class="editor__button" id="saveButton">
+                    Zapisz
                 </div>
+                <div class="editor__button" id="previewButton">
+                    Podgląd
+                </div>
+                <div id="editorjs"></div>
             </div>
         </div>
         <?php

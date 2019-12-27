@@ -84,6 +84,6 @@ class Utils
             if ($i++ != count($paths))
                 $path .= $single.'/';
 
-        return 'http://'.$_SERVER['HTTP_HOST'].$path;
+        return (isset($_SERVER['HTTPS']) ? 'https' : 'http' ).'://'.$_SERVER['HTTP_HOST'].$path;
     }
 }

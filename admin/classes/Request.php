@@ -9,6 +9,7 @@ class Request
     private $userAgent;
     private $routePath;
     private $queryString;
+    private $isAjax;
 
     /**
      * Request constructor.
@@ -20,6 +21,7 @@ class Request
         $this->userAgent = $_SERVER['HTTP_USER_AGENT'];
         $this->routePath = strtolower(substr($_SERVER['QUERY_STRING'], 2));
         $this->queryString = $this->parseGetVars();
+        $this->isAjax = $this->isAjax();
     }
 
     /**
@@ -59,5 +61,15 @@ class Request
         }
 
         return $toReturn;
+    }
+
+    /**
+     * Check if request is via AJAX.
+     *
+     * @return bool
+     */
+    public function isAjax()
+    {
+        return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
     }
 }

@@ -24,7 +24,7 @@
             <span class="tile-description">Skoro nie wiesz, kim jesteś, przynajmniej miej pewność, kim nie jesteś.</span>
         </a>
         <a id="form-popup-show" class="tile">
-            <span class="tile-title"><i class="fas fa-plus"></i>Nowa podstrona
+            <span class="tile-title"><i class="fas fa-plus"></i>Nowa podstrona</span>
         </a>
         <a class="tile">
             <span class="tile-title"><i class="fas fa-plug"></i>Wtyczki</span>

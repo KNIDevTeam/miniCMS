@@ -80,6 +80,8 @@ class Utils
         $i = 1;
         $paths = explode('/', $_SERVER['SCRIPT_NAME']);
 
+        print_r($_SERVER);
+
         foreach ($paths as $single)
             if ($i++ != count($paths))
                 $path .= $single.'/';

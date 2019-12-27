@@ -4,17 +4,29 @@ namespace Admin\Pages;
 
 use Admin\Classes\ControllerAbstract;
 use Admin\Classes\Editor;
+use Admin\Classes\Pages;
 
 
 class PagesController extends ControllerAbstract
 {
     public static function setUp($router)
     {
+        $router->addRoute('addPage', 'addPage', 'get', 'addPage');
         $router->addRoute('editPage', 'editPage', 'get', 'editPage');
         $router->addRoute('savePage', 'savePage', 'post', 'savePage');
 
         //Add menu
         $router->addMenu('Edytuj stronę', 'editPage', 'fa-pen', -1);
+    }
+
+    public function addPage()
+    {
+        $pageName = $this->getParams['pageName'];
+        $pageParent = $this->getParams['pageParent'];
+        $pageTemplate = $this->getParams['pageTemplate'];
+        $newPage = new Pages();
+
+        $newPage->createPage($pageName, $pageParent, $pageTemplate);
     }
 
     public function editPage()

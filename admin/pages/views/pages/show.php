@@ -5,4 +5,26 @@
         <div class="bottom-border"></div>
     </div>
 
+    <ul>
+        <?php
+            for($i = 2; $i < count($pages); $i++) {
+                if($pages[$i] == "Home") {
+                    echo "<li>".$pages[$i]." <a href='edit?name=".$pages[$i]."'>edit</a>";
+                }
+                else {
+                    echo "<li>".$pages[$i]." <a href='edit?name=".$pages[$i]."'>edit</a> "." <a href='delete?name=".$pages[$i]."'>delete</a>";
+                }
+            }
+
+        ?>
+    </ul>
+
+    Add new page:
+    <form action="add" method="post">
+        Name: <input type="text" name="name"><br>
+        <?php
+            echo $err;
+        ?>
+        <input type="submit">
+    </form>
 </main>

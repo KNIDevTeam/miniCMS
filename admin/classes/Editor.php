@@ -36,6 +36,7 @@ class Editor
     public function setPath($pagePath)
     {
         $this->pagePath = $pagePath;
+        $this->pagePath = str_replace('\\', '/', $this->pagePath);
     }
 
     public function getPath()
@@ -58,7 +59,8 @@ class Editor
         $pageContent = $this->loadFile($this->pagePath);
         $toolPath = $this->assetsPath . "templates/" . $this->pageType . ".tools.json";
         $pageTools = file_get_contents($toolPath);
-        $saveToolPath = "'Editor-save.php'";
+        $saveToolPath = route("savePage");
+        $crsfToken = ajaxCrsf();
         return "
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/header@latest'></script><!-- Header -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest'></script><!-- Image -->
@@ -111,13 +113,14 @@ class Editor
 				console.log('something changed');
 			  }
 			});
+
 			/**
 			 * Saving example
 			 */
 			saveButton.addEventListener('click', function () {
 			    editor.save().then((outputData) => {
                   //console.log('Article data: ', outputData);
-                  $.post( {$saveToolPath} , JSON.stringify(outputData))
+                  $.post( '{$saveToolPath}' , {crsf_token: '{$crsfToken}', path: '{$this->pagePath}', json: JSON.stringify(outputData)})
                 .done(resp => {
                     console.log(resp);
                 });

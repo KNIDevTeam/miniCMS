@@ -31,7 +31,10 @@ class PagesController extends ControllerAbstract
     public function savePage()
     {
         $pageEditor = new Editor();
-
+        $pageContent = $this->postParams['json'];
+        $pagePath = $this->postParams['path'];
+        $pageEditor->saveFile($pagePath, $pageContent);
+        echo "Saved";
         //zrob sobie cos
     }
 }

@@ -46,7 +46,7 @@ class Utils
     {
         $security = new Security();
 
-        echo $security->getCRSF();
+        return $security->getCRSF();
     }
 
     /**

@@ -58,11 +58,18 @@ class Router
      * @param $path
      * @param $httpMethod
      * @param $controllerMethod
+     * @param bool $onlyAjax
      */
-    public function addRoute($name, $path, $httpMethod, $controllerMethod)
+    public function addRoute($name, $path, $httpMethod, $controllerMethod, $onlyAjax = false)
     {
         $backtrace = debug_backtrace();
-        $this->routes[$name] = ['path' => strtolower($path), 'httpMethod' => strtolower($httpMethod), 'controllerClass' => $backtrace[1]['class'], 'controllerMethod' => $controllerMethod];
+        $this->routes[$name] = [
+            'path' => strtolower($path),
+            'httpMethod' => strtolower($httpMethod),
+            'controllerClass' => $backtrace[1]['class'],
+            'controllerMethod' => $controllerMethod,
+            'onlyAjax' => $onlyAjax,
+        ];
     }
 
     /**
@@ -108,17 +115,20 @@ class Router
         if ($route = $this->isRoute()) {
             if (class_exists($route['controllerClass'])) {
                 $controller = new $route['controllerClass']($this->request, $this);
-                if (method_exists($controller, $route['controllerMethod'])) {
-                    if ($route['httpMethod'] == 'post' && !$this->security->isValidCRSF()) {
-                        throw new \Exception("CRSF token not found");
-                    } else {
-                        $controllerMethod = $route['controllerMethod'];
-                        $controller->$controllerMethod();
-                    }
+                if (!$route['onlyAjax'] || $this->request->isAjax) {
+                    if (method_exists($controller, $route['controllerMethod'])) {
+                        if ($route['httpMethod'] == 'post' && !$this->security->isValidCRSF()) {
+                            throw new \Exception("CRSF token not found");
+                        } else {
+                            $controllerMethod = $route['controllerMethod'];
+                            $controller->$controllerMethod();
+                        }
+                    } else
+                        throw new \Exception("Method: ".$route['controllerMethod']." does not exist");
                 } else
-                    throw new \Exception("Method: ".$route['controllerMethod']." does not exist");
+                    throw new \Exception("Only ajax calls allowed");
             } else
-                throw new \Exception("Class: ".$route['controllerC  lass']." does not exist");
+                throw new \Exception("Class: ".$route['controllerClass']." does not exist");
         } else
             throw new \Exception("Site not found", 404);
     }

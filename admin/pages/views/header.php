@@ -9,9 +9,7 @@
 
     <!-- Editor -->
     <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
-    <link href="<?php asset('assets/editor/assets/demo.css') ?>" rel="stylesheet">
-    <script src="<?php asset('assets/editor/assets/json-preview.js') ?>"></script>
-    <script src="<?php asset('assets/editor/editor.min.js') ?>"></script>
+    <script src="<?php asset('assets/js/editor/editor.min.js') ?>"></script>
 </head>
 
 <body>

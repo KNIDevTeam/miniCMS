@@ -14,6 +14,7 @@ class Utils
 
         $GLOBALS['_asset_handler'] = [$this, 'asset'];
         $GLOBALS['_crsf_handler'] = [$this, 'crsf'];
+        $GLOBALS['_ajax_crsf_handler'] = [$this, 'ajaxCrsf'];
         $GLOBALS['_redirect_handler'] = [$this, 'redirect'];
         $GLOBALS['_abort_handler'] = [$this, 'abort'];
     }
@@ -29,13 +30,23 @@ class Utils
     }
 
     /**
-     * Generate crsf token.
+     * Generate crsf token in input.
      */
     public function crsf()
     {
         $security = new Security();
 
         echo '<input type="hidden" name="crsf_token" value="'.$security->getCRSF().'"/>';
+    }
+
+    /**
+     * Generate crsf token for ajax.
+     */
+    public function ajaxCrsf()
+    {
+        $security = new Security();
+
+        echo $security->getCRSF();
     }
 
     /**

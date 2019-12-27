@@ -7,6 +7,10 @@ function crsf() {
     return call_user_func($GLOBALS['_crsf_handler']);
 }
 
+function ajaxCrsf() {
+    return call_user_func($GLOBALS['_ajax_crsf_handler']);
+}
+
 function redirect($path) {
     return call_user_func($GLOBALS['_redirect_handler'], $path);
 }

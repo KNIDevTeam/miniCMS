@@ -1,6 +1,8 @@
-<?php $this->extends('layout') ?>
+<?php $this->extend('layout') ?>
 
-<?php $this->section('content') ?>
+<?php $this->section('title', 'Strona główna') ?>
+
+<?php $this->startSection('content') ?>
 <main id="main">
     <div class="preface">
         <div class="page-name">mini.pw.edu.pl/~loremipsum</div>

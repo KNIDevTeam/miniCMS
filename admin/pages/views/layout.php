@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
     <!-- Title -->
-    <title>mini CMS</title>
+    <title><?php echo $this->getSection('title') ?></title>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="<?php asset('assets/css/main.css') ?>" />
@@ -14,6 +14,11 @@
 
     <!-- Fontawesome -->
     <script src="https://kit.fontawesome.com/f59842043a.js" crossorigin="anonymous"></script>
+
+    <!-- Editor -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+    <script src="<?php asset('assets/js/editor/editor.min.js') ?>"></script>
+    <script src="<?php asset('assets/js/addpage.js') ?>"></script>
 </head>
 
 <body>
@@ -51,3 +56,19 @@
                 <li class="submenu expand2"><a>Quartz</a></li>
             </ul>-->
         </nav>
+
+        <?php echo $this->getSection('content') ?>
+
+        <footer id="footer">
+            <a href="#">&copy; KNI dev team</a>
+        </footer>
+    </div>
+</body>
+
+<!-- JQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<!-- Main script -->
+<script src="<?php asset('assets/js/main.js') ?>"></script>
+
+</html>

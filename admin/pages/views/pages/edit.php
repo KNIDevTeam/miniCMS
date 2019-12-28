@@ -1,3 +1,8 @@
+<?php $this->extend('layout') ?>
+
+<?php $this->section('title', 'Edycja strony') ?>
+
+<?php $this->startSection('content') ?>
 <main id="main">
     <div class="logo">
         <span class="title gradient">Edycja strony</span>
@@ -25,3 +30,4 @@
         ?>
     </div>
 </main>
+<?php $this->endSection() ?>

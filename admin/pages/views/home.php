@@ -1,3 +1,6 @@
+<?php $this->extends('layout') ?>
+
+<?php $this->section('content') ?>
 <main id="main">
     <div id="blur"></div>
 
@@ -59,3 +62,4 @@
         </form>
     </div>
 </main>
+<?php $this->endSection() ?>

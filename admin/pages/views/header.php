@@ -1,11 +1,18 @@
 <!doctype html>
-<html>
+<html lang="pl">
 <head>
+    <!-- Meta tags -->
     <meta charset='UTF-8'/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <!-- Title -->
     <title>mini CMS</title>
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="<?php asset('assets/css/main.css') ?>" />
     <link rel="stylesheet" href="<?php asset('assets/css/addpage.css') ?>" />
+
+    <!-- Fontawesome -->
     <script src="https://kit.fontawesome.com/f59842043a.js" crossorigin="anonymous"></script>
 </head>
 

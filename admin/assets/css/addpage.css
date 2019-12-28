@@ -16,42 +16,27 @@
 
 /* The popup form - hidden by default */
 .form-popup {
-    pointer-events: none;
-    opacity: 0;
-
-    -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-    
+    display: none;
     position: fixed;
-    top: 10%;
-    width: 50%;
-    left: 25%;
-    
+    top: 20%;
+    left: 20%;
+    bottom: 50%;
+    right: 30%;
+    border: 3px solid #f1f1f1;
     z-index: 9;
-}
-
-.form-popup.show {
-    pointer-events: auto;
-    opacity: 1;
 }
 
 /* Add styles to the form container */
 .form-container {
-    padding: 3em;
-    border-radius: 10px;
+    padding: 10px;
     background-color: white;
-    box-shadow: 0 10px 20px 5px #e0ecff;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
 /* Full-width input fields */
 .form-container input[type=text], .form-container input[type=password] {
-    width: 95%;
-    padding: 1em;
-    margin: 1em 0 1em 0;
+    width: 80%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
     border: none;
     background: #f1f1f1;
 }
@@ -66,27 +51,12 @@
 .form-container .btn {
     background-color: #6c87c3;
     color: white;
-
-    padding: 1em;
-    margin: 1em 0 1em 0;
-    border-radius: 10px;
-
+    padding: 16px 20px;
+    border: none;
     cursor: pointer;
     width: 100%;
-    font-size: 13pt;
-
-    -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.form-container .btn:hover {
-    background-color: #cac4ff;
-    -webkit-transform: scale(1.01, 1.01);
-    transform: scale(1.01, 1.01);
-}
-
-.form-container select {
-    margin: 1em 0 1em 0;
+    margin-bottom:10px;
+    opacity: 0.8;
 }
 
 /* Add a red background color to the cancel button */

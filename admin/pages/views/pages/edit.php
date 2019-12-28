@@ -20,6 +20,7 @@
         <?php
               $_SESSION['pageEditorHandle'] = $pageEditor;
               echo 'You are editing page: '. $pageEditor->getName() . " | " . $pageEditor->getPath();
+              if(!is_writable($pageEditor->getPath())) echo " <- not accessible";
               echo $pageEditor->openEditor();
         ?>
     </div>

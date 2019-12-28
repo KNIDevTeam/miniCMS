@@ -76,7 +76,7 @@ ul {
     }
 
     .gradient {
-        background: linear-gradient(to left, #6c87c3, #fbbdff);
+        background: linear-gradient(to left, #6c87c3, #cac4ff);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
@@ -162,7 +162,7 @@ ul {
 /* Header */
 
     header {
-        background: linear-gradient(to left, #6c87c3, #fbbdff);
+        background: linear-gradient(to left, #6c87c3, #cac4ff);
         padding: 1em;
         z-index: 2;
 
@@ -233,7 +233,6 @@ ul {
     .tile {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         padding: 1.5em;
         margin: 1em;
         width: 20%;
@@ -287,9 +286,8 @@ ul {
             width: 1.5em;
         }
 
-        .tile a, .tiles a {
+        .tile a {
             border-bottom: none;
-            cursor: pointer;
         }
 
     @media screen and (max-width: 736px) {
@@ -433,25 +431,6 @@ ul {
 
     }
 
-/* Blur */
-
-    #blur {
-        width: 100vw;
-        height: 100vh;
-        position: fixed;
-        left: 0;
-        top: 0;
-        z-index: 3;
-        
-        background-color: #fff;
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    #blur.show {
-        opacity: 0.8;
-        pointer-events: auto;
-    }
 
 /* Editor */
 

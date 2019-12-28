@@ -112,6 +112,9 @@ class Validator
             'minLength'     => 'Pole :name musi posiadać przynajmniej :x znaków',
             'maxLength'     => 'Pole :name musi posiadać maksymalnie :x znaków',
             'number'        => 'Pole :name musi być liczbą',
+            'min'           => 'Pole :name nie może być mniejsze niż :x',
+            'max'           => 'Pole :name nie może być większe niż :x',
+            'inArray'       => 'Pole :name musi mieć wartość z podanych: :x',
         ];
 
         if (!isset($info[$rule]))
@@ -141,10 +144,9 @@ class Validator
      */
     private function isParam($param)
     {
-        if (!$param) {
+        if (!$param)
             throw new \Exception('Rule '.$this->getPreviousMethod().' must contain parameter.');
-            return false;
-        } else
+        else
             return true;
     }
 
@@ -238,5 +240,78 @@ class Validator
             return false;
         } else
             return true;
+    }
+
+    /**
+     * Min validation rule.
+     * Check if value is no less than :x.
+     *
+     * @param $name
+     * @param $value
+     * @param $param
+     *
+     * @return bool
+     *
+     * @throws \Exception
+     */
+    private function min($name, $value, $param)
+    {
+        if ($this->isParam($param)) {
+            if ($value < $param) {
+                $this->addError($name, [':name', ':x'], [$name, $param]);
+                return false;
+            } else
+                return true;
+        } else
+            return false;
+    }
+
+    /**
+     * Max validation rule.
+     * Check if value is no more than :x.
+     *
+     * @param $name
+     * @param $value
+     * @param $param
+     *
+     * @return bool
+     *
+     * @throws \Exception
+     */
+    private function max($name, $value, $param)
+    {
+        if ($this->isParam($param)) {
+            if ($value > $param) {
+                $this->addError($name, [':name', ':x'], [$name, $param]);
+                return false;
+            } else
+                return true;
+        } else
+            return false;
+    }
+
+    /**
+     * In array validation rule.
+     * Check if value is in param array.
+     *
+     * @param $name
+     * @param $value
+     * @param $param
+     *
+     * @return bool
+     *
+     * @throws \Exception
+     */
+    private function inArray($name, $value, $param)
+    {
+        if ($this->isParam($param)) {
+            $array = explode(',', $param);
+            if (!in_array($value, $array)) {
+                $this->addError($name, [':name', ':x'], [$name, $param]);
+                return false;
+            } else
+                return true;
+        } else
+            return false;
     }
 }

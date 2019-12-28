@@ -24,20 +24,9 @@
 <body>
     <div id="wrapper">
         <header id="header">
-            <div class="flex-left-align">
-                <div id="menu-button"><a><i class="fa fa-bars"></i></a></div>
-                <div class="title">mini CMS</div>
-            </div>
+            <div class="title">mini CMS</div>
 
-            <div class="links">
-                <div class="login">
-                    <a href="#">Logowanie</a>
-                </div>
-            </div>
-        </header>
-
-        <nav id="menu" class="slide-in">
-            <h2>Menu</h2>
+            <nav id="menu">
             <?php echo $menu; ?>
             <!--<ul>
                 <li <?php /*echo $this->router->getActive('home') */?>><a href="<?php /*echo $this->router->route('home') */?>"><i class="fas fa-home"></i>Home</a></li>
@@ -55,4 +44,9 @@
                 <li class="submenu expand2"><a>Black</a></li>
                 <li class="submenu expand2"><a>Quartz</a></li>
             </ul>-->
-        </nav>
+            </nav>
+
+            <div class="links">
+                <a>Logowanie</a>
+            </div>
+        </header>

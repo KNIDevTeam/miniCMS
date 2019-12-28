@@ -14,29 +14,29 @@
 
     <div class="tiles">
         <div class="tile nohover">
-            <span class="tile-bigtitle gradient">1023</span>
+            <span class="tile-bigtitle">1023</span>
             <span class="tile-description">Odwiedzeń w tym tygodniu</span>
         </div>
-        <div class="tile">
-            <a href="#" class="tile-title nohover"><i class="fas fa-cog"></i>Ustawienia</a>
+        <a class="tile">
+            <span class="tile-title nohover"><i class="fas fa-cog"></i>Ustawienia</span>
             <span class="tile-description">Skoro nie wiesz, kim jesteś, przynajmniej miej pewność, kim nie jesteś.</span>
-        </div>
-        <div class="tile">
-            <a id = "#myLink" href="#" onclick="openAddPageForm()" class="tile-title"><i class="fas fa-plus"></i>Nowa podstrona</a>
+        </a>
+        <a id = "#myLink" href="#" onclick="openAddPageForm()" class="tile">
+            <span class="tile-title"><i class="fas fa-plus"></i>Nowa podstrona</span>
             <span class="tile-description">Nie da się nawet opowiedzieć, dlaczego pewnych rzeczy nie da się opowiedzieć.</span>
-        </div>
-        <div class="tile">
-            <a href="#" class="tile-title"><i class="fas fa-plug"></i>Wtyczki</a>
+        </a>
+        <a class="tile">
+            <span class="tile-title"><i class="fas fa-plug"></i>Wtyczki</span>
             <span class="tile-description">Prawda i fałsz nie istnieją na zewnątrz naszych głów.</span>
-        </div>
-        <div class="tile">
-            <a href="#" class="tile-title"><i class="fas fa-palette"></i>Paleta</a>
+        </a>
+        <a class="tile">
+            <span class="tile-title"><i class="fas fa-palette"></i>Paleta</span>
             <span class="tile-description">Ci, co upadli na dno, wiedzą, na czym stoją.</span>
-        </div>
-        <div class="tile">
-            <a href="#" class="tile-title"><i class="fas fa-adjust"></i>Hmm</a>
+        </a>
+        <a class="tile">
+            <span class="tile-title"><i class="fas fa-adjust"></i>Hmm</span>
             <span class="tile-description">Pieniądze, drogi Sasza, są po to, żeby nie musieć zarabiać pieniędzy.</span>
-        </div>
+        </a>
     </div>
 
     <div class="form-popup" id="addPageForm">

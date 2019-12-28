@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,700,900");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,700,900");
 
 /* Reset defaults */
 
@@ -19,7 +19,7 @@ ul {
 
     body {
         color: #676767;
-        font-family: "Roboto", Helvetica, sans-serif;
+        font-family: "Open Sans", Helvetica, sans-serif;
         font-weight: 300;
         line-height: 1.75;
     }
@@ -34,18 +34,27 @@ ul {
 
     a {
         color: inherit;
-		transition: border-bottom-color 0.2s ease, color 0.2s ease;
+		transition: all 0.2s ease, color 0.2s ease;
 		text-decoration: none;
 		border-bottom: dotted 1px rgba(88, 88, 88, 0.5);
     }
 
         a:hover {
-            color: #80acff;
+            color: #96cbff;
             border-bottom-color: transparent;
         }
 
-        footer a, #menu-button a, nav a {
+        footer a, #menu-button a {
             border-bottom: none;
+        }
+
+        header a {
+            border-bottom: none;
+            box-shadow: 0 20px 0 -12px #fff;
+        }
+
+        header a:hover {
+            box-shadow: 0 20px 0 -11px transparent;
         }
 
     .preface  {
@@ -86,7 +95,7 @@ ul {
     }
 
     nav {
-        font-size: 13pt;
+        font-size: 15pt;
     }
 
     nav a {
@@ -116,6 +125,7 @@ ul {
             letter-spacing: 0.2em;
             text-align: center;
             font-size: 40pt;
+            color: #6c87c3;
         }
 
         .tile-description {
@@ -162,44 +172,24 @@ ul {
 /* Header */
 
     header {
-        background: linear-gradient(to left, #6c87c3, #cac4ff);
+        background-color: #6c87c3;
         padding: 1em;
         z-index: 2;
 
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .flex-left-align {
-        display: flex;
-        justify-content: flex-start;
+        justify-content: space-evenly;
     }
 
     .links {
-        display: flex;
-        justify-content: flex-end;
-    }
-
-        .links a {
-            border-bottom: none;
-        }
-        
-    .login {
-        padding: 0 2em;
+        margin: auto 0 auto 0;
     }
 
 /* Main */
 
     main {
-        
-        padding: 0 10% 0 18%;
-        -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-        transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-    }
-
-    main.lesspadding {
-        padding-left: 10%;
+        width: 70%;
+        margin: 0 15% 0 15%;
     }
 
     .logo {
@@ -230,6 +220,10 @@ ul {
         flex-wrap: wrap;
     }
 
+    .tiles > a {
+        border-bottom: none;
+    }
+
     .tile {
         display: flex;
         flex-direction: column;
@@ -237,7 +231,7 @@ ul {
         margin: 1em;
         width: 20%;
 
-        border-radius: 10px;
+        border-radius: 5px;
         
         background-color: #fff;
 
@@ -305,22 +299,13 @@ ul {
 /* Nav */
 
     nav {
-        position: fixed;
-        left: 0;
-        top: 0;
-
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+    }
 
-        padding: 10em 0 0 1.5em;
-        height: 100%;
-        width: 13%;
-
-        background-color: #fff;
-
-        border-right-style: solid;
-        border-width: 2px;
-        border-color: #eee;
+    nav ul {
+        display: flex;
+        flex-direction: row;
     }
 
         nav i {
@@ -329,7 +314,8 @@ ul {
         }
 
         nav li {
-            padding: 0.25em 0 0.25em 0;
+            padding: 0 1em 0 1em;
+            margin: auto 0 auto 0;
         }
 
     .expand {
@@ -354,18 +340,6 @@ ul {
         padding: 0 1em 0 0;
 
         z-index: 2;
-    }
-
-
-    .slide-in {
-        -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-        transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-        opacity: 1;
-    }
-
-    .slide-in.hide {
-        left: -10em;
-        opacity: 0;
     }
 
     @media screen and (max-width: 800px) {
@@ -408,7 +382,13 @@ ul {
 /* Footer */
 
     footer {
-        padding: 0 0 2em 2em;
+        margin: 5em 0 0 0;
+        padding: 1em 0 2em 0;
+        background-color: #63687a;
+        color: #fff;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
         z-index: 2;
     }
 

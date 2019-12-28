@@ -13,34 +13,34 @@ class Compiler
             switch($value['type'])
             {
                 case "paragraph":
-                    $pageHTML .= compileParagraph($value['data']);
+                    $pageHTML .= $this->compileParagraph($value['data']);
                     break;
                 case "header":
-                    $pageHTML .= compileHeader($value['data']);
+                    $pageHTML .= $this->compileHeader($value['data']);
                     break;
                 case "list":
-                    $pageHTML .= compileList($value['data']);
+                    $pageHTML .= $this->compileList($value['data']);
                     break;
                 case "checklist":
-                    $pageHTML .= compileChecklist($value['data']);
+                    $pageHTML .= $this->compileChecklist($value['data']);
                     break;
                 case "quote":
-                    $pageHTML .= compileQuote($value['data']);
+                    $pageHTML .= $this->compileQuote($value['data']);
                     break;
                 case "warning":
-                    $pageHTML .= compileWarning($value['data']);
+                    $pageHTML .= $this->compileWarning($value['data']);
                     break;
                 case "code":
-                    $pageHTML .= compileCode($value['data']);
+                    $pageHTML .= $this->compileCode($value['data']);
                     break;
                 case "delimiter":
-                    $pageHTML .= compileDelimiter($value['data']);
+                    $pageHTML .= $this->compileDelimiter($value['data']);
                     break;
                 case "linkTool":
-                    $pageHTML .= compileLinkTool($value['data']);
+                    $pageHTML .= $this->compileLinkTool($value['data']);
                     break;
                 case "table":
-                    $pageHTML .= compileTable($value['data']);
+                    $pageHTML .= $this->compileTable($value['data']);
                     break;
             }
         }

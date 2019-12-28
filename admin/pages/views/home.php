@@ -21,7 +21,7 @@
             <span class="tile-title nohover"><i class="fas fa-cog"></i>Ustawienia</span>
             <span class="tile-description">Skoro nie wiesz, kim jesteś, przynajmniej miej pewność, kim nie jesteś.</span>
         </a>
-        <a id = "#myLink" href="#" onclick="openAddPageForm()" class="tile">
+        <a id="#myLink" href="#" onclick="openAddPageForm()" class="tile">
             <span class="tile-title"><i class="fas fa-plus"></i>Nowa podstrona</span>
             <span class="tile-description">Nie da się nawet opowiedzieć, dlaczego pewnych rzeczy nie da się opowiedzieć.</span>
         </a>

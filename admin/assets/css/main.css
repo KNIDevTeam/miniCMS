@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,700,900");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:300,700,900");
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display:300,700,900");
+
 
 /* Reset defaults */
 
@@ -18,29 +20,35 @@ ul {
 /* Type */
 
     body {
-        color: #676767;
-        font-family: "Open Sans", Helvetica, sans-serif;
+        color: #555;
+        font-family: "Roboto Slab", Helvetica, sans-serif;
         font-weight: 300;
         line-height: 1.75;
+    }
+
+    header {
+        font-family: "Playfair Display", Helvetica, serif;
+        letter-spacing: 0.05em;
     }
 
     main {
         font-size: 12pt;
     }
 
-    header {
-        color: #fff;
-    }
-
     a {
         color: inherit;
-		transition: all 0.2s ease, color 0.2s ease;
+		transition: all 0.2s ease;
 		text-decoration: none;
 		border-bottom: dotted 1px rgba(88, 88, 88, 0.5);
     }
 
+    a::before, a::after {
+        -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
         a:hover {
-            color: #96cbff;
+            color: #6c87c3;
             border-bottom-color: transparent;
         }
 
@@ -50,12 +58,41 @@ ul {
 
         header a {
             border-bottom: none;
-            box-shadow: 0 20px 0 -12px #fff;
+            position: relative;
+            padding: 0.7em;
         }
 
-        header a:hover {
-            box-shadow: 0 20px 0 -11px transparent;
-        }
+            header a::before {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border: 2px solid #c9d7ff;
+                left: 3px;
+                bottom: 3px;
+                z-index: -1;
+            }
+
+            header a::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border: 2px solid #c9d7ff;
+                right: 3px;
+                top: 3px;
+                z-index: -1;
+            }
+
+            header a:hover::before {
+                left: 0;
+                bottom: 0;
+            }
+
+            header a:hover::after {
+                right: 0;
+                top: 0;
+            }
 
     .preface  {
         padding: 2em 0 2em 0;
@@ -63,7 +100,6 @@ ul {
 
     .page-name {
         font-size: 2em;
-        letter-spacing: 0.05em;
     }
 
     .title {
@@ -73,7 +109,7 @@ ul {
     }
 
     .links {
-        font-size: 12pt;
+        font-size: 13pt;
     }
 
     h2 {
@@ -125,7 +161,6 @@ ul {
             letter-spacing: 0.2em;
             text-align: center;
             font-size: 40pt;
-            color: #6c87c3;
         }
 
         .tile-description {
@@ -172,13 +207,15 @@ ul {
 /* Header */
 
     header {
-        background-color: #6c87c3;
+        background-color: #fff;
         padding: 1em;
         z-index: 2;
 
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: space-around;
+
+        box-shadow: 0 2px 10px 2px rgb(0, 0, 0, 0.07);
     }
 
     .links {
@@ -218,6 +255,7 @@ ul {
         justify-content: space-evenly;
         padding: 2em 0 0 0;
         flex-wrap: wrap;
+        position: relative;
     }
 
     .tiles > a {
@@ -231,11 +269,11 @@ ul {
         margin: 1em;
         width: 20%;
 
-        border-radius: 5px;
-        
+        border-radius: 2px;
         background-color: #fff;
+        position: relative;
 
-        box-shadow: 0 5px 10px 5px #edf6ff;
+        box-shadow: 0 5px 10px 5px rgb(0, 0, 0, 0.05);
         -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
@@ -243,36 +281,37 @@ ul {
         .fullwidth {
             width: 100%;
         }
-      
-        .tile::after {
+
+        .tile::before {
             content: '';
-            top: 0;
-            left: 0;
             position: absolute;
-            z-index: -1;
             width: 100%;
             height: 100%;
-            opacity: 0;
-            box-shadow: 0 10px 20px 5px #e0ecff;
+            border: solid 2px #c9d7ff;
+            left: 3px;
+            bottom: 3px;
+
             -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
             transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         
         .tile:hover {
-            -webkit-transform: scale(1.02, 1.02);
-            transform: scale(1.02, 1.02);
+            -webkit-transform: scale(1.04, 1.04);
+            transform: scale(1.04, 1.04);
         }
         
-        .tile:hover::after {
-            opacity: 1;
+        .tile:hover::before {
+            left: 0;
+            bottom: 0;
         }
 
             .nohover:hover {
                 transform: none;
             }
 
-            .nohover:hover::after {
-                opacity: 0;
+            .nohover:hover::before {
+                left: 3px;
+                bottom: 3px;
             }
 
         .tile i {
@@ -384,7 +423,7 @@ ul {
     footer {
         margin: 5em 0 0 0;
         padding: 1em 0 2em 0;
-        background-color: #63687a;
+        background-color: #2f3033;
         color: #fff;
         display: flex;
         flex-direction: row;

@@ -10,10 +10,11 @@ class PagesController extends ControllerAbstract
 {
     public static function setUp($router)
     {
+        $router->addRoute('addPage', 'page/add', 'get', 'addPage');
         $router->addRoute('editPage', 'page/edit', 'get', 'editPage');
         $router->addRoute('savePage', 'page/save', 'post', 'savePage', true);
         $router->addRoute('showPages', 'page/show', 'get', 'showPages');
-        $router->addRoute('addPage', 'page/add', 'get', 'addPage');
+        $router->addRoute('deletePage', 'page/delete', 'get', 'showPages');
         //Add menu
         $router->addMenu('Strony', 'showPages', 'fa-pen', -1);
     }
@@ -41,31 +42,63 @@ class PagesController extends ControllerAbstract
 
     public function showPages()
     {
-        $content_dir = str_replace("admin", "content/pages", getcwd());
-        $list_of_pages = scandir($content_dir);
+        $contentDir = ABS_PATH . "/content/pages";
+        $listOfPages = scandir($contentDir);
 
-        $this->view->set(['pages' => $list_of_pages, 'err' => ""]);
+        $this->view->set(['pages' => $listOfPages, 'err' => ""]);
         $this->view->render('pages.show');
     }
 
     public function addPage()
     {
-        //$name = $_GET['name'];
-        $name = "abba";
-        $content_dir = str_replace("admin", "content/pages", getcwd());
-        $list_of_pages = scandir($content_dir);
-        if(in_array($name, $list_of_pages))
-        {
-            mkdir($content_dir.$name);
+        //$name = $this->getParams['name'];
+        $name = "kolonia";
+        $contentDir = ABS_PATH . "/content/pages";
+        $listOfPages = scandir($contentDir);
+        if (!in_array($name, $listOfPages)) {
+            mkdir($contentDir . $name);
             $err = "";
-        }
-        else
-        {
+        } else {
             $err = "Strona o tej nazwie już istnieje";
         }
-        $list_of_pages = scandir($content_dir);
+        $listOfPages = scandir($contentDir);
+        $this->view->set(['pages' => $listOfPages, 'err' => $err]);
+        $this->view->render('pages.show');
+    }
 
+    public function deletePage()
+    {
+        $name = $this->getParams['name'];
+        $contentDir = ABS_PATH . "/content/pages";
+        $listOfPages = scandir($contentDir);
+        throw new \Exception($contentDir."/".$name);
+        if (in_array($name, $listOfPages)) {
+            rmdir($contentDir."/".$name);
+            $err = "";
+        } else {
+            $err = "Strona o tej nazwie nie istnieje";
+        }
+        $list_of_pages = scandir($contentDir);
         $this->view->set(['pages' => $list_of_pages, 'err' => $err]);
         $this->view->render('pages.show');
+    }
+
+
+    private function delete_directory($dirname) {
+        if (is_dir($dirname))
+            $dir_handle = opendir($dirname);
+        if (!$dir_handle)
+            return false;
+        while($file = readdir($dir_handle)) {
+            if ($file != "." && $file != "..") {
+                if (!is_dir($dirname."/".$file))
+                    unlink($dirname."/".$file);
+                else
+                    delete_directory($dirname.'/'.$file);
+            }
+        }
+        closedir($dir_handle);
+        rmdir($dirname);
+        return true;
     }
 }

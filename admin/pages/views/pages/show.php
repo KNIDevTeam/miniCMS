@@ -20,10 +20,10 @@
     </ul>
 
     Add new page:
-    <form action="add" method="post">
+    <form action="add" method="get">
         Name: <input type="text" name="name"><br>
         <?php
-            echo $err;
+            echo $err."<\br>";
         ?>
         <input type="submit">
     </form>

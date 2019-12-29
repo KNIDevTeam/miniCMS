@@ -14,7 +14,7 @@ class PagesController extends ControllerAbstract
         $router->addRoute('editPage', 'page/edit', 'get', 'editPage');
         $router->addRoute('savePage', 'page/save', 'post', 'savePage', true);
         $router->addRoute('showPages', 'page/show', 'get', 'showPages');
-        $router->addRoute('deletePage', 'page/delete', 'get', 'showPages');
+        $router->addRoute('deletePage', 'page/delete', 'get', 'deletePage');
         //Add menu
         $router->addMenu('Strony', 'showPages', 'fa-pen', -1);
     }
@@ -51,12 +51,11 @@ class PagesController extends ControllerAbstract
 
     public function addPage()
     {
-        //$name = $this->getParams['name'];
-        $name = "kolonia";
+        $name = $this->getParams['name'];
         $contentDir = ABS_PATH . "/content/pages";
         $listOfPages = scandir($contentDir);
         if (!in_array($name, $listOfPages)) {
-            mkdir($contentDir . $name);
+            mkdir($contentDir . "/" . $name);
             $err = "";
         } else {
             $err = "Strona o tej nazwie już istnieje";
@@ -71,13 +70,13 @@ class PagesController extends ControllerAbstract
         $name = $this->getParams['name'];
         $contentDir = ABS_PATH . "/content/pages";
         $listOfPages = scandir($contentDir);
-        throw new \Exception($contentDir."/".$name);
         if (in_array($name, $listOfPages)) {
-            rmdir($contentDir."/".$name);
+            $this->delete_directory($contentDir."/".$name);
             $err = "";
         } else {
             $err = "Strona o tej nazwie nie istnieje";
         }
+        $err = $name;
         $list_of_pages = scandir($contentDir);
         $this->view->set(['pages' => $list_of_pages, 'err' => $err]);
         $this->view->render('pages.show');
@@ -87,6 +86,7 @@ class PagesController extends ControllerAbstract
     private function delete_directory($dirname) {
         if (is_dir($dirname))
             $dir_handle = opendir($dirname);
+        else return false;
         if (!$dir_handle)
             return false;
         while($file = readdir($dir_handle)) {
@@ -94,7 +94,7 @@ class PagesController extends ControllerAbstract
                 if (!is_dir($dirname."/".$file))
                     unlink($dirname."/".$file);
                 else
-                    delete_directory($dirname.'/'.$file);
+                    $this->delete_directory($dirname.'/'.$file);
             }
         }
         closedir($dir_handle);

@@ -31,9 +31,8 @@ abstract class ControllerAbstract implements ControllerInterface
      */
     private function setParams()
     {
-        if (!empty($this->request->queryString))
+        if (count($this->request->queryString) > 0)
             $this->getParams = $this->request->queryString;
-
 
         if ($this->request->method == 'post')
             foreach ($_POST as $key => $name)

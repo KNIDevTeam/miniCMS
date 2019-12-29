@@ -32,8 +32,8 @@ class TestController extends ControllerAbstract
     public function post()
     {
         $validator = new Validator($this->postParams, [
-            'cebula' => 'required|minLength:1|maxLength:5',
-            'maslo' => 'required|number',
+            'cebula' => 'required|minLength:1|maxLength:5|inArray:aa,bb,cc',
+            'maslo' => 'required|number|min:1|max:99',
         ]);
 
         if (!$validator->validate()) {

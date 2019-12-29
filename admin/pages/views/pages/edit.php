@@ -1,3 +1,8 @@
+<?php $this->extend('layout') ?>
+
+<?php $this->section('title', 'Edycja strony') ?>
+
+<?php $this->startSection('content') ?>
 <main id="main">
     <div class="logo">
         <span class="title gradient">Edycja strony</span>
@@ -20,7 +25,9 @@
         <?php
               $_SESSION['pageEditorHandle'] = $pageEditor;
               echo 'You are editing page: '. $pageEditor->getName() . " | " . $pageEditor->getPath();
+              if(!is_writable($pageEditor->getPath())) echo " <- not accessible";
               echo $pageEditor->openEditor();
         ?>
     </div>
 </main>
+<?php $this->endSection() ?>

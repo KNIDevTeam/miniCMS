@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
     <!-- Title -->
-    <title>mini CMS</title>
+    <title><?php echo $this->getSection('title') ?></title>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="<?php asset('assets/css/main.css') ?>" />
@@ -57,7 +57,7 @@
             </ul>-->
         </nav>
 
-        <?php echo $this->section['content'] ?>
+        <?php echo $this->getSection('content') ?>
 
         <footer id="footer">
             <a href="#">&copy; KNI dev team</a>
@@ -70,10 +70,5 @@
 
 <!-- Main script -->
 <script src="<?php asset('assets/js/main.js') ?>"></script>
-
-<!-- Editor -->
-<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
-<script src="<?php asset('assets/js/editor/editor.min.js') ?>"></script>
-<script src="<?php asset('assets/js/addpage.js') ?>"></script>
 
 </html>

@@ -2,13 +2,14 @@
 
 namespace Admin\Classes;
 
-use Admin\Classes\Utils;
-
 class View
 {
     private $viewsPath;
     private $security;
     private $router;
+    private $sections;
+    private $layout;
+    private $currentSection;
 
     /**
      * View constructor.
@@ -44,24 +45,58 @@ class View
         if (!empty($this->params))
             extract($this->params);
 
-        $fileName = str_replace('.', '/', $fileName);
-
-        if (file_exists($this->viewsPath.$fileName.'.php')) {
-            // Start output buffering
+        if ($this->fileExists($fileName)) {
+            $fileName = $this->getFilePath($fileName);
             ob_start();
 
-            $this->header();
-            include_once($this->viewsPath.$fileName.'.php');
-            $this->footer();
+            include_once($fileName);
 
-            // End buffering and return its contents
             $output = ob_get_clean();
 
-            echo $output;
-        } else
-            throw new \Exception("View: ".$fileName." does not exists.");
+            if (isset($this->layout)) {
+                $this->includeLayout();
+                echo $this->layout;
+            } else
+                echo $output;
+        }
     }
 
+    /**
+     * Add section with inline content.
+     *
+     * @param $sectionName
+     * @param $content
+     */
+    public function section($sectionName, $content)
+    {
+        $this->sections[$sectionName] = $content;
+    }
+
+    /**
+     * Start new section.
+     *
+     * @param $sectionName
+     */
+    public function startSection($sectionName)
+    {
+        $this->currentSection = $sectionName;
+        ob_start();
+    }
+
+    /**
+     * End current section.
+     *
+     * @throws \Exception
+     */
+    public function endSection()
+    {
+        if (isset($this->currentSection)) {
+            $this->sections[$this->currentSection] = ob_get_contents();
+            unset($this->currentSection);
+        } else
+            throw new \Exception("Section wasn't opened");
+    }
+    
     /**
      * Set vars to params.
      *
@@ -71,11 +106,54 @@ class View
     {
         $this->params = $array;
     }
-    
+
     /**
-     * Include header.
+     * Extend layout.
+     *
+     * @param $layout
+     *
+     * @throws \Exception
      */
-    private function header()
+    public function extend($layout)
+    {
+        if ($this->fileExists($layout))
+            $this->layout = $layout;
+    }
+
+    /**
+     * Include layout.
+     *
+     * @throws \Exception
+     */
+    public function includeLayout()
+    {
+        $menu = $this->getMenu();
+
+        if ($this->fileExists($this->layout)) {
+            ob_start();
+            include_once($this->getFilePath($this->layout));
+            $this->layout = ob_get_clean();
+        }
+    }
+
+    /**
+     * Get section by its name.
+     *
+     * @param $sectionName
+     *
+     * @return string
+     */
+    public function getSection($sectionName)
+    {
+        return (isset($this->sections[$sectionName]) ? $this->sections[$sectionName] : '');
+    }
+
+    /**
+     * Get menu in html.
+     *
+     * @return string
+     */
+    private function getMenu()
     {
         $menu = '<ul>';
 
@@ -108,14 +186,36 @@ class View
 
         $menu .= '</ul>';
 
-        include_once($this->viewsPath.'header.php');
+        return $menu;
     }
 
     /**
-     * Include footer.
+     * Get path of file.
+     *
+     * @param $fileName
+     *
+     * @return string
      */
-    private function footer()
+    private function getFilePath($fileName)
     {
-        include_once($this->viewsPath.'footer.php');
+        $fileName = str_replace('.', '/', $fileName);
+        return $this->viewsPath.$fileName.'.php';
+    }
+
+    /**
+     * Check if file exists.
+     *
+     * @param $fileName
+     *
+     * @return bool
+     *
+     * @throws \Exception
+     */
+    private function fileExists($fileName)
+    {
+        if (!file_exists($this->getFilePath($fileName)))
+            throw new \Exception("View | File: ".$fileName." does not exists.");
+
+        return true;
     }
 }

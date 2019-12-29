@@ -4,6 +4,7 @@ namespace Admin\Pages;
 
 use Admin\Classes\ControllerAbstract;
 use Admin\Classes\Editor;
+use Admin\Classes\Pages;
 
 
 class PagesController extends ControllerAbstract

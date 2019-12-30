@@ -8,7 +8,7 @@ class Compiler
     {
         $pageJSON = json_decode($pageContent, true);
         $pageHTML = "<html>";
-        foreach($pageJSON['blocks'] as $key=>$value)
+        foreach($pageJSON['blocks'] as $key => $value)
         {
             switch($value['type'])
             {

@@ -24,9 +24,11 @@
 <body>
     <div id="wrapper">
         <header id="header">
-            <div class="title">mini CMS</div>
+            <span class="title">mini CMS</span>
+        </header>
 
-            <nav id="menu">
+        <nav id="menu">
+            <h2>Menu</h2>
             <?php echo $menu; ?>
             <!--<ul>
                 <li <?php /*echo $this->router->getActive('home') */?>><a href="<?php /*echo $this->router->route('home') */?>"><i class="fas fa-home"></i>Home</a></li>
@@ -44,9 +46,4 @@
                 <li class="submenu expand2"><a>Black</a></li>
                 <li class="submenu expand2"><a>Quartz</a></li>
             </ul>-->
-            </nav>
-
-            <div class="links">
-                <a>Logowanie</a>
-            </div>
-        </header>
+        </nav>

@@ -24,7 +24,7 @@
 <body>
     <div id="wrapper">
         <header id="header">
-            <span class="title">mini CMS</span>
+            <span class="title gradient">mini CMS</span>
         </header>
 
         <nav id="menu">

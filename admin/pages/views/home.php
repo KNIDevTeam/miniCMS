@@ -31,6 +31,10 @@
             <span class="tile-title"><i class="fas fa-adjust"></i>Hmm</span>
             <span class="tile-description">Pieniądze, drogi Sasza, są po to, żeby nie musieć zarabiać pieniędzy.</span>
         </a>
+        <a class="tile">
+            <span class="tile-title"><i class="fas fa-adjust"></i>Hmm</span>
+            <span class="tile-description">Pieniądze, drogi Sasza, są po to, żeby nie musieć zarabiać pieniędzy.</span>
+        </a>
     </div>
 
     <div class="tiles">
@@ -43,7 +47,7 @@
             <span class="tile-bigtitle">991</span>
             <span class="tile-description">Pobranych plików</span>
         </div>
-        <div class="tile big nohover">
+        <div class="tile big nohover alt">
             <span class="tile-bigtitle">12</span>
             <span class="tile-description">Niezdanych kolokwiów</span>
         </div>

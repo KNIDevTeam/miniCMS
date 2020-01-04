@@ -18,13 +18,5 @@
 
         ?>
     </ul>
-
-    Add new page:
-    <form action="add" method="get">
-        Name: <input type="text" name="name"><br>
-        <?php
-            echo $err."<\br>";
-        ?>
-        <input type="submit">
-    </form>
+    <a href="add">add new</a>
 </main>

@@ -4,7 +4,7 @@ namespace Admin\Pages;
 
 use Admin\Classes\ControllerAbstract;
 use Admin\Classes\Editor;
-use Admin\Classes\Pages;
+use Admin\Classes\Page;
 
 
 class PagesController extends ControllerAbstract
@@ -43,63 +43,26 @@ class PagesController extends ControllerAbstract
 
     public function showPages()
     {
-        $contentDir = ABS_PATH . "/content/pages";
-        $listOfPages = scandir($contentDir);
-
-        $this->view->set(['pages' => $listOfPages, 'err' => ""]);
-        $this->view->render('pages.show');
+        #empty for now
     }
 
     public function addPage()
     {
-        $name = $this->getParams['name'];
-        $contentDir = ABS_PATH . "/content/pages";
-        $listOfPages = scandir($contentDir);
-        if (!in_array($name, $listOfPages)) {
-            mkdir($contentDir . "/" . $name);
-            $err = "";
-        } else {
-            $err = "Strona o tej nazwie już istnieje";
-        }
-        $listOfPages = scandir($contentDir);
-        $this->view->set(['pages' => $listOfPages, 'err' => $err]);
-        $this->view->render('pages.show');
+        #empty for now
+    }
+
+    public function adding()
+    {
+        #empty for now
+
     }
 
     public function deletePage()
     {
-        $name = $this->getParams['name'];
-        $contentDir = ABS_PATH . "/content/pages";
-        $listOfPages = scandir($contentDir);
-        if (in_array($name, $listOfPages)) {
-            $this->delete_directory($contentDir."/".$name);
-            $err = "";
-        } else {
-            $err = "Strona o tej nazwie nie istnieje";
-        }
-        $err = $name;
-        $list_of_pages = scandir($contentDir);
-        $this->view->set(['pages' => $list_of_pages, 'err' => $err]);
-        $this->view->render('pages.show');
+        #empty for now
     }
 
 
-    private function delete_directory($dirname) {
-        if (is_dir($dirname))
-            $dir_handle = opendir($dirname);
-        else return false;
-        if (!$dir_handle)
-            return false;
-        while($file = readdir($dir_handle)) {
-            if ($file != "." && $file != "..") {
-                if (!is_dir($dirname."/".$file))
-                    unlink($dirname."/".$file);
-                else
-                    $this->delete_directory($dirname.'/'.$file);
-            }
-        }
-        closedir($dir_handle);
-        rmdir($dirname);
-        return true;
-    }
+
+
 }

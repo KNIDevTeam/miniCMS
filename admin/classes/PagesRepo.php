@@ -17,19 +17,19 @@ class PagesRepo implements PagesRepoInterface
 
     public function addPage($name, $directory)
     {
-        array_push($this->pagesList, new Page($name, $directory));
+        $this->pagesList[$name] = new Page($name, $directory);
         #TODO add some validation and return
+    }
+
+    private  function addExistingPage($name, $page)
+    {
+        $this->pagesList[$name] = $page;
+        #TODO create validation method for adding page and execute it from both adding methods
     }
 
     public function removePage($name)
     {
-        $tmp_array = array();
-        foreach ($this->pagesList as $page)
-        {
-            if(!($page->getName() == $name)) array_push($tmp_array, $page);
-        }
-        #TODO implement binary searching or hash list
-        $this->pagesList = $tmp_array;
+        unset($this->pagesList[$name]);
         #TODO add some validation and return
     }
 
@@ -37,36 +37,26 @@ class PagesRepo implements PagesRepoInterface
     {
         $parentPath = $this->pagesPath;
         $founded = false;
-        if($parent) {
-            foreach ($this->pagesList as $page)
-            {
-                if(($page->getName() == $parent)) {
-                    $founded = true;
-                    $parentPath = $page->getPath();
-                }
-            }
-            #TODO binary search here too :(
-        }
+        if($parent)
+            $parentPath = $this->pagesList[$parent]->getPath();
         $newPage = new Page($name, $parentPath."/".$name);
         $newPage->createPage();
-        array_push($this->pagesList, $newPage);
+        $this->addExistingPage($name, $newPage);
         #TODO add some validation and return
     }
 
-    public function getPagesList()
+    public function getPagesNamesList()
     {
-        return $this->pagesList;
+        $listOfNames = array();
+        foreach ($this->pagesList as $name => $page) array_push($listOfNames, $name);
+        return $listOfNames;
     }
 
     public function deletePage($name)
     {
-        foreach ($this->pagesList as $page) {
-            if(($page->getName() == $name)) {
-                $page->deletePage();
-                $this->removePage($name);
-            }
-        }
-        #TODO and this freakin binary search again i really should consider ordered list on start
+        $this->pagesList[$name]->deletePage();
+        $this->removePage($name);
+        #TODO again validation and return
     }
 
     private function listDirectoryPages($dirname)
@@ -85,7 +75,6 @@ class PagesRepo implements PagesRepoInterface
             }
         }
         closedir($dir_handle);
-        #TODO implement some sorting algorithm that will simplify searching for particular page by name in $pagesList maybe work on ordered list
         return true;
     }
 }

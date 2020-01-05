@@ -15,7 +15,7 @@ class PagesRepo implements PagesRepoInterface
         $this->listDirectoryPages($this->pagesPath);
     }
 
-    public function addPage($name, $directory)
+    private function addPage($name, $directory)
     {
         $this->pagesList[$name] = new Page($name, $directory);
         #TODO add some validation and return
@@ -27,7 +27,7 @@ class PagesRepo implements PagesRepoInterface
         #TODO create validation method for adding page and execute it from both adding methods
     }
 
-    public function removePage($name)
+    private function removePage($name)
     {
         unset($this->pagesList[$name]);
         #TODO add some validation and return
@@ -43,6 +43,7 @@ class PagesRepo implements PagesRepoInterface
         $newPage->createPage();
         $this->addExistingPage($name, $newPage);
         #TODO add some validation and return
+        return true; # just for now later if there will be some validation i wont need to change any logic higher
     }
 
     public function getPagesNamesList()

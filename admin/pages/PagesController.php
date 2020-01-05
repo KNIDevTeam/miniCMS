@@ -73,7 +73,10 @@ class PagesController extends ControllerAbstract
 
     public function adding()
     {
-        
+        if($this->pagesRepo->createPage($this->postParams['name'], $this->postParams['parent'], $this->postParams['template'], $this->templatesRepo))
+            redirect($this->router->getRoute('editPage')."?name=".$this->getParams['name']);
+        else
+            redirect($this->router->getRoute('addPage')."?error=no cos sie syplo"); #some error for now because i don't have any validation in adding logic
     }
 
     public function deletePage()

@@ -12,7 +12,7 @@
     <?php
         echo $err."<\br>";
     ?>
-    <form action="add" method="post">
+    <form action="adding" method="post">
         Name: <input type="text" name="name"><br>
         Template: <input type="text" name="template"><br>
         <input type="submit">

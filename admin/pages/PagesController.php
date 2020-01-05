@@ -27,6 +27,7 @@ class PagesController extends ControllerAbstract
     public static function setUp($router)
     {
         $router->addRoute('addPage', 'page/add', 'get', 'addPage');
+        $router->addRoute('addingPage', 'page/adding', 'get', 'adding', true);
         $router->addRoute('editPage', 'page/edit', 'get', 'editPage');
         $router->addRoute('savePage', 'page/save', 'post', 'savePage', true);
         $router->addRoute('showPages', 'page/show', 'get', 'showPages');
@@ -64,13 +65,15 @@ class PagesController extends ControllerAbstract
 
     public function addPage()
     {
-        #empty for now
+        $error = '';
+        if($this->getParams['error']) $error = $this->getParams['error'];
+        $this->view->set(['err' => $error]);
+        $this->view->render('pages.addNew');
     }
 
     public function adding()
     {
-        #empty for now
-
+        
     }
 
     public function deletePage()

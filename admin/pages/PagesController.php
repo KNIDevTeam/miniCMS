@@ -5,10 +5,25 @@ namespace Admin\Pages;
 use Admin\Classes\ControllerAbstract;
 use Admin\Classes\Editor;
 use Admin\Classes\Page;
+use Admin\Classes\PagesRepo;
+use Admin\Classes\TemplateRepo;
 
 
 class PagesController extends ControllerAbstract
 {
+    private $pagesRepo;
+    private $templatesRepo;
+
+    public function __construct($request, $router)
+    {
+        $pagesPath = ABS_PATH."/content/pages";
+        $templatesPath = ABS_PATH."/admin/assets/editor/templates";
+
+        parent::__construct($request, $router);
+        $this->pagesRepo = new PagesRepo($pagesPath);
+        $this->templatesRepo = new TemplateRepo($templatesPath);
+    }
+
     public static function setUp($router)
     {
         $router->addRoute('addPage', 'page/add', 'get', 'addPage');
@@ -43,7 +58,8 @@ class PagesController extends ControllerAbstract
 
     public function showPages()
     {
-        #empty for now
+        $this->view->set(['pages' => $this->pagesRepo->getPagesNamesList()]);
+        $this->view->render('pages.show');
     }
 
     public function addPage()

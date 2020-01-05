@@ -36,8 +36,8 @@ class PagesRepo implements PagesRepoInterface
     public function createPage($name, $parent, $template, $templateRepo)
     {
         $parentPath = $this->pagesPath;
-        $founded = false;
         if($parent)
+            if(!in_array($parent, array_keys($this->pagesList))) throw new \Exception('No such page'); #It's enough validation for now I think but i can be wrong
             $parentPath = $this->pagesList[$parent]->getPath();
         $newPage = new Page($name, $parentPath."/".$name);
         $newPage->createPage();

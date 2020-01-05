@@ -1,3 +1,8 @@
+<?php $this->extend('layout') ?>
+
+<?php $this->section('title', 'Edycja strony') ?>
+
+<?php $this->startSection('content') ?>
 <main id="main">
     <div class="logo">
         <span class="title gradient">About miniCMS</span>
@@ -7,12 +12,12 @@
 
     <ul>
         <?php
-            for($i = 2; $i < count($pages); $i++) {
-                if($pages[$i] == "Home") {
-                    echo "<li>".$pages[$i]." <a href='edit?name=".$pages[$i]."'>edit</a>";
+            foreach ($pages as $page) {
+                if($page == "Home") {
+                    echo "<li>".$page." <a href='edit?name=".$page."'>edit</a>";
                 }
                 else {
-                    echo "<li>".$pages[$i]." <a href='edit?name=".$pages[$i]."'>edit</a> "." <a href='delete?name=".$pages[$i]."'>delete</a>";
+                    echo "<li>".$page." <a href='edit?name=".$page."'>edit</a> "." <a href='delete?name=".$page."'>delete</a>";
                 }
             }
 
@@ -20,3 +25,4 @@
     </ul>
     <a href="add">add new</a>
 </main>
+<?php $this->endSection() ?>

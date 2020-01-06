@@ -15,6 +15,7 @@
     <form action="adding" method="post">
         Name: <input type="text" name="name"><br>
         Template: <input type="text" name="template"><br>
+        Parent: <input type="text" name="parent"><br>
         <input type="submit">
     </form>
 </main>

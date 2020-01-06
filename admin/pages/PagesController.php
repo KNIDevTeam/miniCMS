@@ -27,7 +27,7 @@ class PagesController extends ControllerAbstract
     public static function setUp($router)
     {
         $router->addRoute('addPage', 'page/add', 'get', 'addPage');
-        $router->addRoute('addingPage', 'page/adding', 'get', 'adding', true);
+        $router->addRoute('adding', 'page/adding', 'get', 'adding');
         $router->addRoute('editPage', 'page/edit', 'get', 'editPage');
         $router->addRoute('savePage', 'page/save', 'post', 'savePage', true);
         $router->addRoute('showPages', 'page/show', 'get', 'showPages');
@@ -73,7 +73,8 @@ class PagesController extends ControllerAbstract
 
     public function adding()
     {
-        if($this->pagesRepo->createPage($this->postParams['name'], $this->postParams['parent'], $this->postParams['template'], $this->templatesRepo))
+        #TODO change this to post because CSRF is weird
+        if($this->pagesRepo->createPage($this->getParams['name'], $this->getParams['parent'], $this->getParams['template'], $this->templatesRepo))
             redirect($this->router->getRoute('editPage')."?name=".$this->getParams['name']);
         else
             redirect($this->router->getRoute('addPage')."?error=no cos sie syplo"); #some error for now because i don't have any validation in adding logic

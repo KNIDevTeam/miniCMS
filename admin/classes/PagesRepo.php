@@ -43,6 +43,7 @@ class PagesRepo implements PagesRepoInterface
         $newPage->createPage();
         $this->addExistingPage($name, $newPage);
         #TODO add some validation and return
+        #TODO add properties
     }
 
     public function getPagesNamesList()

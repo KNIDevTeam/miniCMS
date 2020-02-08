@@ -16,7 +16,6 @@ class Editor
         $this->pageName = "New page";
         $this->pagePath = $this->assetsPath . "templates/default/default.template.json";
         $this->pagePath = str_replace('\\', '/', $this->pagePath);
-        $this->modulesPath = str_replace('\\', '/', $this->modulesPath);
         $this->pageType = "default";
     }
 
@@ -68,7 +67,7 @@ class Editor
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest'></script><!-- Image -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest'></script><!-- Delimiter -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/list@latest'></script><!-- List -->
-			<script src='{$this->modulesPath}checklist.min.js'></script><!-- Checklist -->
+			<script src='https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest'></script><!-- Checklist -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/quote@latest'></script><!-- Quote -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/code@latest'></script><!-- Code -->
 			<script src='https://cdn.jsdelivr.net/npm/@editorjs/embed@latest'></script><!-- Embed -->

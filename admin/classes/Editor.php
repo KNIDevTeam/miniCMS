@@ -8,7 +8,7 @@ class Editor
     private $pagePath;
     private $pageType;
     private $assetsPath = ABS_PATH . '/admin/assets/editor/';
-    private $modulesPath = ABS_PATH . '/admin/assets/js/editor/modules/';
+    private $modulesPath;
 
     public function __construct()
     {
@@ -16,6 +16,8 @@ class Editor
         $this->pageName = "New page";
         $this->pagePath = $this->assetsPath . "templates/default/default.template.json";
         $this->pagePath = str_replace('\\', '/', $this->pagePath);
+        $this->modulesPath = "http://" . $_SERVER['SERVER_NAME'] . '/admin/assets/js/editor/modules/';
+        $this->modulesPath = str_replace('\\', '/', $this->modulesPath);
         $this->pageType = "default";
     }
 
@@ -63,20 +65,20 @@ class Editor
         $saveToolPath = route("savePage");
         $crsfToken = ajaxCrsf();
         return "
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/header@latest'></script><!-- Header -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest'></script><!-- Image -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest'></script><!-- Delimiter -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/list@latest'></script><!-- List -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest'></script><!-- Checklist -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/quote@latest'></script><!-- Quote -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/code@latest'></script><!-- Code -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/embed@latest'></script><!-- Embed -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/table@latest'></script><!-- Table -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/link@latest'></script><!-- Link -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/warning@latest'></script><!-- Warning -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/marker@latest'></script><!-- Marker -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest'></script><!-- Inline Code -->
-			
+			<script src='{$this->modulesPath}header.min.js'></script><!-- Header -->
+			<script src='{$this->modulesPath}simple-image.min.js'></script><!-- Image -->
+			<script src='{$this->modulesPath}delimiter.min.js'></script><!-- Delimiter -->
+			<script src='{$this->modulesPath}list.min.js'></script><!-- List -->
+			<script src='{$this->modulesPath}checklist.min.js'></script><!-- Checklist -->
+			<script src='{$this->modulesPath}quote.min.js'></script><!-- Quote -->
+			<script src='{$this->modulesPath}code.min.js'></script><!-- Code -->
+			<script src='{$this->modulesPath}embed.min.js'></script><!-- Embed -->
+			<script src='{$this->modulesPath}table.min.js'></script><!-- Table -->
+			<script src='{$this->modulesPath}link.min.js'></script><!-- Link -->
+			<script src='{$this->modulesPath}warning.min.js'></script><!-- Warning -->
+			<script src='{$this->modulesPath}marker.min.js'></script><!-- Marker -->
+			<script src='{$this->modulesPath}inline-code.min.js'></script><!-- Inline Code -->
+			<script src='{$this->modulesPath}attaches.min.js'></script><!-- File attachment (NOT WORKING) -->
 			<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>
 			
 			<script>

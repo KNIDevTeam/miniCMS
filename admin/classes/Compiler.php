@@ -76,7 +76,15 @@ class Compiler
 
     private function compileChecklist($elementData)
     {
-
+        if($elementData['style'] == "unordered") $listType = "ul";
+        else $listType = "ol";
+        $elementHTML = "<{$listType}>";
+        foreach($elementData['items'] as $key => $value)
+        {
+            $elementHTML .= "<li>" . $value . "</li>";
+        }
+        $elementHTML = "</{$listType}>";
+        return $elementHTML;
     }
 
     private function compileQuote($elementData)

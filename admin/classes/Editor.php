@@ -84,6 +84,7 @@ class Editor
 			 * Saving button
 			 */
 			const saveButton = document.getElementById('saveButton');
+			const previewButton = document.getElementById('previewButton');
 			/**
 			 * To initialize the Editor, create a new instance with configuration object
 			 * @see docs/installation.md for mode details
@@ -129,6 +130,17 @@ class Editor
                   console.log('Saving failed: ', error)
                 });
 			});
+			previewButton.addEventListener('click', function () {
+			    editor.save().then((outputData) => {
+                  //console.log('Article data: ', outputData);
+                  $.post( '{$saveToolPath}' , {crsf_token: '{$crsfToken}', path: '{$this->pagePath}', json: JSON.stringify(outputData)})
+                .done(resp => {
+                    console.log(resp);
+                });
+                }).catch((error) => {
+                  console.log('Preview failed: ', error)
+                });
+			});
 			</script>";
     }
 
@@ -141,9 +153,21 @@ class Editor
         }
     }
 
-    public function saveFile($pagePath, $pageContent)
+    public function saveFile($pagePath, $pageContent, $savingMode)
     {
-        if ($this->checkFile($pagePath)) file_put_contents($pagePath, $pageContent);
+        $compiledPath = $pagePath . ".cmp";
+        if($savingMode == "Save")
+        {
+            if ($this->checkFile($pagePath)) file_put_contents($pagePath, $pageContent);
+            $pageCompiler = new Compiler();
+            $compiledPage = $pageCompiler->compilePage($pageContent);
+            if ($this->checkFile($compiledPath)) file_put_contents($compiledPath, $compiledPage);
+        }
+        elseif($savingMode == "Preview")
+        {
+            //To do
+        }
+
     }
 
     private function checkFile($pagePath)

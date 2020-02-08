@@ -14,6 +14,7 @@ class PagesController extends ControllerAbstract
         $router->addRoute('addPage', 'addPage', 'get', 'addPage');
         $router->addRoute('editPage', 'page/edit', 'get', 'editPage');
         $router->addRoute('savePage', 'page/save', 'post', 'savePage', true);
+        $router->addRoute('previewPage', 'page/preview', 'post', 'previewPage', true);
 
         //Add menu
         $router->addMenu('Edytuj stronę', 'editPage', 'fa-pen', -1);
@@ -45,8 +46,16 @@ class PagesController extends ControllerAbstract
         $pageEditor = new Editor();
         $pageContent = $this->postParams['json'];
         $pagePath = $this->postParams['path'];
-        $pageEditor->saveFile($pagePath, $pageContent);
+        $pageEditor->saveFile($pagePath, $pageContent, "Save");
         echo "Saved";
-        //zrob sobie cos
+    }
+
+    public function previewPage()
+    {
+        $pageEditor = new Editor();
+        $pageContent = $this->postParams['json'];
+        $pagePath = $this->postParams['path'];
+        $pageEditor->saveFile($pagePath, $pageContent, "Preview");
+        echo "Saved";
     }
 }

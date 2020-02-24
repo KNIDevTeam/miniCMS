@@ -83,11 +83,24 @@ class Editor
 			 */
 			const saveButton = document.getElementById('saveButton');
 			const previewButton = document.getElementById('previewButton');
+			//Swal config
+			const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              onOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+			
 			/**
 			 * To initialize the Editor, create a new instance with configuration object
 			 * @see docs/installation.md for mode details
 			 */
-			var editor = new EditorJS({
+			let editor = new EditorJS({
 			  /**
 			   * Wrapper of Editor
 			   */
@@ -104,13 +117,13 @@ class Editor
 			  /**
 			   * Initial Editor data
 			   */
-			  data:  {$pageContent}
-			  ,
+			  data:  {$pageContent},
 			  onReady: function(){
-				saveButton.click();
+				//ready
 			  },
 			  onChange: function() {
-				console.log('something changed');
+			      saveButton.classList.remove('disabled');
+				//change
 			  }
 			});
 
@@ -118,14 +131,25 @@ class Editor
 			 * Saving example
 			 */
 			saveButton.addEventListener('click', function () {
+			    if (saveButton.classList.contains('disabled')) return;
+			    
 			    editor.save().then((outputData) => {
                   //console.log('Article data: ', outputData);
                   $.post( '{$saveToolPath}' , {crsf_token: '{$crsfToken}', path: '{$this->pagePath}', json: JSON.stringify(outputData)})
                 .done(resp => {
                     console.log(resp);
+                      Toast.fire({
+                      icon: 'success',
+                      title: 'Poprawnie zapisano'
+                    });
+                     saveButton.classList.add('disabled');
                 });
                 }).catch((error) => {
-                  console.log('Saving failed: ', error)
+                  console.log('Saving failed: ', error);
+                      Toast.fire({
+                      icon: 'error',
+                      title: 'Błąd zapisu'
+                    })
                 });
 			});
 			previewButton.addEventListener('click', function () {

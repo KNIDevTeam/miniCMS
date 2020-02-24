@@ -16,8 +16,6 @@ class Editor
         $this->pageName = "New page";
         $this->pagePath = $this->assetsPath . "templates/default/default.template.json";
         $this->pagePath = str_replace('\\', '/', $this->pagePath);
-        $this->modulesPath = "http://" . $_SERVER['SERVER_NAME'] . '/admin/assets/js/editor/modules/';
-        $this->modulesPath = str_replace('\\', '/', $this->modulesPath);
         $this->pageType = "default";
     }
 
@@ -65,21 +63,20 @@ class Editor
         $saveToolPath = route("savePage");
         $crsfToken = ajaxCrsf();
         return "
-			<script src='{$this->modulesPath}header.min.js'></script><!-- Header -->
-			<script src='{$this->modulesPath}simple-image.min.js'></script><!-- Image -->
-			<script src='{$this->modulesPath}delimiter.min.js'></script><!-- Delimiter -->
-			<script src='{$this->modulesPath}list.min.js'></script><!-- List -->
-			<script src='{$this->modulesPath}checklist.min.js'></script><!-- Checklist -->
-			<script src='{$this->modulesPath}quote.min.js'></script><!-- Quote -->
-			<script src='{$this->modulesPath}code.min.js'></script><!-- Code -->
-			<script src='{$this->modulesPath}embed.min.js'></script><!-- Embed -->
-			<script src='{$this->modulesPath}table.min.js'></script><!-- Table -->
-			<script src='{$this->modulesPath}link.min.js'></script><!-- Link -->
-			<script src='{$this->modulesPath}warning.min.js'></script><!-- Warning -->
-			<script src='{$this->modulesPath}marker.min.js'></script><!-- Marker -->
-			<script src='{$this->modulesPath}inline-code.min.js'></script><!-- Inline Code -->
-			<script src='{$this->modulesPath}attaches.min.js'></script><!-- File attachment (NOT WORKING) -->
-			<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>
+			<script src='{$this->getAssetsPath("header.min.js")}'></script><!-- Header -->
+			<script src='{$this->getAssetsPath("simple-image.min.js")}'></script><!-- Image -->
+			<script src='{$this->getAssetsPath("delimiter.min.js")}'></script><!-- Delimiter -->
+			<script src='{$this->getAssetsPath("list.min.js")}'></script><!-- List -->
+			<script src='{$this->getAssetsPath("checklist.min.js")}'></script><!-- Checklist -->
+			<script src='{$this->getAssetsPath("quote.min.js")}'></script><!-- Quote -->
+			<script src='{$this->getAssetsPath("code.min.js")}'></script><!-- Code -->
+			<script src='{$this->getAssetsPath("embed.min.js")}'></script><!-- Embed -->
+			<script src='{$this->getAssetsPath("table.min.js")}'></script><!-- Table -->
+			<script src='{$this->getAssetsPath("link.min.js")}'></script><!-- Link -->
+			<script src='{$this->getAssetsPath("warning.min.js")}'></script><!-- Warning -->
+			<script src='{$this->getAssetsPath("marker.min.js")}'></script><!-- Marker -->
+			<script src='{$this->getAssetsPath("inline-code.min.js")}'></script><!-- Inline Code -->
+			<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 			
 			<script>
 			/**
@@ -144,6 +141,12 @@ class Editor
                 });
 			});
 			</script>";
+    }
+
+    private function getAssetsPath($assetName)
+    {
+        $modulesPath = BASE_URL . 'assets/js/editor/modules/' . $assetName;
+        return str_replace('\\', '/', $modulesPath);
     }
 
     private function loadFile($pagePath)

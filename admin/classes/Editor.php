@@ -14,7 +14,8 @@ class Editor
     {
         //Initializing with default values
         $this->pageName = "New page";
-        $this->pagePath = $this->assetsPath . "default-content.json";
+        $this->pagePath = $this->assetsPath . "templates/default/default.template.json";
+        $this->pagePath = str_replace('\\', '/', $this->pagePath);
         $this->pageType = "default";
     }
 
@@ -57,7 +58,7 @@ class Editor
     public function openEditor()
     {
         $pageContent = $this->loadFile($this->pagePath);
-        $toolPath = $this->assetsPath . "templates/" . $this->pageType . ".tools.json";
+        $toolPath = $this->assetsPath . "templates/" . $this->pageType . "/". $this->pageType . ".tools.json";
         $pageTools = file_get_contents($toolPath);
         $saveToolPath = route("savePage");
         $crsfToken = ajaxCrsf();

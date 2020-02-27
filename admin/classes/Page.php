@@ -30,7 +30,7 @@ class Page
     public function createPage($template)
     {
         mkdir($this->getPath());
-        copy($template->getTemplatePath, $this->getPath()."/content.json");
+        copy($template->getDirectory(), $this->getPath()."/content.json");
         #TODO add some default html
         return true;
     }

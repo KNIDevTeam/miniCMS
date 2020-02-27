@@ -12,9 +12,10 @@
     <?php
         echo $err."<\br>";
     ?>
-    <form action="add" method="post">
+    <form action="adding" method="get">
         Name: <input type="text" name="name"><br>
         Template: <input type="text" name="template"><br>
+        Parent: <input type="text" name="parent"><br>
         <input type="submit">
     </form>
 </main>

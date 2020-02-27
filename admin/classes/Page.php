@@ -27,9 +27,11 @@ class Page
         return $this->valid;
     }
 
-    public function createPage()
+    public function createPage($template)
     {
         mkdir($this->getPath());
+        copy($template->getDirectory(), $this->getPath()."/content.json");
+        #TODO add some default html
         return true;
     }
 

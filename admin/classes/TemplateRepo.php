@@ -24,6 +24,11 @@ class TemplateRepo implements TemplateRepoInterface
         $this->initialised = $tmpInitialised;
     }
 
+    public function getTemplate($name)
+    {
+        return $this->templateList[$name];
+    }
+
     private function generate()
     {
         $startPath = $this->TemplatesPath;
@@ -53,9 +58,7 @@ class TemplateRepo implements TemplateRepoInterface
         while($file = readdir($dir_handle)) {
             if ($file != "." && $file != "..") {
                 if (is_dir($dirname."/".$file))
-                    $this->addTemplate($file, $dirname . "/" . $file);
-                #TODO this solution considers that one directory is one template and it's name is the name of it if i'm
-                # wrong correct me please :D
+                    $this->addTemplate($file, $dirname . "/" . $file . "/" . $file . ".template.json");
             }
         }
         closedir($dir_handle);

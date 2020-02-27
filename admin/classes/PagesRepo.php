@@ -13,6 +13,7 @@ class PagesRepo implements PagesRepoInterface
     {
         $this->pagesPath = $startPath;
         $this->listDirectoryPages($this->pagesPath);
+        #TODO if there is no Home maybe we need to add one to be sure
     }
 
     private function addPage($name, $directory)
@@ -36,11 +37,12 @@ class PagesRepo implements PagesRepoInterface
     public function createPage($name, $parent, $template, $templateRepo)
     {
         $parentPath = $this->pagesPath;
-        if($parent)
-            if(!in_array($parent, array_keys($this->pagesList))) throw new \Exception('No such page'); #It's enough validation for now I think but i can be wrong
+        if(strcmp($parent, "none")) {
+            if (!in_array($parent, array_keys($this->pagesList))) throw new \Exception('No such page'); #It's enough validation for now I think but i can be wrong
             $parentPath = $this->pagesList[$parent]->getPath();
+        }
         $newPage = new Page($name, $parentPath."/".$name);
-        $newPage->createPage();
+        $newPage->createPage($templateRepo->getTemplate($template));
         $this->addExistingPage($name, $newPage);
         #TODO add some validation and return
         return true; # just for now later if there will be some validation i wont need to change any logic higher
@@ -60,6 +62,10 @@ class PagesRepo implements PagesRepoInterface
         #TODO again validation and return
     }
 
+    public function getPagePath($name)
+    {
+        return $this->pagesList[$name]->getPath();
+    }
     private function listDirectoryPages($dirname)
     {
         if (is_dir($dirname))

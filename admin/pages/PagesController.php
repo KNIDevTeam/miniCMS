@@ -16,8 +16,8 @@ class PagesController extends ControllerAbstract
 
     public function __construct($request, $router)
     {
-        $pagesPath = ABS_PATH."/content/pages";
-        $templatesPath = ABS_PATH."/admin/assets/editor/templates";
+        $pagesPath = ABS_PATH . "/content/pages";
+        $templatesPath = ABS_PATH . "/admin/assets/editor/templates";
 
         parent::__construct($request, $router);
         $this->pagesRepo = new PagesRepo($pagesPath);
@@ -39,8 +39,10 @@ class PagesController extends ControllerAbstract
     public function editPage()
     {
         $pageEditor = new Editor();
-        $pageEditor->setName('Test');
-        $pageEditor->setPath(ABS_PATH . '/admin/assets/editor/default-content.json');
+        $pageName = $this->getParams['name'];
+        $pagePath = $this->pagesRepo->getPagePath($pageName);
+        $pageEditor->setName($pageName);
+        $pageEditor->setPath($pagePath.'/content.json');
         $pageEditor->setType('default');
 
         $this->view->set(['pageEditor' => $pageEditor]);
@@ -66,7 +68,7 @@ class PagesController extends ControllerAbstract
     public function addPage()
     {
         $error = '';
-        if($this->getParams['error']) $error = $this->getParams['error'];
+        if ($this->getParams['error']) $error = $this->getParams['error'];
         $this->view->set(['err' => $error]);
         $this->view->render('pages.addNew');
     }
@@ -74,18 +76,15 @@ class PagesController extends ControllerAbstract
     public function adding()
     {
         #TODO change this to post because CSRF is weird
-        if($this->pagesRepo->createPage($this->getParams['name'], $this->getParams['parent'], $this->getParams['template'], $this->templatesRepo))
-            redirect($this->router->getRoute('editPage')."?name=".$this->getParams['name']);
+        if ($this->pagesRepo->createPage($this->getParams['name'], $this->getParams['parent'], $this->getParams['template'], $this->templatesRepo))
+            redirect($this->router->getRoute('editPage') . "?name=" . $this->getParams['name']);
         else
-            redirect($this->router->getRoute('addPage')."?error=no cos sie syplo"); #some error for now because i don't have any validation in adding logic
+            redirect($this->router->getRoute('addPage') . "?error=no cos sie syplo"); #some error for now because i don't have any validation in adding logic
     }
 
     public function deletePage()
     {
         #empty for now
     }
-
-
-
 
 }

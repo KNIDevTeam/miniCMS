@@ -43,20 +43,23 @@ class Compiler
         {
             $elementHTML .= "<li>" . $value . "</li>";
         }
-        $elementHTML = "</{$listType}>";
+        $elementHTML .= "</{$listType}>";
         return $elementHTML;
     }
 
     private function compileChecklist($elementData)
     {
-        if($elementData['style'] == "unordered") $listType = "ul";
-        else $listType = "ol";
+        $listType = "ul";
         $elementHTML = "<{$listType}>";
         foreach($elementData['items'] as $key => $value)
         {
-            $elementHTML .= "<li>" . $value . "</li>";
+            $elementHTML .= "<li>";
+            if($value['checked']) $elementHTML .= "<s>";
+            $elementHTML .= $value['text'];
+            if($value['checked']) $elementHTML .= "</s>";
+            $elementHTML .= "</li>";
         }
-        $elementHTML = "</{$listType}>";
+        $elementHTML .= "</{$listType}>";
         return $elementHTML;
     }
 

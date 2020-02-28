@@ -95,6 +95,8 @@ class Editor
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
               }
             })
+            
+            
 			
 			/**
 			 * To initialize the Editor, create a new instance with configuration object
@@ -158,6 +160,10 @@ class Editor
                   $.post( '{$saveToolPath}' , {crsf_token: '{$crsfToken}', path: '{$this->pagePath}', json: JSON.stringify(outputData)})
                 .done(resp => {
                     console.log(resp);
+                    Toast.fire({
+                      icon: 'info',
+                      title: 'Podgląd nie jest jeszcze obsługiwany'
+                    });
                 });
                 }).catch((error) => {
                   console.log('Preview failed: ', error)

@@ -1,0 +1,37 @@
+<?php
+
+namespace Content\Classes;
+
+class Request
+{
+    private $url;
+    private $method;
+    private $userAgent;
+    private $page;
+
+    /**
+     * Request constructor.
+     */
+    public function __construct()
+    {
+        $this->url = $_SERVER['REQUEST_URI'];
+        $this->method = strtolower($_SERVER['REQUEST_METHOD']);
+        $this->userAgent = $_SERVER['HTTP_USER_AGENT'];
+        $this->page = strtolower(substr($_SERVER['QUERY_STRING'], 2));
+    }
+
+    /**
+     * Magic method __get().
+     *
+     * @param $propertyName
+     *
+     * @return property|null
+     */
+    public function __get($propertyName)
+    {
+        if (isset($this->$propertyName))
+            return $this->$propertyName;
+        else
+            return null;
+    }
+}

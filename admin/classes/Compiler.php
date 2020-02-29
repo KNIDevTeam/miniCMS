@@ -23,14 +23,14 @@ class Compiler
 
     private function compileParagraph($elementData)
     {
-        $elementHTML = "<p>" . $elementData['text'] . "</p>";
+        $elementHTML = "<p class=\"editor__paragraph\">" . $elementData['text'] . "</p>";
         return $elementHTML;
     }
 
     private function compileHeader($elementData)
     {
         $headerLevel = "h" . $elementData['level'];
-        $elementHTML = "<{$headerLevel}>" . $elementData['text'] . "</{$headerLevel}>";
+        $elementHTML = "<{$headerLevel} class=\"editor__header_{$headerLevel}\">" . $elementData['text'] . "</{$headerLevel}>";
         return $elementHTML;
     }
 
@@ -38,56 +38,49 @@ class Compiler
     {
         if($elementData['style'] == "unordered") $listType = "ul";
         else $listType = "ol";
-        $elementHTML = "<{$listType}>";
+        $elementHTML = "<{$listType} class=\"editor__list\">";
         foreach($elementData['items'] as $key => $value)
         {
             $elementHTML .= "<li>" . $value . "</li>";
         }
-        $elementHTML = "</{$listType}>";
+        $elementHTML .= "</{$listType}>";
         return $elementHTML;
     }
 
     private function compileChecklist($elementData)
     {
-        if($elementData['style'] == "unordered") $listType = "ul";
-        else $listType = "ol";
-        $elementHTML = "<{$listType}>";
+        $listType = "ul";
+        $elementHTML = "<{$listType}> class=\"editor__checklist\">";
         foreach($elementData['items'] as $key => $value)
         {
-            $elementHTML .= "<li>" . $value . "</li>";
+            $elementHTML .= "<li>";
+            if($value['checked']) $elementHTML .= "<s>";
+            $elementHTML .= $value['text'];
+            if($value['checked']) $elementHTML .= "</s>";
+            $elementHTML .= "</li>";
         }
-        $elementHTML = "</{$listType}>";
+        $elementHTML .= "</{$listType}>";
         return $elementHTML;
-    }
-
-    private function compileQuote($elementData)
-    {
-
     }
 
     private function compileWarning($elementData)
     {
-
+        return "<div class=\"editor__warning\"><div class=\"editor__warning_title\">".$elementData['title']."</div>"."<div class=\"editor__warning_message\">".$elementData['message']."</div></div></div>";
     }
 
     private function compileCode($elementData)
     {
-
+        return "<code class=\"editor__code\">".$elementData['code']."</code>";
     }
 
     private function compileDelimiter($elementData)
     {
-
-    }
-
-    private function compileLinkTool($elementData)
-    {
-
+        return "<div class=\"editor__delimiter\"></div>";
     }
 
     private function compileTable($elementData)
     {
-        $elementHTML = "<table id=\"default-table\">";
+        $elementHTML = "<table class=\"editor__table\">";
         foreach($elementData['content'] as $key1 => $value1)
         {
             $elementHTML .= "<tr>";

@@ -1,5 +1,7 @@
 <?php
 
+define('TYPE', 'ADMIN');
+
 session_start();
 
 use Admin\Classes as Classes;

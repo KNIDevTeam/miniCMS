@@ -19,13 +19,6 @@ class PagesController extends ControllerAbstract
         $pagesPath = ABS_PATH . "/content/pages";
         $templatesPath = ABS_PATH . "/admin/assets/editor/templates";
 
-        $router->addRoute('addPage', 'page/add', 'get', 'addPage');
-        $router->addRoute('adding', 'page/adding', 'get', 'adding');
-        $router->addRoute('editPage', 'page/edit', 'get', 'editPage');
-        $router->addRoute('savePage', 'page/save', 'post', 'savePage', true);
-        $router->addRoute('showPages', 'page/show', 'get', 'showPages');
-        $router->addRoute('deletePage', 'page/delete', 'get', 'deletePage');
-
         parent::__construct($request, $router);
         $this->pagesRepo = new PagesRepo($pagesPath);
         $this->templatesRepo = new TemplateRepo($templatesPath);
@@ -33,6 +26,12 @@ class PagesController extends ControllerAbstract
 
     public static function setUp($router)
     {
+        $router->addRoute('addPage', 'page/add', 'get', 'addPage');
+        $router->addRoute('adding', 'page/adding', 'get', 'adding');
+        $router->addRoute('editPage', 'page/edit', 'get', 'editPage');
+        $router->addRoute('savePage', 'page/save', 'post', 'savePage', true);
+        $router->addRoute('showPages', 'page/show', 'get', 'showPages');
+        $router->addRoute('deletePage', 'page/delete', 'get', 'deletePage');
         //Add menu
         $router->addMenu('Strony', 'showPages', 'fa-pen', -1);
     }

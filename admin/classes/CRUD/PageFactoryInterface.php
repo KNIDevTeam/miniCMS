@@ -6,5 +6,5 @@ namespace Admin\Classes\CRUD;
 
 interface PageFactoryInterface
 {
-    public function buildPage($pageName, $path);
+    public function buildPage($pageName, $path): PageInterface;
 }

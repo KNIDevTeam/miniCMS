@@ -3,13 +3,13 @@
 namespace Admin\Classes\CRUD;
 
 
-class Page
+class Page implements PageInterface
 {
     private $name;
     private $path;
     private $valid = true;
 
-    function __construct($pageName, $pagePath) {
+    public function __construct($pageName, $pagePath) {
         if(!$this->setName($pageName))
         {
             $this->setName("");
@@ -46,7 +46,7 @@ class Page
      * @param mixed $name
      * @return bool true if everything went fine false if not
      */
-    public function setName($name)
+    private function setName($name)
     {
         $this->name = $name;
         return true;
@@ -56,7 +56,7 @@ class Page
      * @param mixed $path
      * @return bool true if everything went fine false if not
      */
-    public function setPath($path)
+    private function setPath($path)
     {
         $this->path = $path;
         return true;

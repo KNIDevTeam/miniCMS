@@ -24,7 +24,7 @@ class PagesRepo implements PagesRepoInterface
         #TODO add some validation and return
     }
 
-    private  function addExistingPage($name, $page)
+    private  function addExistingPage($name, PageInterface $page)
     {
         $this->pagesList[$name] = $page;
         #TODO create validation method for adding page and execute it from both adding methods

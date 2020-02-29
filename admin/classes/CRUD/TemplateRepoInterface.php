@@ -8,5 +8,5 @@ interface TemplateRepoInterface
 {
     public function __construct($startPath);
     public function scanForNew();
-    public function getTemplate($name);
+    public function getTemplate($name) : TemplateInterface;
 }

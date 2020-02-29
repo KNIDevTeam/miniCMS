@@ -24,7 +24,7 @@ class TemplateRepo implements TemplateRepoInterface
         $this->initialised = $tmpInitialised;
     }
 
-    public function getTemplate($templname)
+    public function getTemplate($templname) : TemplateInterface
     {
         return $this->templateList[$templname];
     }

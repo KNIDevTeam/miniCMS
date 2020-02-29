@@ -2,38 +2,38 @@
 
     namespace Admin\Classes\CRUD;
 
-    class Template
+    class Template implements TemplateInterface
     {
         private $directory;
         private $name;
-        private $sucess;
+        private $success;
 
         public function __construct($name, $directory)
         {
-            $this->sucess = true;
+            $this->success = true;
             if(!$this->setName($name))
             {
                 $name = '';
-                $this->sucess = false;
+                $this->success = false;
             }
             if(!$this->setDirectory($directory))
             {
                 $directory = '';
-                $this->sucess = false;
+                $this->success = false;
             }
 
         }
 
         public function IsSuccessfullySet()
         {
-            return $this->sucess;
+            return $this->success;
         }
 
         /**
          * @param mixed $directory
          * @return true for now
          */
-        public function setDirectory($directory)
+        private function setDirectory($directory)
         {
             $this->directory = $directory;
             return true;
@@ -59,7 +59,7 @@
          * @param mixed $name
          * @return true for now
          */
-        public function setName($name)
+        private function setName($name)
         {
             $this->name = $name;
             return true;

@@ -8,10 +8,12 @@ class TemplateRepo implements TemplateRepoInterface
 {
     private $templateList = array();
     private $initialised = false;
+    private $templateFactory;
     private $TemplatesPath = '';
 
-    public function __construct($startPath)
+    public function __construct($startPath, TemplateFactoryInterface $templateFactory)
     {
+        $this->templateFactory = $templateFactory;
         $this->TemplatesPath = $startPath;
         #TODO add some validation to getting this path
         return $this->generate();
@@ -46,7 +48,7 @@ class TemplateRepo implements TemplateRepoInterface
     private function addTemplate($name, $directory)
     {
         if(!in_array($name, array_keys($this->templateList)))
-            $this->templateList[$name] = new Template($name, $directory);
+            $this->templateList[$name] = $this->templateFactory->buildTemplate($name, $directory);
         else
             $this->initialised = false;
             #TODO maybe we want to accept same templates names and take only first one to consider

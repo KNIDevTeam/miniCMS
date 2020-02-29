@@ -4,6 +4,7 @@ namespace Admin\Pages;
 
 use Admin\Classes\ControllerAbstract;
 use Admin\Classes\CRUD\PageFactory;
+use Admin\Classes\CRUD\TemplateFactory;
 use Admin\Classes\Editor;
 use Admin\Classes\CRUD\Page;
 use Admin\Classes\CRUD\PagesRepo;
@@ -22,7 +23,7 @@ class PagesController extends ControllerAbstract
 
         parent::__construct($request, $router);
         $this->pagesRepo = new PagesRepo($pagesPath, new PageFactory());
-        $this->templatesRepo = new TemplateRepo($templatesPath);
+        $this->templatesRepo = new TemplateRepo($templatesPath, new TemplateFactory());
     }
 
     public static function setUp($router)

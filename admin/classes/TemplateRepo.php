@@ -63,7 +63,7 @@ class TemplateRepo implements TemplateRepoInterface
         while($file = readdir($dir_handle)) {
             if ($file != "." && $file != "..") {
                 if (is_dir($dirname."/".$file))
-                    $this->addTemplate($file, $dirname . "/" . $file . "/" . $file . ".template.json");
+                    $this->addTemplate($file, $dirname . "/" . $file);
             }
         }
         closedir($dir_handle);

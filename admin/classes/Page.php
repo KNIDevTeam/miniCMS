@@ -30,8 +30,10 @@ class Page
     public function createPage($template)
     {
         mkdir($this->getPath());
-        copy($template->getDirectory(), $this->getPath()."/content.json");
-        #TODO add some default html
+        //TODO refactor this, for now it copies crap to .info.json file and is unreadable
+        copy($template->getDirectory()."/".$template->getName().".template.json", $this->getPath()."/".$this->getName().".json");
+        copy($template->getDirectory()."/".$template->getName().".template.json.cmp", $this->getPath()."/".$this->getName().".json.cmp");
+        copy($template->getDirectory()."/".$template->getName().".template.json", $this->getPath()."/".$this->getName().".info.json");
         return true;
     }
 

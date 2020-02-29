@@ -93,7 +93,8 @@ class PagesController extends ControllerAbstract
 
     public function deletePage()
     {
-        #empty for now
+        $this->pagesRepo->deletePage($this->getParams['name']);
+        redirect($this->router->getRoute('showPages'));
     }
 
 }

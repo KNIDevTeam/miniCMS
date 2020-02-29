@@ -8,17 +8,19 @@ class PagesRepo implements PagesRepoInterface
 {
     private $pagesList = array();
     private $pagesPath;
+    private $pageFactory;
 
-    public function __construct($startPath)
+    public function __construct($startPath, PageFactoryInterface $pageFactory)
     {
         $this->pagesPath = $startPath;
+        $this->pageFactory = $pageFactory;
         $this->listDirectoryPages($this->pagesPath);
         #TODO if there is no Home maybe we need to add one to be sure
     }
 
     private function addPage($name, $directory)
     {
-        $this->pagesList[$name] = new Page($name, $directory);
+        $this->pagesList[$name] = $this->pageFactory->buildPage($name, $directory);
         #TODO add some validation and return
     }
 
@@ -34,7 +36,7 @@ class PagesRepo implements PagesRepoInterface
         #TODO add some validation and return
     }
 
-    public function createPage($name, $parent, $template, $templateRepo)
+    public function createPage($name, $parent, $template, TemplateRepoInterface $templateRepo)
     {
         $parentPath = $this->pagesPath;
         if(strcmp($parent, "none")) {

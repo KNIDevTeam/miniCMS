@@ -3,10 +3,11 @@
 namespace Admin\Pages;
 
 use Admin\Classes\ControllerAbstract;
+use Admin\Classes\CRUD\PageFactory;
 use Admin\Classes\Editor;
-use Admin\Classes\Page;
-use Admin\Classes\PagesRepo;
-use Admin\Classes\TemplateRepo;
+use Admin\Classes\CRUD\Page;
+use Admin\Classes\CRUD\PagesRepo;
+use Admin\Classes\CRUD\TemplateRepo;
 
 
 class PagesController extends ControllerAbstract
@@ -20,7 +21,7 @@ class PagesController extends ControllerAbstract
         $templatesPath = ABS_PATH . "/admin/assets/editor/templates";
 
         parent::__construct($request, $router);
-        $this->pagesRepo = new PagesRepo($pagesPath);
+        $this->pagesRepo = new PagesRepo($pagesPath, new PageFactory());
         $this->templatesRepo = new TemplateRepo($templatesPath);
     }
 

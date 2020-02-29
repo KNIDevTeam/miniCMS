@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Admin\Classes;
+namespace Admin\Classes\CRUD;
 
 
 class PagesRepo implements PagesRepoInterface

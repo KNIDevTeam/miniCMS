@@ -2165,11 +2165,11 @@
                             return t.plusButtonClicked()
                         }), !1);
                         var e = u.default.make("div");
-                        e.appendChild(document.createTextNode("Dodaj nowy")), e.appendChild(u.default.make("div", this.CSS.plusButtonShortcut, {
+                        e.appendChild(document.createTextNode("Add")), e.appendChild(u.default.make("div", this.CSS.plusButtonShortcut, {
                             textContent: "⇥ Tab"
                         })), this.Editor.Tooltip.onHover(this.nodes.plusButton, e), this.Editor.Toolbox.make(), this.nodes.blockActionsButtons = u.default.make("div", this.CSS.blockActionsButtons), this.nodes.settingsToggler = u.default.make("span", this.CSS.settingsToggler);
                         var n = u.default.svg("dots", 18, 4);
-                        u.default.append(this.nodes.settingsToggler, n), u.default.append(this.nodes.blockActionsButtons, this.nodes.settingsToggler), u.default.append(this.nodes.actions, this.nodes.blockActionsButtons), this.Editor.Tooltip.onHover(this.nodes.settingsToggler, "Ustawienia", {
+                        u.default.append(this.nodes.settingsToggler, n), u.default.append(this.nodes.blockActionsButtons, this.nodes.settingsToggler), u.default.append(this.nodes.actions, this.nodes.blockActionsButtons), this.Editor.Tooltip.onHover(this.nodes.settingsToggler, "Click to tune", {
                             placement: "top"
                         }), this.Editor.BlockSettings.make(), u.default.append(this.nodes.actions, this.Editor.BlockSettings.nodes.wrapper), u.default.append(this.Editor.UI.nodes.wrapper, this.nodes.wrapper), this.bindEvents()
                     }
@@ -10237,7 +10237,7 @@
                             e = a.default.make("div", [this.CSS.button, this.CSS.wrapper], {});
                         return e.appendChild(a.default.svg("arrow-up", 14, 14)), this.api.listeners.on(e, "click", (function(n) {
                             return t.handleClick(n, e)
-                        }), !1), this.api.tooltip.onHover(e, "Przesuń w górę"), e
+                        }), !1), this.api.tooltip.onHover(e, "Move up"), e
                     }
                 }, {
                     key: "handleClick",
@@ -10285,7 +10285,7 @@
                         var t = this;
                         return this.nodes.button = a.default.make("div", [this.CSS.button, this.CSS.buttonDelete], {}), this.nodes.button.appendChild(a.default.svg("cross", 12, 12)), this.api.listeners.on(this.nodes.button, "click", (function(e) {
                             return t.handleClick(e)
-                        }), !1), this.api.tooltip.onHover(this.nodes.button, "Usuń moduł"), this.nodes.button
+                        }), !1), this.api.tooltip.onHover(this.nodes.button, "Delete"), this.nodes.button
                     }
                 }, {
                     key: "handleClick",
@@ -10325,7 +10325,7 @@
                             e = a.default.make("div", [this.CSS.button, this.CSS.wrapper], {});
                         return e.appendChild(a.default.svg("arrow-down", 14, 14)), this.api.listeners.on(e, "click", (function(n) {
                             return t.handleClick(n, e)
-                        }), !1), this.api.tooltip.onHover(e, "Przesuń w dół"), e
+                        }), !1), this.api.tooltip.onHover(e, "Move down"), e
                     }
                 }, {
                     key: "handleClick",
@@ -11196,7 +11196,7 @@
                     get: function() {
                         return {
                             icon: n(6).default,
-                            title: "Tekst"
+                            title: "Text"
                         }
                     }
                 }]), t

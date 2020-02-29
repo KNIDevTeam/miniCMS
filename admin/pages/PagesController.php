@@ -19,6 +19,11 @@ class PagesController extends ControllerAbstract
         $pagesPath = ABS_PATH . "/content/pages";
         $templatesPath = ABS_PATH . "/admin/assets/editor/templates";
 
+        $router->addRoute('addPage', 'addPage', 'get', 'addPage');
+        $router->addRoute('editPage', 'page/edit', 'get', 'editPage');
+        $router->addRoute('savePage', 'page/save', 'post', 'savePage', true);
+        $router->addRoute('previewPage', 'page/preview', 'post', 'previewPage', true);
+
         parent::__construct($request, $router);
         $this->pagesRepo = new PagesRepo($pagesPath);
         $this->templatesRepo = new TemplateRepo($templatesPath);
@@ -54,9 +59,17 @@ class PagesController extends ControllerAbstract
         $pageEditor = new Editor();
         $pageContent = $this->postParams['json'];
         $pagePath = $this->postParams['path'];
-        $pageEditor->saveFile($pagePath, $pageContent);
+        $pageEditor->saveFile($pagePath, $pageContent, "Save");
         echo "Saved";
-        //zrob sobie cos
+    }
+
+    public function previewPage()
+    {
+        $pageEditor = new Editor();
+        $pageContent = $this->postParams['json'];
+        $pagePath = $this->postParams['path'];
+        $pageEditor->saveFile($pagePath, $pageContent, "Preview");
+        echo "Saved";
     }
 
     public function showPages()

@@ -121,7 +121,11 @@ class Router
                             throw new \Exception("CRSF token not found");
                         } else {
                             $controllerMethod = $route['controllerMethod'];
+                            if (method_exists($controller, 'before'))
+                                $controller->before();
                             $controller->$controllerMethod();
+                            if (method_exists($controller, 'after'))
+                                $controller->after();
                         }
                     } else
                         throw new \Exception("Method: ".$route['controllerMethod']." does not exist");

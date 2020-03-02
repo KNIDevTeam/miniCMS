@@ -29,7 +29,7 @@ class PagesController extends ControllerAbstract
     public static function setUp($router)
     {
         $router->addRoute('addPage', 'page/add', 'get', 'addPage');
-        $router->addRoute('adding', 'page/adding', 'get', 'adding');
+        $router->addRoute('adding', 'page/adding', 'post', 'adding');
         $router->addRoute('editPage', 'page/edit', 'get', 'editPage');
         $router->addRoute('savePage', 'page/save', 'post', 'savePage', true);
         $router->addRoute('showPages', 'page/show', 'get', 'showPages');

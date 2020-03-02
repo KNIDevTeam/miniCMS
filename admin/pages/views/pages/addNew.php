@@ -13,7 +13,7 @@
         echo $err."<\br>";
     ?>
     <form action="adding" method="post">
-        <? crsf() ?>
+        <?php crsf() ?>
         Name: <input type="text" name="name"><br>
         Template: <input type="text" name="template"><br>
         Parent: <input type="text" name="parent"><br>

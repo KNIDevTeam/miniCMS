@@ -86,15 +86,16 @@ class PagesController extends ControllerAbstract
     public function adding()
     {
 
-        if ($this->pagesRepo->createPage($this->getParams['name'], $this->getParams['parent'], $this->getParams['template'], $this->templatesRepo))
-            redirect($this->router->getRoute('editPage') . "?name=" . $this->getParams['name']);
+        if ($this->pagesRepo->createPage(urldecode(str_replace(" ", "_", $this->postParams['name'])), urldecode($this->postParams['parent']),
+            urldecode($this->postParams['template']), $this->templatesRepo))
+            redirect($this->router->getRoute('editPage') . "?name=" . urldecode(str_replace(" ", "_", $this->postParams['name'])));
         else
             redirect($this->router->getRoute('addPage') . "?error=no cos sie syplo"); #some error for now because i don't have any validation in adding logic
     }
 
     public function deletePage()
     {
-        $this->pagesRepo->deletePage($this->getParams['name']);
+        $this->pagesRepo->deletePage(urldecode($this->getParams['name']));
         redirect($this->router->getRoute('showPages'));
     }
 

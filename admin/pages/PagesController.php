@@ -29,7 +29,7 @@ class PagesController extends ControllerAbstract
     public static function setUp($router)
     {
         $router->addRoute('addPage', 'page/add', 'get', 'addPage');
-        $router->addRoute('adding', 'page/adding', 'get', 'adding');
+        $router->addRoute('adding', 'page/adding', 'post', 'adding');
         $router->addRoute('editPage', 'page/edit', 'get', 'editPage');
         $router->addRoute('savePage', 'page/save', 'post', 'savePage', true);
         $router->addRoute('showPages', 'page/show', 'get', 'showPages');
@@ -44,7 +44,7 @@ class PagesController extends ControllerAbstract
         $pageName = $this->getParams['name'];
         $pagePath = $this->pagesRepo->getPagePath($pageName);
         $pageEditor->setName($pageName);
-        $pageEditor->setPath($pagePath.'/content.json');
+        $pageEditor->setPath($pagePath.'/'.$pageName.'.json');
         $pageEditor->setType('default');
 
         $this->view->set(['pageEditor' => $pageEditor]);
@@ -85,6 +85,7 @@ class PagesController extends ControllerAbstract
 
     public function adding()
     {
+
         if ($this->pagesRepo->createPage($this->getParams['name'], $this->getParams['parent'], $this->getParams['template'], $this->templatesRepo))
             redirect($this->router->getRoute('editPage') . "?name=" . $this->getParams['name']);
         else

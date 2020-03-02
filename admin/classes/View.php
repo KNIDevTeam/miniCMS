@@ -127,8 +127,6 @@ class View
      */
     public function includeLayout()
     {
-        $menu = $this->getMenu();
-
         if ($this->fileExists($this->layout)) {
             ob_start();
             include_once($this->getFilePath($this->layout));

@@ -86,8 +86,8 @@ class PagesController extends ControllerAbstract
     public function adding()
     {
         #TODO change this to post because CSRF is weird
-        if ($this->pagesRepo->createPage($this->getParams['name'], $this->getParams['parent'], $this->getParams['template'], $this->templatesRepo))
-            redirect($this->router->getRoute('editPage') . "?name=" . $this->getParams['name']);
+        if ($this->pagesRepo->createPage($this->postParams['name'], $this->postParams['parent'], $this->postParams['template'], $this->templatesRepo))
+            redirect($this->router->getRoute('editPage') . "?name=" . $this->postParams['name']);
         else
             redirect($this->router->getRoute('addPage') . "?error=no cos sie syplo"); #some error for now because i don't have any validation in adding logic
     }

@@ -44,7 +44,7 @@ class PagesController extends ControllerAbstract
         $pageName = $this->getParams['name'];
         $pagePath = $this->pagesRepo->getPagePath($pageName);
         $pageEditor->setName($pageName);
-        $pageEditor->setPath($pagePath.'/content.json');
+        $pageEditor->setPath($pagePath.'/'.$pageName.'.json');
         $pageEditor->setType('default');
 
         $this->view->set(['pageEditor' => $pageEditor]);

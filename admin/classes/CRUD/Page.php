@@ -27,13 +27,14 @@ class Page implements PageInterface
         return $this->valid;
     }
 
-    public function createPage($template)
+    public function createPage(Template $template)
     {
         mkdir($this->getPath());
         //TODO refactor this, for now it copies crap to .info.json file and is unreadable
-        copy($template->getDirectory()."/".$template->getName().".template.json", $this->getPath()."/".$this->getName().".json");
-        copy($template->getDirectory()."/".$template->getName().".template.json.cmp", $this->getPath()."/".$this->getName().".json.cmp");
-        copy($template->getDirectory()."/".$template->getName().".template.json", $this->getPath()."/".$this->getName().".info.json");
+        $startOfTemplatePath = $template->getDirectory()."/".$template->getName();
+        copy($startOfTemplatePath.".template.json", $this->getPath()."/".$this->getName().".json");
+        copy($startOfTemplatePath.".template.json.cmp", $this->getPath()."/".$this->getName().".json.cmp");
+        copy($startOfTemplatePath.".template.json", $this->getPath()."/".$this->getName().".info.json");
         return true;
     }
 

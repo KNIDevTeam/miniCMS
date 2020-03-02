@@ -85,7 +85,6 @@ class PagesController extends ControllerAbstract
 
     public function adding()
     {
-        #TODO change this to post because CSRF is weird
         if ($this->pagesRepo->createPage($this->getParams['name'], $this->getParams['parent'], $this->getParams['template'], $this->templatesRepo))
             redirect($this->router->getRoute('editPage') . "?name=" . $this->getParams['name']);
         else

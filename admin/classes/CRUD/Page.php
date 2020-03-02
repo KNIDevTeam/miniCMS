@@ -32,9 +32,10 @@ class Page implements PageInterface
         mkdir($this->getPath());
         //TODO refactor this, for now it copies crap to .info.json file and is unreadable
         $startOfTemplatePath = $template->getDirectory()."/".$template->getName();
-        copy($startOfTemplatePath.".template.json", $this->getPath()."/".$this->getName().".json");
-        copy($startOfTemplatePath.".template.json.cmp", $this->getPath()."/".$this->getName().".json.cmp");
-        copy($startOfTemplatePath.".template.json", $this->getPath()."/".$this->getName().".info.json");
+        $startOfNewPath = $this->getPath()."/".$this->getName();
+        copy($startOfTemplatePath.".template.json", $startOfNewPath.".json");
+        copy($startOfTemplatePath.".template.json.cmp", $startOfNewPath.".json.cmp");
+        copy($startOfTemplatePath.".template.json", $startOfNewPath.".info.json");
         return true;
     }
 
@@ -42,6 +43,7 @@ class Page implements PageInterface
     {
         $this->delete_directory($this->path);
     }
+
 
     /**
      * @param mixed $name

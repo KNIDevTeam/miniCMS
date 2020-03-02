@@ -85,10 +85,11 @@ class PagesController extends ControllerAbstract
 
     public function adding()
     {
-
-        if ($this->pagesRepo->createPage(urldecode(str_replace(" ", "_", $this->postParams['name'])), urldecode($this->postParams['parent']),
-            urldecode($this->postParams['template']), $this->templatesRepo))
-            redirect($this->router->getRoute('editPage') . "?name=" . urldecode(str_replace(" ", "_", $this->postParams['name'])));
+        $name = urldecode(str_replace(" ", "_", $this->postParams['name']));
+        $template = urldecode($this->postParams['template']);
+        $parent = urldecode($this->postParams['parent']);
+        if ($this->pagesRepo->createPage($name, $parent, $template, $this->templatesRepo))
+            redirect($this->router->getRoute('editPage') . "?name=" . $name);
         else
             redirect($this->router->getRoute('addPage') . "?error=no cos sie syplo"); #some error for now because i don't have any validation in adding logic
     }

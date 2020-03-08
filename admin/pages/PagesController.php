@@ -2,7 +2,7 @@
 
 namespace Admin\Pages;
 
-use Admin\Classes\ControllerAbstract;
+use Admin\Classes\Core\ControllerAbstract;
 use Admin\Classes\CRUD\PageFactory;
 use Admin\Classes\CRUD\TemplateFactory;
 use Admin\Classes\Editor;

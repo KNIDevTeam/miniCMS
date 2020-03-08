@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Classes;
+namespace Admin\Classes\Core;
 
 class Security
 {

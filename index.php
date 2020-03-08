@@ -3,9 +3,9 @@
 define('TYPE', 'USER');
 
 require('config.php');
-require('admin/classes/AutoLoader.php');
+require('admin/classes/core/AutoLoader.php');
 
-$autoLoader = new Admin\Classes\AutoLoader();
+$autoLoader = new Admin\Classes\Core\AutoLoader();
 $utils = new Content\Classes\Utils();
 
 if (DEBUG)
@@ -13,8 +13,8 @@ if (DEBUG)
 else
     error_reporting(0);
 
-set_error_handler('Admin\Classes\Error::errorHandler');
-set_exception_handler('Admin\Classes\Error::exceptionHandler');
+set_error_handler('Admin\Classes\Core\Error::errorHandler');
+set_exception_handler('Admin\Classes\Core\Error::exceptionHandler');
 
 $request = new Content\Classes\Request();
 $pagesManager = new Content\Classes\PagesManager($request->page);

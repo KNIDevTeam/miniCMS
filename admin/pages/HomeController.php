@@ -2,7 +2,7 @@
 
 namespace Admin\Pages;
 
-use Admin\Classes\ControllerAbstract;
+use Admin\Classes\Core\ControllerAbstract;
 
 class HomeController extends ControllerAbstract
 {

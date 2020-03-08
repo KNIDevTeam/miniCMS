@@ -19,8 +19,11 @@ set_exception_handler('Admin\Classes\Core\Error::exceptionHandler');
 $request = new Content\Classes\Request();
 $pagesManager = new Content\Classes\PagesManager($request->page);
 
+if ($request->page == '')
+    header('Location: Home');
+
 if ($pagesManager->pageExists()) {
-    $themeManager = new Content\Classes\ThemeManager($pagesManager->getCurrentPage(), $pagesManager->getMenu());
+    $themeManager = new Content\Classes\ThemeManager($pagesManager->getCurrentPage(), $pagesManager->getMenu(), $request->page);
     $themeManager->render();
 } else
     echo 'Error 404';

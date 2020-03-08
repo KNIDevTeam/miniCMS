@@ -7,16 +7,27 @@ class ThemeManager
     private $themeName = 'mainTheme';
     private $menu;
     private $pageInfo;
-    private $siteTitle = 'No elo';
+    private $siteTitle;
     private $baseUrl;
 
-    public function __construct($pageInfo, $menu)
+    /**
+     * ThemeManager constructor.
+     *
+     * @param $pageInfo
+     * @param $menu
+     * @param $siteTitle
+     */
+    public function __construct($pageInfo, $menu, $siteTitle)
     {
         $this->pageInfo = $pageInfo;
         $this->menu = $menu;
         $this->baseUrl = BASE_URL.'content/themes/'.$this->themeName.'/';
+        $this->siteTitle = $siteTitle;
     }
 
+    /**
+     * Render view.
+     */
     public function render()
     {
         ob_start();
@@ -24,21 +35,43 @@ class ThemeManager
         echo ob_get_clean();
     }
 
+    /**
+     * Get site title.
+     *
+     * @return mixed
+     */
     private function getTitle()
     {
         return $this->siteTitle;
     }
 
+    /**
+     * Get menu.
+     *
+     * @return mixed
+     */
     private function getMenu()
     {
         return $this->menu;
     }
 
+    /**
+     * Get page content.
+     *
+     * @return mixed
+     */
     private function getContent()
     {
         return $this->pageInfo['content'];
     }
 
+    /**
+     * Get asset url.
+     *
+     * @param $path
+     *
+     * @return string
+     */
     private function getAsset($path)
     {
         return $this->baseUrl.$path;

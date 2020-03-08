@@ -2,7 +2,7 @@
 
 namespace Admin\Pages;
 
-use Admin\Classes\ControllerAbstract;
+use Admin\Classes\Core\ControllerAbstract;
 use Admin\Classes\Validator;
 
 class TestController extends ControllerAbstract

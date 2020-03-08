@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Classes;
+namespace Admin\Classes\Core;
 
 class Router
 {
@@ -28,8 +28,8 @@ class Router
      */
     public function setErrorsRoutes()
     {
-        if (file_exists(ABS_PATH . '/admin/classes/ErrorsController.php')) {
-            $class = 'Admin\Classes\ErrorsController';
+        if (file_exists(ABS_PATH . '/admin/classes/core/ErrorsController.php')) {
+            $class = 'Admin\Classes\Core\ErrorsController';
             $class::setUp($this);
         } else
             die('Errors controller is broken!');

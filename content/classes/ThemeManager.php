@@ -19,7 +19,9 @@ class ThemeManager
 
     public function render()
     {
-        echo require ABS_PATH.'/content/themes/'.$this->themeName.'/index.php';
+        ob_start();
+        include_once(ABS_PATH.'/content/themes/'.$this->themeName.'/index.php');
+        echo ob_get_clean();
     }
 
     private function getTitle()
@@ -34,7 +36,7 @@ class ThemeManager
 
     private function getContent()
     {
-        return $this->pageInfo;
+        return $this->pageInfo['content'];
     }
 
     private function getAsset($path)

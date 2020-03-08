@@ -4,19 +4,22 @@ namespace Content\Classes;
 
 class PagesManager
 {
+    private $currentPageName;
     private $currentPage;
     private $pages = [];
     private $pageExists = false;
+    private $menu;
 
     /**
      * PagesManager constructor.
      *
      * @param $currentPage
      */
-    public function __construct($currentPage)
+    public function __construct($currentPageName)
     {
-        $this->currentPage = ucfirst($currentPage);
+        $this->currentPageName = strtolower($currentPageName);
         $this->pages = $this->scanPages(ABS_PATH.'/content/pages');
+        $this->menu = $this->generateMenu($this->pages);
     }
 
     /**
@@ -45,7 +48,10 @@ class PagesManager
 
         foreach (array_slice($files, 2) as $file) {
             if (is_dir($path.$file) && $this->areNecessaryFiles($path.$file, $file)) {
-                if ($file == $this->currentPage) $this->pageExists = true;
+                if (strtolower($file) == $this->currentPageName) {
+                    $this->pageExists = true;
+                    $this->currentPage['content'] = $this->getFile($path.$file, $file.'.json.cmp');
+                }
 
                 $pages[$file]['info'] = $this->getJson($path.$file, $file.'.info.json');
                 $pages[$file]['children'] = $this->scanPages($path.$file);
@@ -58,6 +64,36 @@ class PagesManager
             return null;
         else
             return $pages;
+    }
+
+    private function generateMenu($pages)
+    {
+        $menu = '<ul class="main-menu">';
+
+        foreach ($pages as $pageName => $page) {
+            $menu .= '<li class="item top-item"><a href="'.BASE_URL.$pageName.'" class="menu-link top-menu-link">'.str_replace('_', ' ', $pageName).'</a>';
+            if (isset($page['children']))
+                $menu .= $this->generateSubMenu($page['children']);
+            $menu .= '</li>';
+        }
+
+        $menu .= '</ul>';
+        return $menu;
+    }
+
+    private function generateSubMenu($pages)
+    {
+        $menu = '<ul class="sub-menu">';
+
+        foreach ($pages as $pageName => $page) {
+            $menu .= '<li class="item"><a href="'.BASE_URL.$pageName.'" class="menu-link">'.str_replace('_', ' ', $pageName).'</a>';
+            if (isset($page['children']))
+                $menu .= $this->generateSubMenu($page['children']);
+            $menu .= '</li>';
+        }
+
+        $menu .= '</ul>';
+        return $menu;
     }
 
     /**
@@ -89,6 +125,19 @@ class PagesManager
     }
 
     /**
+     * Get file contents.
+     *
+     * @param $path
+     * @param $name
+     *
+     * @return mixed
+     */
+    private function getFile($path, $name)
+    {
+        return file_get_contents($path.'/'.$name);
+    }
+
+    /**
      * Get all pages.
      *
      * @return array
@@ -98,9 +147,24 @@ class PagesManager
         return $this->pages;
     }
 
+    /**
+     * Get current page.
+     *
+     * @return mixed
+     */
     public function getCurrentPage()
     {
         return $this->currentPage;
+    }
+
+    /**
+     * Get menu.
+     *
+     * @return mixed
+     */
+    public function getMenu()
+    {
+        return $this->menu;
     }
 
     public function getAllPagesHtml()

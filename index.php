@@ -20,7 +20,7 @@ $request = new Content\Classes\Request();
 $pagesManager = new Content\Classes\PagesManager($request->page);
 
 if ($pagesManager->pageExists()) {
-    $themeManager = new Content\Classes\ThemeManager($pagesManager->getCurrentPage(), 'no elo');
+    $themeManager = new Content\Classes\ThemeManager($pagesManager->getCurrentPage(), $pagesManager->getMenu());
     $themeManager->render();
 } else
     echo 'Error 404';

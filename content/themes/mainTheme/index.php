@@ -17,13 +17,7 @@
         <header id="header">
             <div class="flex-left-align">
                 <div id="menu-button"><a><i class="fa fa-bars"></i></a></div>
-                <div class="title">mini CMS</div>
-            </div>
-
-            <div class="links">
-                <div class="login">
-                    <a href="#">Logowanie</a>
-                </div>
+                <div class="title">mini CMS CONTENT</div>
             </div>
         </header>
 
@@ -37,7 +31,7 @@
         </main>
 
         <footer id="footer">
-            <a href="#">&copy; KNI dev team haha</a>
+            <a href="#">&copy; KNI dev team 2020</a>
         </footer>
     </div>
 

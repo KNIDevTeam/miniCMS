@@ -9,6 +9,7 @@ use Admin\Classes\Editor;
 use Admin\Classes\CRUD\Page;
 use Admin\Classes\CRUD\PagesRepo;
 use Admin\Classes\CRUD\TemplateRepo;
+use Admin\Classes\MediaManager;
 
 
 class PagesController extends ControllerAbstract
@@ -105,12 +106,15 @@ class PagesController extends ControllerAbstract
         $response = ['success' => 0];
 
         if(isset($_FILES['file']['name'])) {
-            move_uploaded_file($_FILES['file']['tmp_name'], ABS_PATH.'/content/pages/Home/'.$_FILES['file']['name']);
-            $response['success'] = 1;
-            $response['file'] = [
-                'name' => $_FILES['file']['name'],
-                'url' => BASE_URL.'content/pages/Home/'.$_FILES['file']['name'],
-            ];
+            $mediaManager  = new MediaManager($_FILES['file']);
+            if ($mediaManager->moveFile()) {
+                $response['success'] = 1;
+                $response['file'] = [
+                    'name' => $mediaManager->getFileFullName(),
+                    'url' => $mediaManager->getFileUrl(),
+                    'ext' => $mediaManager->getFileExtension()
+                ];
+            }
         }
 
         echo json_encode($response);

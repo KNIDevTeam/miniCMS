@@ -34,6 +34,7 @@ class PagesController extends ControllerAbstract
         $router->addRoute('savePage', 'page/save', 'post', 'savePage', true);
         $router->addRoute('showPages', 'page/show', 'get', 'showPages');
         $router->addRoute('deletePage', 'page/delete', 'get', 'deletePage');
+        $router->addRoute('saveFile', 'page/saveFile', 'post', 'saveFile', true, true);
         //Add menu
         $router->addMenu('Strony', 'showPages', 'fa-pen', -1);
     }
@@ -97,6 +98,22 @@ class PagesController extends ControllerAbstract
     {
         $this->pagesRepo->deletePage(urldecode($this->getParams['name']));
         redirect($this->router->getRoute('showPages'));
+    }
+
+    public function saveFile()
+    {
+        $response = ['success' => 0];
+
+        if(isset($_FILES['file']['name'])) {
+            move_uploaded_file($_FILES['file']['tmp_name'], ABS_PATH.'/content/pages/Home/'.$_FILES['file']['name']);
+            $response['success'] = 1;
+            $response['file'] = [
+                'name' => $_FILES['file']['name'],
+                'url' => BASE_URL.'content/pages/Home/'.$_FILES['file']['name'],
+            ];
+        }
+
+        echo json_encode($response);
     }
 
 }

@@ -92,4 +92,9 @@ class Compiler
         }
         return $elementHTML;
     }
+
+    private function compileAttaches($elementData)
+    {
+        return '<a href="'.$elementData['file']['url'].'" target="_blank">'.$elementData['title'].' (Pobierz)</a>';
+    }
 }

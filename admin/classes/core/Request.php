@@ -39,7 +39,6 @@ class Request
             return null;
     }
 
-
     /**
      * Parse get vars from url.
      *

@@ -9,8 +9,11 @@ class Utils
      */
     public function __construct()
     {
+        if (!defined('BASE_ADMIN_URL'))
+            define('BASE_ADMIN_URL', $this->getBaseAdminUrl());
+
         if (!defined('BASE_URL'))
-            define('BASE_URL', $this->getBaseUrl());
+            define('BASE_URL', substr(BASE_ADMIN_URL, 0, strpos(BASE_ADMIN_URL, 'admin')));
 
         $GLOBALS['_asset_handler'] = [$this, 'asset'];
         $GLOBALS['_crsf_handler'] = [$this, 'crsf'];
@@ -26,7 +29,7 @@ class Utils
      */
     public function asset($path)
     {
-        echo BASE_URL.$path;
+        echo BASE_ADMIN_URL.$path;
     }
 
     /**
@@ -56,7 +59,7 @@ class Utils
      */
     public function redirect($path)
     {
-        die(header('Location: '.BASE_URL.$path));
+        die(header('Location: '.BASE_ADMIN_URL.$path));
     }
 
     /**
@@ -74,7 +77,7 @@ class Utils
      *
      * @return string
      */
-    private function getBaseUrl()
+    private function getBaseAdminUrl()
     {
         $path = '';
         $i = 1;

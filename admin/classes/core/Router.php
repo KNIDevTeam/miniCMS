@@ -59,8 +59,9 @@ class Router
      * @param $httpMethod
      * @param $controllerMethod
      * @param bool $onlyAjax
+     * @param bool $allowedNotCrsf
      */
-    public function addRoute($name, $path, $httpMethod, $controllerMethod, $onlyAjax = false)
+    public function addRoute($name, $path, $httpMethod, $controllerMethod, $onlyAjax = false, $allowedNotCRSF = false)
     {
         $backtrace = debug_backtrace();
         $this->routes[$name] = [
@@ -69,6 +70,7 @@ class Router
             'controllerClass' => $backtrace[1]['class'],
             'controllerMethod' => $controllerMethod,
             'onlyAjax' => $onlyAjax,
+            'allowedNotCRSF' => $allowedNotCRSF
         ];
     }
 
@@ -117,7 +119,7 @@ class Router
                 $controller = new $route['controllerClass']($this->request, $this);
                 if (!$route['onlyAjax'] || $this->request->isAjax) {
                     if (method_exists($controller, $route['controllerMethod'])) {
-                        if ($route['httpMethod'] == 'post' && !$this->security->isValidCRSF()) {
+                        if (!$route['allowedNotCRSF'] && $route['httpMethod'] == 'post' && !$this->security->isValidCRSF()) {
                             throw new \Exception("CRSF token not found");
                         } else {
                             $controllerMethod = $route['controllerMethod'];
@@ -165,7 +167,7 @@ class Router
      */
     public function route($routeName)
     {
-        return BASE_URL.$this->getRoute($routeName);
+        return BASE_ADMIN_URL.$this->getRoute($routeName);
     }
 
     /**

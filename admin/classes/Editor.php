@@ -8,13 +8,13 @@ class Editor
     private $pagePath;
     private $pageType;
     private $assetsPath = ABS_PATH . '/admin/assets/editor/';
-    private $modulesPath = ABS_PATH . '/admin/assets/js/editor/modules/';
 
     public function __construct()
     {
         //Initializing with default values
         $this->pageName = "New page";
-        $this->pagePath = $this->assetsPath . "default-content.json";
+        $this->pagePath = $this->assetsPath . "templates/default/default.template.json";
+        $this->pagePath = str_replace('\\', '/', $this->pagePath);
         $this->pageType = "default";
     }
 
@@ -57,37 +57,55 @@ class Editor
     public function openEditor()
     {
         $pageContent = $this->loadFile($this->pagePath);
-        $toolPath = $this->assetsPath . "templates/" . $this->pageType . ".tools.json";
+        echo $this->pagePath;
+        $toolPath = $this->assetsPath . "templates/" . $this->pageType . "/". $this->pageType . ".tools.json";
         $pageTools = file_get_contents($toolPath);
+        $pageTools = $this->setAttachesEndpoint($pageTools);
         $saveToolPath = route("savePage");
         $crsfToken = ajaxCrsf();
         return "
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/header@latest'></script><!-- Header -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest'></script><!-- Image -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest'></script><!-- Delimiter -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/list@latest'></script><!-- List -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest'></script><!-- Checklist -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/quote@latest'></script><!-- Quote -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/code@latest'></script><!-- Code -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/embed@latest'></script><!-- Embed -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/table@latest'></script><!-- Table -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/link@latest'></script><!-- Link -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/warning@latest'></script><!-- Warning -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/marker@latest'></script><!-- Marker -->
-			<script src='https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest'></script><!-- Inline Code -->
-			
-			<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>
+			<script src='{$this->getAssetsPath("header.min.js")}'></script><!-- Header -->
+			<script src='{$this->getAssetsPath("simple-image.min.js")}'></script><!-- Image -->
+			<script src='{$this->getAssetsPath("delimiter.min.js")}'></script><!-- Delimiter -->
+			<script src='{$this->getAssetsPath("list.min.js")}'></script><!-- List -->
+			<script src='{$this->getAssetsPath("checklist.min.js")}'></script><!-- Checklist -->
+			<script src='{$this->getAssetsPath("quote.min.js")}'></script><!-- Quote -->
+			<script src='{$this->getAssetsPath("code.min.js")}'></script><!-- Code -->
+			<script src='{$this->getAssetsPath("embed.min.js")}'></script><!-- Embed -->
+			<script src='{$this->getAssetsPath("table.min.js")}'></script><!-- Table -->
+			<script src='{$this->getAssetsPath("link.min.js")}'></script><!-- Link -->
+			<script src='{$this->getAssetsPath("warning.min.js")}'></script><!-- Warning -->
+			<script src='{$this->getAssetsPath("marker.min.js")}'></script><!-- Marker -->
+			<script src='{$this->getAssetsPath("inline-code.min.js")}'></script><!-- Inline Code -->
+			<script src='{$this->getAssetsPath("attaches.min.js")}'></script><!-- Inline Code -->
+			<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 			
 			<script>
 			/**
 			 * Saving button
 			 */
 			const saveButton = document.getElementById('saveButton');
+			const previewButton = document.getElementById('previewButton');
+			//Swal config
+			const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              onOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+            
+            
+			
 			/**
 			 * To initialize the Editor, create a new instance with configuration object
 			 * @see docs/installation.md for mode details
 			 */
-			var editor = new EditorJS({
+			let editor = new EditorJS({
 			  /**
 			   * Wrapper of Editor
 			   */
@@ -104,13 +122,13 @@ class Editor
 			  /**
 			   * Initial Editor data
 			   */
-			  data:  {$pageContent}
-			  ,
+			  data:  {$pageContent},
 			  onReady: function(){
-				saveButton.click();
+				//ready
 			  },
 			  onChange: function() {
-				console.log('something changed');
+			      saveButton.classList.remove('disabled');
+				//change
 			  }
 			});
 
@@ -118,17 +136,49 @@ class Editor
 			 * Saving example
 			 */
 			saveButton.addEventListener('click', function () {
+			    if (saveButton.classList.contains('disabled')) return;
+			    
 			    editor.save().then((outputData) => {
                   //console.log('Article data: ', outputData);
                   $.post( '{$saveToolPath}' , {crsf_token: '{$crsfToken}', path: '{$this->pagePath}', json: JSON.stringify(outputData)})
                 .done(resp => {
                     console.log(resp);
+                      Toast.fire({
+                      icon: 'success',
+                      title: 'Poprawnie zapisano'
+                    });
+                     saveButton.classList.add('disabled');
                 });
                 }).catch((error) => {
-                  console.log('Saving failed: ', error)
+                  console.log('Saving failed: ', error);
+                      Toast.fire({
+                      icon: 'error',
+                      title: 'Błąd zapisu'
+                    })
+                });
+			});
+			previewButton.addEventListener('click', function () {
+			    editor.save().then((outputData) => {
+                  //console.log('Article data: ', outputData);
+                  $.post( '{$saveToolPath}' , {crsf_token: '{$crsfToken}', path: '{$this->pagePath}', json: JSON.stringify(outputData)})
+                .done(resp => {
+                    console.log(resp);
+                    Toast.fire({
+                      icon: 'info',
+                      title: 'Podgląd nie jest jeszcze obsługiwany'
+                    });
+                });
+                }).catch((error) => {
+                  console.log('Preview failed: ', error)
                 });
 			});
 			</script>";
+    }
+
+    private function getAssetsPath($assetName)
+    {
+        $modulesPath = BASE_ADMIN_URL . 'assets/js/editor/modules/' . $assetName;
+        return str_replace('\\', '/', $modulesPath);
     }
 
     private function loadFile($pagePath)
@@ -140,9 +190,21 @@ class Editor
         }
     }
 
-    public function saveFile($pagePath, $pageContent)
+    public function saveFile($pagePath, $pageContent, $savingMode)
     {
-        if ($this->checkFile($pagePath)) file_put_contents($pagePath, $pageContent);
+        $compiledPath = $pagePath . ".cmp";
+        if($savingMode == "Save")
+        {
+            if ($this->checkFile($pagePath)) file_put_contents($pagePath, $pageContent);
+            $pageCompiler = new Compiler();
+            $compiledPage = $pageCompiler->compilePage($pageContent);
+            if ($this->checkFile($compiledPath)) file_put_contents($compiledPath, $compiledPage);
+        }
+        elseif($savingMode == "Preview")
+        {
+            //To do
+        }
+
     }
 
     private function checkFile($pagePath)
@@ -163,5 +225,10 @@ class Editor
         }
 
         return $fileIsAccessible;
+    }
+
+    private function setAttachesEndpoint($pageTools)
+    {
+        return str_replace('endpointURL', route('saveFile'), $pageTools);
     }
 }

@@ -550,6 +550,11 @@ ul {
         background: #6c87c3;
     }
 
+    .editor__button.disabled {
+        background: #4068bb;
+        cursor: not-allowed;
+    }
+
     .ce-example .ce-block:first-of-type h2.ce-header{
         font-size: 50px;
     }

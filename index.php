@@ -1,53 +1,29 @@
 <?php
 
-    class Path
-    {
-        public $path_state;
+define('TYPE', 'USER');
 
-        public function __construct()
-        {
-            $this->isPathCorrect();
-            $this->isPathEmpty();
-        }
+require('config.php');
+require('admin/classes/core/AutoLoader.php');
 
-        public function isPathCorrect()
-        {
-            if (!empty($_GET['page']) && !is_dir("./content/pages/".$_GET['page']))
-                $this->path_state = "error"; 
-        }
+$autoLoader = new Admin\Classes\Core\AutoLoader();
+$utils = new Content\Classes\Utils();
 
-        public function isPathEmpty()
-        {
-            if (empty($_GET['page']))
-                $this->path_state = "empty";
-        }   
+if (DEBUG)
+    error_reporting(E_ALL);
+else
+    error_reporting(0);
 
-        public function notify()
-        {
-            if ($this->path_state == "error")
-                echo "*Incorect path, try again!";
-        }
-    }
+set_error_handler('Admin\Classes\Core\Error::errorHandler');
+set_exception_handler('Admin\Classes\Core\Error::exceptionHandler');
 
-    $path = new Path();
+$request = new Content\Classes\Request();
+$pagesManager = new Content\Classes\PagesManager($request->page);
 
-    if ($path->path_state === "error" || $path->path_state === "empty") {
-        echo '<p>Seems that there is some error in the routing module.</br>Specify the path of the page you intend to display:</p>
+if ($request->page == '')
+    header('Location: Home');
 
-              <form method="get" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'">
-                  <input type="text" name="page">
-                  <input type="submit" name="submit" value="Go!">
-              </form>
-
-              <p>note: provide the exact name of the folder in "pages"</p>';
-
-        $path->notify();
-
-    } else {
-        include './content/themes/header.php';
-        include './content/pages/'.$_GET['page'].'/index.php';
-        include './content/themes/footer.php';
-    }
-
-
-?>
+if ($pagesManager->pageExists()) {
+    $themeManager = new Content\Classes\ThemeManager($pagesManager->getCurrentPage(), $pagesManager->getMenu(), $request->page);
+    $themeManager->render();
+} else
+    echo 'Error 404';

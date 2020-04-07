@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Classes;
+namespace Admin\Classes\Core;
 
 class Request
 {
@@ -38,7 +38,6 @@ class Request
         else
             return null;
     }
-
 
     /**
      * Parse get vars from url.

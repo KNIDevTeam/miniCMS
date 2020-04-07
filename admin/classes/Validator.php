@@ -94,7 +94,7 @@ class Validator
         $this->errors[$name][] = ['error' => $this->getErrorInfo($rule, $search, $replace), 'rule' => $rule];
     }
 
-    /**
+    /**1
      * Get info for validation error.
      *
      * @param $rule

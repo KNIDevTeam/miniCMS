@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Classes;
+namespace Admin\Classes\Core;
 
 class Router
 {
@@ -28,8 +28,8 @@ class Router
      */
     public function setErrorsRoutes()
     {
-        if (file_exists(ABS_PATH . '/admin/classes/ErrorsController.php')) {
-            $class = 'Admin\Classes\ErrorsController';
+        if (file_exists(ABS_PATH . '/admin/classes/core/ErrorsController.php')) {
+            $class = 'Admin\Classes\Core\ErrorsController';
             $class::setUp($this);
         } else
             die('Errors controller is broken!');
@@ -59,8 +59,9 @@ class Router
      * @param $httpMethod
      * @param $controllerMethod
      * @param bool $onlyAjax
+     * @param bool $allowedNotCrsf
      */
-    public function addRoute($name, $path, $httpMethod, $controllerMethod, $onlyAjax = false)
+    public function addRoute($name, $path, $httpMethod, $controllerMethod, $onlyAjax = false, $allowedNotCRSF = false)
     {
         $backtrace = debug_backtrace();
         $this->routes[$name] = [
@@ -69,6 +70,7 @@ class Router
             'controllerClass' => $backtrace[1]['class'],
             'controllerMethod' => $controllerMethod,
             'onlyAjax' => $onlyAjax,
+            'allowedNotCRSF' => $allowedNotCRSF
         ];
     }
 
@@ -117,11 +119,15 @@ class Router
                 $controller = new $route['controllerClass']($this->request, $this);
                 if (!$route['onlyAjax'] || $this->request->isAjax) {
                     if (method_exists($controller, $route['controllerMethod'])) {
-                        if ($route['httpMethod'] == 'post' && !$this->security->isValidCRSF()) {
+                        if (!$route['allowedNotCRSF'] && $route['httpMethod'] == 'post' && !$this->security->isValidCRSF()) {
                             throw new \Exception("CRSF token not found");
                         } else {
                             $controllerMethod = $route['controllerMethod'];
+                            if (method_exists($controller, 'before'))
+                                $controller->before();
                             $controller->$controllerMethod();
+                            if (method_exists($controller, 'after'))
+                                $controller->after();
                         }
                     } else
                         throw new \Exception("Method: ".$route['controllerMethod']." does not exist");
@@ -161,7 +167,7 @@ class Router
      */
     public function route($routeName)
     {
-        return BASE_URL.$this->getRoute($routeName);
+        return BASE_ADMIN_URL.$this->getRoute($routeName);
     }
 
     /**

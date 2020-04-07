@@ -1,3 +1,8 @@
+<?php $this->extend('layout') ?>
+
+<?php $this->section('title', 'Strona główna') ?>
+
+<?php $this->startSection('content') ?>
 <main id="main">
     <div class="preface">
         <div class="page-name">mini.pw.edu.pl/~loremipsum</div>
@@ -54,19 +59,20 @@
     </div>
 
     <div class="form-popup" id="addPageForm">
-        <form action="<?php echo route("addPage"); ?>" class="form-container">
+        <form action="<?php echo route("adding"); ?>" class="form-container" method="post">
+            <?php crsf() ?>
             <h2>Kreator tworzenia nowej podstrony</h2>
             <br>
             <label for="pageName"><b>Nazwa strony</b></label>
             <br>
-            <input type="text" placeholder="Podaj nazwę strony" name="pageName" required>
+            <input type="text" placeholder="Podaj nazwę strony" name="name" required>
             <br>
             <label for="pageParent"><b>Strona nadrzędna</b></label>
             <br>
-            <input type="text" placeholder="Podaj stronę nadrzędną" name="pageParent">
+            <input type="text" placeholder="Podaj stronę nadrzędną" name="parent">
             <br>
             <label for="pageTemplate"><b>Szablon</b></label>
-            <select name="pageTemplate">
+            <select name="template">
                 <option value="default">Domyślny</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -78,3 +84,4 @@
         </form>
     </div>
 </main>
+<?php $this->endSection() ?>

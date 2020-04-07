@@ -4,10 +4,8 @@
 
 <?php $this->startSection('content') ?>
 <main id="main">
-    <div class="logo">
-        <span class="title gradient">Edycja strony</span>
-        Nie zna się zasad gry, a jednak się gra
-        <div class="bottom-border"></div>
+<div class="preface">
+        <div class="page-name">Edycja strony</div>
     </div>
 
     <div class="editor">

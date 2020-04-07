@@ -16,8 +16,7 @@
     <div id="wrapper">
         <header id="header">
             <div class="flex-left-align">
-                <div id="menu-button"><a><i class="fa fa-bars"></i></a></div>
-                <div class="title">mini CMS CONTENT</div>
+                <div class="title">mini CMS</div>
             </div>
         </header>
 

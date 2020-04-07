@@ -4,25 +4,25 @@
 
 <?php $this->startSection('content') ?>
 <main id="main">
-    <div class="logo">
-        <span class="title gradient">About miniCMS</span>
-        Nie zna się zasad gry, a jednak się gra
-        <div class="bottom-border"></div>
+    <div class="preface">
+        <div class="page-name">mini.pw.edu.pl/~loremipsum</div>
+        <div class="page-description">Podstrony</div>
     </div>
 
-    <ul>
+    <div class="tiles">
         <?php
             foreach ($pages as $page) {
                 if($page == "Home") {
-                    echo "<li>".$page." <a href='edit?name=".$page."'>edit</a>";
+                    echo "<div class=\"tile nohover\"><span class=\"tile-title\">".$page."</span>
+                    <span class=\"tile-description\"><a href='edit?name=".$page."'><i class=\"fas fa-pen\"></i>edytuj</a></span></div>";
                 }
                 else {
-                    echo "<li>".$page." <a href='edit?name=".$page."'>edit</a> "." <a href='delete?name=".$page."'>delete</a>";
+                    echo "<div class=\"tile nohover\">".$page." <a href='edit?name=".$page."'>edytuj</a> "." <a href='delete?name=".$page."'>usuń</a></div>";
                 }
             }
 
         ?>
-    </ul>
-    <a href="add">add new</a>
+    </div>
+    <a href="add" class="fancy-a">Dodaj nową stronę</a>
 </main>
 <?php $this->endSection() ?>

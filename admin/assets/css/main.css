@@ -232,7 +232,8 @@ ul {
 /* Main */
 
     main {
-        padding: 3em 7em 0 16%;
+        padding: 3em 7em 0 300px;
+        
     }
 
     .preface {
@@ -412,7 +413,9 @@ ul {
         left: 20px;
         top: 20px;
         height: 80%;
+        min-width: 230px;
         width: 13%;
+       
         padding: 8em 0 0 0;
 
         border-radius: 20px;
@@ -501,7 +504,7 @@ ul {
 
     footer {
         margin: 5em 0 0 0;
-        padding: 1em 0 1em 14%;
+        padding: 1em 0 1em 300px;
 
         display: flex;
         flex-direction: row;

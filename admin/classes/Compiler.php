@@ -95,6 +95,11 @@ class Compiler
 
     private function compileAttaches($elementData)
     {
-        return '<a href="'.$elementData['file']['url'].'" target="_blank">'.$elementData['title'].' (Pobierz)</a>';
+        return '<div class="attache"><a href="'.$elementData['file']['url'].'" target="_blank">'.$elementData['title'].' (Pobierz)</a></div>';
+    }
+
+    private function compileImage($elementData)
+    {
+        return '<div class="image"><img src="'.$elementData['file']['url'].'" class="'.($elementData['withBorder'] ? 'withBorder ' : '').($elementData['withBackground'] ? 'withBackground ' : '').($elementData['stretched'] ? 'stretched ' : '').'" alt="'.$elementData['caption'].'"><h3>'.$elementData['caption'].'</h3></div>';
     }
 }

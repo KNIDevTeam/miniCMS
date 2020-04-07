@@ -31,7 +31,7 @@ ul {
     }
 
     main {
-        font-size: 14pt;
+        font-size: 13pt;
     }
 
     a {
@@ -112,15 +112,10 @@ ul {
         letter-spacing: -0.05em;
     }
 
-    .links {
-        font-size: 13pt;
-    }
-
     h2 {
-        font-size: 3em;
+        font-size: 2.5em;
         font-weight: 700;
         line-height: 1.3;
-        margin: 0 0 0.5em 0;
         letter-spacing: -0.05em;
     }
 
@@ -129,7 +124,7 @@ ul {
         }
 
     h3 {
-        font-size: 2em;
+        font-size: 1.5em;
     }
 
     p {
@@ -199,17 +194,15 @@ ul {
 /* Header */
 
     header {
-        padding: 2em;
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 3;
+        position: relative;
+        top: 2em;
+        left: 300px;
     }
 
 /* Main */
 
     main {
-        padding: 3em 7em 1.5em 300px;
+        padding: 0 7em 1.5em 300px;
         overflow-x: hidden;
     }
 
@@ -261,8 +254,9 @@ ul {
         height: 80%;
         min-width: 230px;
         width: 13%;
+        min-height: 90vh;
        
-        padding: 8em 0 0 0;
+        padding: 1em 0 0 0;
 
         border-radius: 20px;
         background-color: #fff;

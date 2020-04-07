@@ -15,8 +15,9 @@
 <body>
     <div id="wrapper">
         <header id="header">
-            <div class="flex-left-align">
-                <div class="title">mini CMS</div>
+            <div class="preface">
+                <div class="page-name">mini.pw.edu.pl/~loremipsum</div>
+                <div class="page-description"> [tytułstrony] </div>
             </div>
         </header>
 

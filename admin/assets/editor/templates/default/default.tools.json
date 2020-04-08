@@ -41,4 +41,13 @@ endpoint: 'endpointURL',
 buttonText: 'Wybierz plik',
 errorMessage: 'Błąd podczas wgrywania pliku'
 }
+},
+image: {
+class: ImageTool,
+config: {
+endpoints: {
+byFile: 'endpointImageFile',
+byUrl: 'endpointImageUrl',
+}
+}
 }

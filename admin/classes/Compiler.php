@@ -7,7 +7,7 @@ class Compiler
     public function compilePage($pageContent)
     {
         $pageJSON = json_decode($pageContent, true);
-        $pageHTML = "<html>";
+        $pageHTML = ""// "<html>";
         foreach($pageJSON['blocks'] as $key => $value)
         {
             $methodName = 'compile'. ucfirst($value['type']);
@@ -17,7 +17,7 @@ class Compiler
             else
                 $pageHTML .= $value['type']." NOT SUPPORTED<br>";
         }
-        $pageHTML .= "</html>";
+        // $pageHTML .= "</html>";
         return $pageHTML;
     }
 
@@ -65,7 +65,7 @@ class Compiler
 
     private function compileWarning($elementData)
     {
-        return "<div class=\"editor__warning\"><div class=\"editor__warning_title\">".$elementData['title']."</div>"."<div class=\"editor__warning_message\">".$elementData['message']."</div></div></div>";
+        return "<div class=\"editor__warning\"><div class=\"editor__warning_title\">".$elementData['title']."</div>"."<div class=\"editor__warning_message\">".$elementData['message']."</div></div>";
     }
 
     private function compileCode($elementData)
@@ -95,6 +95,11 @@ class Compiler
 
     private function compileAttaches($elementData)
     {
-        return '<a href="'.$elementData['file']['url'].'" target="_blank">'.$elementData['title'].' (Pobierz)</a>';
+        return '<div class="attache"><a href="'.$elementData['file']['url'].'" target="_blank">'.$elementData['title'].' (Pobierz)</a></div>';
+    }
+
+    private function compileImage($elementData)
+    {
+        return '<div class="image"><img src="'.$elementData['file']['url'].'" class="'.($elementData['withBorder'] ? 'withBorder ' : '').($elementData['withBackground'] ? 'withBackground ' : '').($elementData['stretched'] ? 'stretched ' : '').'" alt="'.$elementData['caption'].'"><h3>'.$elementData['caption'].'</h3></div>';
     }
 }

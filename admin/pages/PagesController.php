@@ -36,6 +36,8 @@ class PagesController extends ControllerAbstract
         $router->addRoute('showPages', 'page/show', 'get', 'showPages');
         $router->addRoute('deletePage', 'page/delete', 'get', 'deletePage');
         $router->addRoute('saveFile', 'page/saveFile', 'post', 'saveFile', true, true);
+        $router->addRoute('saveImageFile', 'page/saveImage/file', 'post', 'saveImageFile', true, true);
+        $router->addRoute('saveImageUrl', 'page/saveImage/url', 'post', 'saveImageUrl', true, true);
         //Add menu
         $router->addMenu('Strony', 'showPages', 'fa-pen', -1);
     }
@@ -107,6 +109,44 @@ class PagesController extends ControllerAbstract
 
         if(isset($_FILES['file']['name'])) {
             $mediaManager  = new MediaManager($_FILES['file']);
+            if ($mediaManager->moveFile()) {
+                $response['success'] = 1;
+                $response['file'] = [
+                    'name' => $mediaManager->getFileFullName(),
+                    'url' => $mediaManager->getFileUrl(),
+                    'ext' => $mediaManager->getFileExtension()
+                ];
+            }
+        }
+
+        echo json_encode($response);
+    }
+
+    public function saveImageFile()
+    {
+        $response = ['success' => 0];
+
+        if(isset($_FILES['image']['name'])) {
+            $mediaManager  = new MediaManager($_FILES['image']);
+            if ($mediaManager->moveFile()) {
+                $response['success'] = 1;
+                $response['file'] = [
+                    'name' => $mediaManager->getFileFullName(),
+                    'url' => $mediaManager->getFileUrl(),
+                    'ext' => $mediaManager->getFileExtension()
+                ];
+            }
+        }
+
+        echo json_encode($response);
+    }
+
+    public function saveImageUrl()
+    {
+        $response = ['success' => 0];
+
+        if(isset($_FILES['image']['name'])) {
+            $mediaManager  = new MediaManager($_FILES['image']);
             if ($mediaManager->moveFile()) {
                 $response['success'] = 1;
                 $response['file'] = [

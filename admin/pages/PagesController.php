@@ -2,13 +2,14 @@
 
 namespace Admin\Pages;
 
-use Admin\Classes\ControllerAbstract;
+use Admin\Classes\Core\ControllerAbstract;
 use Admin\Classes\CRUD\PageFactory;
 use Admin\Classes\CRUD\TemplateFactory;
 use Admin\Classes\Editor;
 use Admin\Classes\CRUD\Page;
 use Admin\Classes\CRUD\PagesRepo;
 use Admin\Classes\CRUD\TemplateRepo;
+use Admin\Classes\MediaManager;
 
 
 class PagesController extends ControllerAbstract
@@ -34,6 +35,9 @@ class PagesController extends ControllerAbstract
         $router->addRoute('savePage', 'page/save', 'post', 'savePage', true);
         $router->addRoute('showPages', 'page/show', 'get', 'showPages');
         $router->addRoute('deletePage', 'page/delete', 'get', 'deletePage');
+        $router->addRoute('saveFile', 'page/saveFile', 'post', 'saveFile', true, true);
+        $router->addRoute('saveImageFile', 'page/saveImage/file', 'post', 'saveImageFile', true, true);
+        $router->addRoute('saveImageUrl', 'page/saveImage/url', 'post', 'saveImageUrl', true, true);
         //Add menu
         $router->addMenu('Strony', 'showPages', 'fa-pen', -1);
     }
@@ -98,6 +102,63 @@ class PagesController extends ControllerAbstract
     {
         $this->pagesRepo->deletePage(urldecode($this->getParams['name']));
         redirect($this->router->getRoute('showPages'));
+    }
+
+    public function saveFile()
+    {
+        $response = ['success' => 0];
+
+        if(isset($_FILES['file']['name'])) {
+            $mediaManager  = new MediaManager($_FILES['file']);
+            if ($mediaManager->moveFile()) {
+                $response['success'] = 1;
+                $response['file'] = [
+                    'name' => $mediaManager->getFileFullName(),
+                    'url' => $mediaManager->getFileUrl(),
+                    'ext' => $mediaManager->getFileExtension()
+                ];
+            }
+        }
+
+        echo json_encode($response);
+    }
+
+    public function saveImageFile()
+    {
+        $response = ['success' => 0];
+
+        if(isset($_FILES['image']['name'])) {
+            $mediaManager  = new MediaManager($_FILES['image']);
+            if ($mediaManager->moveFile()) {
+                $response['success'] = 1;
+                $response['file'] = [
+                    'name' => $mediaManager->getFileFullName(),
+                    'url' => $mediaManager->getFileUrl(),
+                    'ext' => $mediaManager->getFileExtension()
+                ];
+            }
+        }
+
+        echo json_encode($response);
+    }
+
+    public function saveImageUrl()
+    {
+        $response = ['success' => 0];
+
+        if(isset($_FILES['image']['name'])) {
+            $mediaManager  = new MediaManager($_FILES['image']);
+            if ($mediaManager->moveFile()) {
+                $response['success'] = 1;
+                $response['file'] = [
+                    'name' => $mediaManager->getFileFullName(),
+                    'url' => $mediaManager->getFileUrl(),
+                    'ext' => $mediaManager->getFileExtension()
+                ];
+            }
+        }
+
+        echo json_encode($response);
     }
 
 }

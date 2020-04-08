@@ -57,8 +57,10 @@ class Editor
     public function openEditor()
     {
         $pageContent = $this->loadFile($this->pagePath);
+        echo $this->pagePath;
         $toolPath = $this->assetsPath . "templates/" . $this->pageType . "/". $this->pageType . ".tools.json";
         $pageTools = file_get_contents($toolPath);
+        $pageTools = $this->setEndpoints($pageTools);
         $saveToolPath = route("savePage");
         $crsfToken = ajaxCrsf();
         return "
@@ -75,6 +77,8 @@ class Editor
 			<script src='{$this->getAssetsPath("warning.min.js")}'></script><!-- Warning -->
 			<script src='{$this->getAssetsPath("marker.min.js")}'></script><!-- Marker -->
 			<script src='{$this->getAssetsPath("inline-code.min.js")}'></script><!-- Inline Code -->
+			<script src='{$this->getAssetsPath("attaches.min.js")}'></script><!-- Inline Code -->
+			<script src='{$this->getAssetsPath("image.min.js")}'></script><!-- Inline Code -->
 			<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 			
 			<script>
@@ -174,7 +178,7 @@ class Editor
 
     private function getAssetsPath($assetName)
     {
-        $modulesPath = BASE_URL . 'assets/js/editor/modules/' . $assetName;
+        $modulesPath = BASE_ADMIN_URL . 'assets/js/editor/modules/' . $assetName;
         return str_replace('\\', '/', $modulesPath);
     }
 
@@ -222,5 +226,12 @@ class Editor
         }
 
         return $fileIsAccessible;
+    }
+
+    private function setEndpoints($pageTools)
+    {
+        $pageTools = str_replace('endpointURL', route('saveFile'), $pageTools);
+        $pageTools = str_replace('endpointImageFile', route('saveImageFile'), $pageTools);
+        return str_replace('endpointImageUrl', route('saveImageUrl'), $pageTools);
     }
 }

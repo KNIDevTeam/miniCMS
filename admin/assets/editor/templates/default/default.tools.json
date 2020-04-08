@@ -34,3 +34,20 @@ inlineCode: {
 class: InlineCode,
 shortcut: 'CMD+SHIFT+C'
 },
+attaches: {
+class: AttachesTool,
+config: {
+endpoint: 'endpointURL',
+buttonText: 'Wybierz plik',
+errorMessage: 'Błąd podczas wgrywania pliku'
+}
+},
+image: {
+class: ImageTool,
+config: {
+endpoints: {
+byFile: 'endpointImageFile',
+byUrl: 'endpointImageUrl',
+}
+}
+}

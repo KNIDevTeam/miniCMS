@@ -12,20 +12,22 @@
         <div class="ce-example">
             <div class="ce-example__content _ce-example__content--small">
                 <div id="editorjs"></div>
-                <div class="editor__button disabled" id="saveButton">
+                <a class="fancy-a" id="saveButton">
                     Zapisz
-                </div>
-                <div class="editor__button" id="previewButton">
+                </a>
+                <a class="fancy-a" id="previewButton">
                     Podgląd
-                </div>
+                </a>
             </div>
         </div>
+        <div id="text">
         <?php
               $_SESSION['pageEditorHandle'] = $pageEditor;
               echo 'You are editing page: '. $pageEditor->getName() . " | " . $pageEditor->getPath();
               if(!is_writable($pageEditor->getPath())) echo " <- not accessible";
               echo $pageEditor->openEditor();
         ?>
+        </div>
     </div>
 </main>
 <?php $this->endSection() ?>

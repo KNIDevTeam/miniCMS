@@ -50,7 +50,7 @@ class Compiler
     private function compileChecklist($elementData)
     {
         $listType = "ul";
-        $elementHTML = "<{$listType}> class=\"editor__checklist\">";
+        $elementHTML = "<{$listType} class=\"editor__checklist\">";
         foreach($elementData['items'] as $key => $value)
         {
             $elementHTML .= "<li>";

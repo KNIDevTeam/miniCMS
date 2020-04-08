@@ -7,7 +7,7 @@ class Compiler
     public function compilePage($pageContent)
     {
         $pageJSON = json_decode($pageContent, true);
-        $pageHTML = ""// "<html>";
+        $pageHTML = "";//"<html>";
         foreach($pageJSON['blocks'] as $key => $value)
         {
             $methodName = 'compile'. ucfirst($value['type']);

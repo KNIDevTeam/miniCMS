@@ -7,7 +7,7 @@ class Compiler
     public function compilePage($pageContent)
     {
         $pageJSON = json_decode($pageContent, true);
-        $pageHTML = "<html>";
+        $pageHTML = ""// "<html>";
         foreach($pageJSON['blocks'] as $key => $value)
         {
             $methodName = 'compile'. ucfirst($value['type']);
@@ -17,7 +17,7 @@ class Compiler
             else
                 $pageHTML .= $value['type']." NOT SUPPORTED<br>";
         }
-        $pageHTML .= "</html>";
+        // $pageHTML .= "</html>";
         return $pageHTML;
     }
 
@@ -65,7 +65,7 @@ class Compiler
 
     private function compileWarning($elementData)
     {
-        return "<div class=\"editor__warning\"><div class=\"editor__warning_title\">".$elementData['title']."</div>"."<div class=\"editor__warning_message\">".$elementData['message']."</div></div></div>";
+        return "<div class=\"editor__warning\"><div class=\"editor__warning_title\">".$elementData['title']."</div>"."<div class=\"editor__warning_message\">".$elementData['message']."</div></div>";
     }
 
     private function compileCode($elementData)

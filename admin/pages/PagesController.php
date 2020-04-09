@@ -83,7 +83,7 @@ class PagesController extends ControllerAbstract
     {
         $error = '';
         if (isset($this->getParams['error'])) $error = $this->getParams['error'];
-        $this->view->set(['err' => $error]);
+        $this->view->set(['err' => $error, 'pages' => $this->pagesRepo->getPagesNamesList(), 'templates' => $this->templatesRepo->listTemplates()]);
         $this->view->render('pages.addNew');
     }
 

@@ -82,7 +82,7 @@ class PagesController extends ControllerAbstract
     public function addPage()
     {
         $error = '';
-        if ($this->getParams['error']) $error = $this->getParams['error'];
+        if (isset($this->getParams['error'])) $error = $this->getParams['error'];
         $this->view->set(['err' => $error]);
         $this->view->render('pages.addNew');
     }

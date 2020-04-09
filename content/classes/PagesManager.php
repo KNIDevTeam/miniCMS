@@ -78,7 +78,7 @@ class PagesManager
         $menu = '<ul class="main-menu">';
 
         foreach ($pages as $pageName => $page) {
-            $menu .= '<li class="item top-item"><a href="'.BASE_URL.$pageName.'" class="menu-link top-menu-link">'.str_replace('_', ' ', $pageName).'</a>';
+            $menu .= '<li class="item top-item"><a href="'.BASE_URL.$pageName.'" class="menu-link top-menu-link '.($this->currentPageName == strtolower($pageName) ? 'active' : '').'">'.str_replace('_', ' ', $pageName).'</a>';
             if (isset($page['children']))
                 $menu .= $this->generateSubMenu($page['children']);
             $menu .= '</li>';
@@ -100,7 +100,7 @@ class PagesManager
         $menu = '<ul class="sub-menu">';
 
         foreach ($pages as $pageName => $page) {
-            $menu .= '<li class="item"><a href="'.BASE_URL.$pageName.'" class="menu-link">'.str_replace('_', ' ', $pageName).'</a>';
+            $menu .= '<li class="item"><a href="'.BASE_URL.$pageName.'" class="menu-link '.($this->currentPageName == strtolower($pageName) ? 'active' : '').'">'.str_replace('_', ' ', $pageName).'</a>';
             if (isset($page['children']))
                 $menu .= $this->generateSubMenu($page['children']);
             $menu .= '</li>';

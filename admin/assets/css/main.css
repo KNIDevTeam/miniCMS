@@ -112,6 +112,11 @@ ul {
         font-size: 2em;
     }
 
+    .bold {
+        font-weight: 700;
+        font-size: 1.5em;
+    }
+
     .pagelist {
         font-size: 2em;
     }
@@ -263,13 +268,25 @@ ul {
 /* Main */
 
     main {
-        padding: 3em 7em 1.5em 300px;
+        padding: 5em 7em 5em 400px;
         overflow-x: hidden;
     }
 
+    #addNewPage {
+        display: block;
+        width: 25%;
+        margin-top: 2em;
+        padding: 2em;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #fff;
+        border-radius: 20px;
+        text-align: center;
+    }
+
     .preface {
-        padding: 1.5em 0 1.5em 0;
-        margin-bottom: 3em;
+        padding: 2em 0 2em 0;
+        margin-bottom: 5em;
         position: relative;
         z-index: 1;
         color: #fff;
@@ -279,7 +296,7 @@ ul {
     .preface::before {
         content: '';
         position: absolute;
-        left: -300px;
+        left: -400px;
         top: 0;
         width: 100vw;
         height: 100%;
@@ -308,7 +325,7 @@ ul {
 
     .tiles {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         padding: 1.5em 0 1.5em 0;
         flex-wrap: wrap;
         position: relative;
@@ -322,7 +339,7 @@ ul {
         display: flex;
         flex-direction: column;
         padding: 2em;
-        margin: 1em 0;
+        margin: 1.5em;
         width: 25%;
 
         border-radius: 20px;
@@ -545,14 +562,23 @@ ul {
 
 /* Footer */
 
+    .flex-start {
+        justify-content: flex-start;
+    }
+
+    .flex-end {
+        justify-content: flex-end;
+    }
+
     footer {
         margin: 5em 0 0 0;
-        padding: 1em 0 1em 300px;
+        padding: 5% 30% 10% 400px;
+        background-color: #333;
+        color: #fefefe;
 
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
-        z-index: 4;
+        justify-content: space-between;
     }
 
     @media screen and (max-width: 800px) {

@@ -4,7 +4,7 @@
 
 <?php $this->startSection('content') ?>
 <main id="main">
-<div class="preface">
+    <div class="preface">
         <div class="page-name">Edycja strony</div>
     </div>
 

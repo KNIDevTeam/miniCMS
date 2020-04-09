@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,700,900");
 @import url("https://fonts.googleapis.com/css?family=Playfair+Display:300,700,900");
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
 
 
 /* Reset defaults */
@@ -106,6 +107,11 @@ ul {
         font-size: 2em;
     }
 
+    .bold {
+        font-weight: 700;
+        font-size: 1.5em;
+    }
+
     .title {
         font-size: 2.75em;
         font-weight: 700;
@@ -129,6 +135,19 @@ ul {
 
     p {
         padding: 2em;
+    }
+
+    mark {
+        color: #666;
+        letter-spacing: -0.03em;
+        font-size: 1.05em;
+        font-weight: 700;
+        background-color: transparent;
+    }
+
+    code {
+        padding: 2em;
+        font-family: "Source Code Pro", Helvetica, serif;
     }
 
     main ul {
@@ -195,19 +214,21 @@ ul {
 
     header {
         position: relative;
-        top: 2em;
-        left: 300px;
+        top: 4em;
+        margin-bottom: 8em;
+        padding-left: 400px;
+        background: linear-gradient(to right, #9eb7ff, #ddc9ff);
     }
 
 /* Main */
 
     main {
-        padding: 0 7em 1.5em 300px;
+        padding: 0 7em 1.5em 400px;
         overflow-x: hidden;
     }
 
     .preface {
-        padding: 1.5em 0 1.5em 0;
+        padding: 3em 0 3em 0;
         margin-bottom: 3em;
         position: relative;
         z-index: 1;
@@ -215,18 +236,21 @@ ul {
         font-size: 14pt;
     }
 
-    .preface::before {
-        content: '';
-        position: absolute;
-        left: -300px;
-        top: 0;
-        width: 100vw;
-        height: 100%;
-        background: linear-gradient(to right, #9eb7ff, #ddc9ff);
-        z-index: -1;
-        overflow: clip;
+    .image {
+        max-width: 70%;
+        margin: 5em auto;
     }
 
+    .image img {
+        width: 100%;
+    }
+
+    .editor__delimiter {
+        height: 2px;
+        width: 25%;
+        background-color: #777;
+        margin: 5em auto;
+    }
 
     @media screen and (max-width: 736px) {
 
@@ -342,15 +366,25 @@ ul {
 
 /* Footer */
 
+    .flex-start {
+        justify-content: flex-start;
+    }
+    
+    .flex-end {
+        justify-content: flex-end;
+    }
+
     footer {
         margin: 5em 0 0 0;
-        padding: 1em 0 1em 300px;
+        padding: 5% 30% 10% 400px;
+        background-color: #333;
+        color: #fefefe;
 
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
-        z-index: 4;
+        justify-content: space-between;
     }
+
 
     @media screen and (max-width: 800px) {
 

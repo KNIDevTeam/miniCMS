@@ -38,7 +38,8 @@
         <?php echo $this->getSection('content') ?>
 
         <footer id="footer">
-            <a href="#">&copy; KNI dev team</a>
+            <div class="flex-start bold">miniCMS</div>
+            <a href="#" class="flex-end">&copy; KNI dev team 2020</a>
         </footer>
     </div>
 

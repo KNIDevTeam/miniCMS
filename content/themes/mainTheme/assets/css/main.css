@@ -37,12 +37,41 @@ ul {
 
     a {
         color: inherit;
-		transition: all 0.2s ease;
+		transition: color 0.2s ease, border 0.2s ease;
 		text-decoration: none;
 		border-bottom: dotted 1px rgba(88, 88, 88, 0.5);
     }
 
-    a::before, a::after {
+        nav a {
+            border-bottom: none;
+            position: relative;
+            padding-right: 2em;
+        }
+
+        nav a::after {
+            position: absolute;
+            left: -0.7em;
+            bottom: -20%;
+            height: 0;
+            width: 3px;
+            content: '';
+            background-color: #c9d7ff;
+            -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        nav a.active::after {
+            height: 140%;
+        }
+
+        nav a:hover::after {
+            height: 140%;
+            top: unset;
+            top: -20%;
+        }
+
+
+    .fancy-a::before, .fancy-a::after {
         -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
@@ -57,7 +86,7 @@ ul {
         }
 
 
-        nav a, .fancy-a {
+        .fancy-a {
             border-bottom: none;
             position: relative;
             padding: 0.7em;
@@ -69,7 +98,7 @@ ul {
             font-size: 1.25em;
         }
 
-            nav a::before, .fancy-a::before {
+            .fancy-a::before {
                 content: '';
                 position: absolute;
                 width: 100%;
@@ -81,7 +110,7 @@ ul {
                 z-index: -1;
             }
 
-            nav a::after, .fancy-a::after {
+            .fancy-a::after {
                 content: '';
                 position: absolute;
                 width: 100%;
@@ -93,12 +122,12 @@ ul {
                 z-index: -1;
             }
 
-            nav a:hover::before, .fancy-a:hover::before {
+            .fancy-a:hover::before {
                 left: -2px;
                 bottom: -2px;
             }
 
-            nav a:hover::after, .fancy-a:hover::after {
+            .fancy-a:hover::after {
                 right: -2px;
                 top: -2px;
             }
@@ -171,9 +200,11 @@ ul {
 
     nav a {
         font-weight: 700;
+
+        letter-spacing: 0.03em;
     }
 
-    .submenu a {
+    .sub-menu a {
         font-weight: 300;
     }
 
@@ -224,6 +255,7 @@ ul {
 
     main {
         padding: 0 7em 1.5em 400px;
+        min-height: 100vh;
         overflow-x: hidden;
     }
 
@@ -273,13 +305,11 @@ ul {
         z-index: 2;
 
         position: fixed;
-        left: 20px;
-        top: 20px;
-        height: 80%;
+        left: 30px;
+        top: 30px;
+        
         min-width: 230px;
-        width: 13%;
-        min-height: 90vh;
-       
+
         padding: 1em 0 0 0;
 
         border-radius: 20px;
@@ -298,9 +328,13 @@ ul {
         }
 
         nav li {
-            padding: 1.5em 0 1.5em 0;
+            padding: 1em 0 1em 0;
             margin: 0 auto 0 auto;
         }
+
+    .main-menu * {
+        padding-left: 0.4em;
+    }
 
     .expand {
         cursor: pointer;

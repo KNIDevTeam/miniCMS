@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Admin\Classes\CRUD;
+namespace Admin\Classes\crud;
 
 
 class TemplateFactory implements TemplateFactoryInterface

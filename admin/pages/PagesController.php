@@ -3,12 +3,12 @@
 namespace Admin\Pages;
 
 use Admin\Classes\Core\ControllerAbstract;
-use Admin\Classes\CRUD\PageFactory;
-use Admin\Classes\CRUD\TemplateFactory;
+use Admin\Classes\crud\PageFactory;
+use Admin\Classes\crud\TemplateFactory;
 use Admin\Classes\Editor;
-use Admin\Classes\CRUD\Page;
-use Admin\Classes\CRUD\PagesRepo;
-use Admin\Classes\CRUD\TemplateRepo;
+use Admin\Classes\crud\Page;
+use Admin\Classes\crud\PagesRepo;
+use Admin\Classes\crud\TemplateRepo;
 use Admin\Classes\MediaManager;
 
 
@@ -83,7 +83,7 @@ class PagesController extends ControllerAbstract
     {
         $error = '';
         if (isset($this->getParams['error'])) $error = $this->getParams['error'];
-        $this->view->set(['err' => $error]);
+        $this->view->set(['err' => $error, 'pages' => $this->pagesRepo->getPagesNamesList(), 'templates' => $this->templatesRepo->listTemplates()]);
         $this->view->render('pages.addNew');
     }
 

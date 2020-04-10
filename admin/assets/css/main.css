@@ -188,9 +188,9 @@ ul {
     }
 
     .tile-title {
-        font-size: 20pt;
+        font-size: 18pt;
         font-weight: 700;
-        letter-spacing: -0.05em;
+        letter-spacing: 0.03em;
         text-align: center;
         margin: 0 0 0.5em 0;
     }
@@ -269,6 +269,7 @@ ul {
 
     main {
         padding: 5em 7em 5em 400px;
+        min-height: 100vh;
         overflow-x: hidden;
     }
 
@@ -305,9 +306,31 @@ ul {
         overflow: clip;
     }
 
-    .pagelist {
-
+    input {
+        padding: 1em;
+        margin: 1em;
+        border-radius: 10px;
     }
+
+        #submitInput {
+            margin-top: 2em;
+            width: 20%;
+            display: flex;
+            justify-content: center;
+            background-color: #fff;
+            
+        }
+
+        input[type="submit"] {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 3em;
+            background-color: transparent;
+            color: #555;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+        }
 
     @media screen and (max-width: 736px) {
 

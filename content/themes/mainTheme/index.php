@@ -16,13 +16,17 @@
     <div id="wrapper">
         <header id="header">
             <div class="preface">
-                <div class="page-name">mini.pw.edu.pl/~loremipsum</div>
-                <div class="page-description"> [tytułstrony] </div>
+                <div class="flex-start">
+                    <div class="page-name">mini.pw.edu.pl/~loremipsum</div>
+                    <div class="page-description"> [tytułstrony] </div>
+                </div>
+                <div class="flex-end">
+                    <div class="additional-info"> wydział skuterków i małych rowerków</div>
+                </div>
             </div>
         </header>
 
         <nav id="menu" class="slide-in">
-            <h2>Menu</h2>
             <?php echo $this->getMenu() ?>
         </nav>
 

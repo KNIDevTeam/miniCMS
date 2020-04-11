@@ -34,6 +34,13 @@ ul {
         font-size: 12pt;
     }
 
+    form {
+        font-size: 1.25em;
+        position: relative;
+    }
+
+        
+
     a {
         color: inherit;
 		transition: all 0.2s ease;
@@ -310,15 +317,18 @@ ul {
         padding: 1em;
         margin: 1em;
         border-radius: 10px;
+        letter-spacing: 0.05em;
+        color: #555;
     }
 
         #submitInput {
             margin-top: 2em;
-            width: 20%;
+            width: 15%;
             display: flex;
             justify-content: center;
             background-color: #fff;
-            
+            font-size: 0.9em;
+            margin-left: 3em;
         }
 
         input[type="submit"] {
@@ -330,6 +340,11 @@ ul {
             color: #555;
             letter-spacing: 0.05em;
             cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        input[type="submit"]:hover {
+            color: #6c87c3;
         }
 
     @media screen and (max-width: 736px) {
@@ -633,6 +648,8 @@ ul {
         font-size: 2em;
         padding: 1em;
         margin: 2em;
+        background-color: #fff;
+        border-radius: 20px;
     }
 
     .editor #text {

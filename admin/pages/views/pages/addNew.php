@@ -13,9 +13,9 @@
     ?>
     <form action="adding" method="post">
         <?php crsf() ?>
-        Name: <input type="text" name="name"><br>
-        Template: <input type="text" name="template"><br>
-        Parent: <input type="text" name="parent"><br>
+        <input type="text" name="name" placeholder="name"><br>
+        <input type="text" name="template" placeholder="template"><br>
+        <input type="text" name="parent" placeholder="parent"><br>
         <a class="fancy-a" id="submitInput"><input type="submit"></a>
     </form>
 </main>

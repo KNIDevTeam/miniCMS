@@ -226,7 +226,7 @@ ul {
         font-size: 0.8em;
     }
 
-    @media screen and (max-width: 690px) {
+    @media screen and (max-width: 736px) {
 
         .page-name::after {
             display: none;
@@ -291,18 +291,6 @@ ul {
 
     }
 
-    @media screen and (max-width: 690px) {
-
-        .logo {
-            width: 20%;
-            left: 40%;
-            bottom: 5%;
-            top: unset;
-            right: unset;
-        }
-
-    }
-
     @media screen and (max-width: 736px) {
 
         header {
@@ -310,10 +298,11 @@ ul {
         }
 
         .logo {
-            right: 0;
-            left: unset;
             width: 20%;
-            top: 20%;
+            left: 40%;
+            bottom: 5%;
+            top: unset;
+            right: unset;
         }
 
     }

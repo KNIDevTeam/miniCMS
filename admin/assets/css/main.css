@@ -227,7 +227,7 @@ ul {
         color: #ddd;
     }
 
-    @media screen and (max-width: 690px) {
+    @media screen and (max-width: 736px) {
 
         .page-name::after {
             display: none;
@@ -300,17 +300,6 @@ ul {
         header {
             padding-left: 3em;
         }
-
-        .logo {
-            right: 0;
-            left: unset;
-            width: 20%;
-            top: 20%;
-        }
-
-    }
-
-    @media screen and (max-width: 690px) {
 
         .logo {
             width: 20%;

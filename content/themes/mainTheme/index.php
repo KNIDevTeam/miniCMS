@@ -24,6 +24,8 @@
                     <div class="additional-info"> wydział skuterków i małych rowerków</div>
                 </div>
             </div>
+
+            <img class="logo" src="<?php echo $this->getAsset('assets/images/logo_mini.png') ?>"></img>
         </header>
 
         <nav id="menu" class="slide-in">

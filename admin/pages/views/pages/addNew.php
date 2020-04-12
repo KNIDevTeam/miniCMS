@@ -4,9 +4,6 @@
 
 <?php $this->startSection('content') ?>
 <main id="main">
-    <div class="preface">
-        <div class="page-name">Nowa strona</div>
-    </div>
 
     <?php
         echo $err;

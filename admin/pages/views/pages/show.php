@@ -4,11 +4,6 @@
 
 <?php $this->startSection('content') ?>
 <main id="main">
-    <div class="preface">
-        <div class="page-name">mini.pw.edu.pl/~loremipsum</div>
-        <div class="page-description">Podstrony</div>
-    </div>
-
     <div class="tiles">
         <?php
             foreach ($pages as $page) {

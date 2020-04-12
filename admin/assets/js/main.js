@@ -1,9 +1,3 @@
-/* Hide/unhide menu */
-
-$("#menu-button").click(function() {
-    $("#menu").toggleClass("hide");
-    $("#main").toggleClass("lesspadding");
-});
 
 /* Add buttons to expandable menus */
 
@@ -33,4 +27,11 @@ $(".expand").click(function() {
             }
         }
     });
+});
+
+/* Fix menu when scrolled down */
+
+$(window).on("scroll", function() {
+    $("nav").removeClass("fixed-nav");
+    if($("nav")[0].getBoundingClientRect().top < 50) $("nav").addClass("fixed-nav");
 });

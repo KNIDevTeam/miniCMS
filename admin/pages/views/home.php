@@ -4,10 +4,12 @@
 
 <?php $this->startSection('content') ?>
 <main id="main">
-    <div class="preface">
+    <!-- <div class="preface">
         <div class="page-name">mini.pw.edu.pl/~loremipsum</div>
         <div class="page-description">Przegląd strony</div>
-    </div>
+
+        
+    </div> -->
 
     <div class="tile nohover fullwidth" id="search">
         <div class="flex-start"><i class="fas fa-search"></i> Szukaj</div>

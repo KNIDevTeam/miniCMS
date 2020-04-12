@@ -4,20 +4,19 @@
 
 <?php $this->startSection('content') ?>
 <main id="main">
-    <div class="preface">
-        <div class="page-name">Edycja strony</div>
-    </div>
 
     <div class="editor">
         <div class="ce-example">
             <div class="ce-example__content _ce-example__content--small">
                 <div id="editorjs"></div>
+                <div class="center">
                 <a class="fancy-a" id="saveButton">
                     Zapisz
                 </a>
                 <a class="fancy-a" id="previewButton">
                     Podgląd
                 </a>
+                </div>
             </div>
         </div>
         <div id="text">

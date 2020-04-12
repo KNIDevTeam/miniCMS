@@ -27,7 +27,17 @@
 <body>
     <div id="wrapper">
         <header id="header">
-                <div class="title">mini CMS</div>
+            <div class="preface">
+            <div class="flex-start flex-column">
+                    <div class="page-name">mini.pw.edu.pl/~loremipsum</div>
+                    <div class="page-description"> [tytułstrony] </div>
+                </div>
+                <div class="flex-end">
+                    <div class="additional-info"> wydział skuterków i małych rowerków</div>
+                </div>
+            </div>
+
+            <img class="logo" src="assets/images/logo_mini.png"></img>
         </header>
 
         <nav id="menu" class="slide-in">

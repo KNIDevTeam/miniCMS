@@ -1,0 +1,53 @@
+header: {
+class: Header,
+inlineToolbar: ['link'],
+config: {
+placeholder: 'Header'
+},
+shortcut: 'CMD+SHIFT+H'
+},
+image: {
+class: SimpleImage,
+inlineToolbar: ['link'],
+},
+list: {
+class: List,
+inlineToolbar: true,
+shortcut: 'CMD+SHIFT+L'
+},
+checklist: {
+class: Checklist,
+inlineToolbar: true,
+shortcut: 'CMD+SHIFT+O'
+},
+warning: Warning,
+marker: {
+class:  Marker,
+shortcut: 'CMD+SHIFT+M'
+},
+code: {
+class:  CodeTool,
+shortcut: 'CMD+SHIFT+C'
+},
+delimiter: Delimiter,
+inlineCode: {
+class: InlineCode,
+shortcut: 'CMD+SHIFT+C'
+},
+attaches: {
+class: AttachesTool,
+config: {
+endpoint: 'endpointURL',
+buttonText: 'Wybierz plik',
+errorMessage: 'Błąd podczas wgrywania pliku'
+}
+},
+image: {
+class: ImageTool,
+config: {
+endpoints: {
+byFile: 'endpointImageFile',
+byUrl: 'endpointImageUrl',
+}
+}
+}

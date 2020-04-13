@@ -17,8 +17,8 @@
         <header id="header">
             <div class="preface">
                 <div class="flex-start">
-                    <div class="page-name">mini.pw.edu.pl/~loremipsum</div>
-                    <div class="page-description"> [tytułstrony] </div>
+                    <div class="page-name"><?php echo SITE_NAME ?></div>
+                    <div class="page-description"> <?php echo $this->getTitle() ?> </div>
                 </div>
                 <div class="flex-end">
                     <div class="additional-info"> wydział skuterków i małych rowerków</div>

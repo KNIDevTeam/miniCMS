@@ -23,7 +23,7 @@ if ($request->page == '')
     header('Location: Home');
 
 if ($pagesManager->pageExists()) {
-    $themeManager = new Content\Classes\ThemeManager($pagesManager->getCurrentPage(), $pagesManager->getMenu(), $request->page);
+    $themeManager = new Content\Classes\ThemeManager($pagesManager->getCurrentPage(), $pagesManager->getMenu());
     $themeManager->render();
 } else
     echo 'Error 404';

@@ -27,16 +27,17 @@
 <body>
     <div id="wrapper">
         <header id="header">
-            <div class="flex-left-align">
-                <div id="menu-button"><a><i class="fa fa-bars"></i></a></div>
-                <div class="title">mini CMS</div>
-            </div>
-
-            <div class="links">
-                <div class="login">
-                    <a href="#">Logowanie</a>
+            <div class="preface">
+            <div class="flex-start flex-column">
+                    <div class="page-name">mini.pw.edu.pl/~loremipsum</div>
+                    <div class="page-description"> [tytułstrony] </div>
+                </div>
+                <div class="flex-end">
+                    <div class="additional-info"> wydział skuterków i małych rowerków</div>
                 </div>
             </div>
+
+            <img class="logo" src="assets/images/logo_mini.png"></img>
         </header>
 
         <nav id="menu" class="slide-in">
@@ -47,7 +48,8 @@
         <?php echo $this->getSection('content') ?>
 
         <footer id="footer">
-            <a href="#">&copy; KNI dev team</a>
+            <div class="flex-start bold">miniCMS</div>
+            <a href="#" class="flex-end">&copy; KNI dev team 2020</a>
         </footer>
     </div>
 

@@ -4,20 +4,16 @@
 
 <?php $this->startSection('content') ?>
 <main id="main">
-    <div class="logo">
-        <span class="title gradient">Edycja strony</span>
-        Nie zna się zasad gry, a jednak się gra
-        <div class="bottom-border"></div>
-    </div>
+
     <?php
-        echo $err."<\br>";
+        echo $err;
     ?>
     <form action="adding" method="post">
         <?php crsf() ?>
-        Name: <input type="text" name="name"><br>
-        Template: <input type="text" name="template"><br>
-        Parent: <input type="text" name="parent"><br>
-        <input type="submit">
+        <input type="text" name="name" placeholder="name"><br>
+        <input type="text" name="template" placeholder="template"><br>
+        <input type="text" name="parent" placeholder="parent"><br>
+        <a class="fancy-a" id="submitInput"><input type="submit"></a>
     </form>
 </main>
 <?php $this->endSection() ?>

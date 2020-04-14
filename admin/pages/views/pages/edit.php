@@ -4,30 +4,29 @@
 
 <?php $this->startSection('content') ?>
 <main id="main">
-    <div class="logo">
-        <span class="title gradient">Edycja strony</span>
-        Nie zna się zasad gry, a jednak się gra
-        <div class="bottom-border"></div>
-    </div>
 
     <div class="editor">
         <div class="ce-example">
             <div class="ce-example__content _ce-example__content--small">
                 <div id="editorjs"></div>
-                <div class="editor__button disabled" id="saveButton">
+                <div class="center">
+                <a class="fancy-a" id="saveButton">
                     Zapisz
-                </div>
-                <div class="editor__button" id="previewButton">
+                </a>
+                <a class="fancy-a" id="previewButton">
                     Podgląd
+                </a>
                 </div>
             </div>
         </div>
+        <div id="text">
         <?php
               $_SESSION['pageEditorHandle'] = $pageEditor;
               echo 'You are editing page: '. $pageEditor->getName() . " | " . $pageEditor->getPath();
               if(!is_writable($pageEditor->getPath())) echo " <- not accessible";
               echo $pageEditor->openEditor();
         ?>
+        </div>
     </div>
 </main>
 <?php $this->endSection() ?>

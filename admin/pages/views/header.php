@@ -24,19 +24,10 @@
 <body>
     <div id="wrapper">
         <header id="header">
-            <div class="flex-left-align">
-                <div id="menu-button"><a><i class="fa fa-bars"></i></a></div>
-                <div class="title">mini CMS</div>
-            </div>
-
-            <div class="links">
-                <div class="login">
-                    <a href="#">Logowanie</a>
-                </div>
-            </div>
+            <span class="title gradient">mini CMS</span>
         </header>
 
-        <nav id="menu" class="slide-in">
+        <nav id="menu">
             <h2>Menu</h2>
             <?php echo $menu; ?>
             <!--<ul>

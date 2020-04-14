@@ -23,7 +23,7 @@ class Compiler
 
     private function compileParagraph($elementData)
     {
-        $elementHTML = "<p class=\"editor__paragraph\">" . $elementData['text'] . "</p>";
+        $elementHTML = "<div class=\"editor__paragraph\">" . $elementData['text'] . "</div>";
         return $elementHTML;
     }
 

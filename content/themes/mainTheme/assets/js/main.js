@@ -18,3 +18,7 @@ $(window).on("scroll", function() {
     $("nav").removeClass("fixed-nav");
     if($("nav")[0].getBoundingClientRect().top < 50) $("nav").addClass("fixed-nav");
 });
+
+/* Fix main padding according to menu width */
+
+$("main").css("padding-left", `${$("nav")[0].getBoundingClientRect().width+100}px`);

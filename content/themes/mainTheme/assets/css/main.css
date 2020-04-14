@@ -152,17 +152,35 @@ ul {
         font-size: 1.5em;
     }
 
+    i {
+        font-style: italic;
+    }
+
+    b {
+        font-weight: 700;
+    }
+
     .title {
         font-size: 2.75em;
         font-weight: 700;
         letter-spacing: -0.05em;
     }
 
-    h2 {
+    
+    h1 {
         font-size: 2.5em;
         font-weight: 700;
         line-height: 1.3;
+        margin: 0 0 0.5em 0;
         letter-spacing: -0.05em;
+    }
+
+    h2 {
+        font-size: 2em;
+        font-weight: 700;
+        line-height: 1.3;
+        letter-spacing: -0.05em;
+        padding-bottom: 0.5em;
     }
 
         nav h2 {
@@ -173,8 +191,8 @@ ul {
         font-size: 1.5em;
     }
 
-    p {
-        padding: 2em;
+    p, .editor__warning {
+        padding: 0.5em 2em 0.5em 2em;
     }
 
     mark {
@@ -192,7 +210,21 @@ ul {
 
     main ul {
         list-style: disc;
-        padding: 2em;
+        padding: 1em 3em 1em 3em;
+    }
+
+    main ol {
+        padding: 1em 3em 1em 3em;
+    }
+
+    main .attache {
+        padding: 0.5em 2em 0.5em 2em;
+    }
+
+    .editor__warning_title {
+        font-weight: 700;
+        font-size: 1.2em;
+        letter-spacing: 0.05em;
     }
 
     .gradient {
@@ -311,7 +343,7 @@ ul {
 
     main {
         padding: 0 7em 1.5em 400px;
-        min-height: 100vh;
+        min-height: 50vh;
         overflow-x: hidden;
     }
 
@@ -326,9 +358,9 @@ ul {
 
     .editor__delimiter {
         height: 2px;
-        width: 25%;
+        width: 30%;
         background-color: #777;
-        margin: 5em auto;
+        margin: 2em 0 2em 0;
     }
 
     @media screen and (max-width: 736px) {
@@ -353,12 +385,12 @@ ul {
         z-index: 2;
 
         position: absolute;
-        left: 50px;
+        left: 30px;
         top: 20em;
         
         min-width: 230px;
 
-        padding: 1em 0 0 0;
+        padding: 1em;
 
         border-radius: 20px;
         background-color: #fff;
@@ -381,8 +413,7 @@ ul {
         }
 
         nav li {
-            padding: 1em 0 1em 0;
-            margin: 0 auto 0 auto;
+            padding: 0.7em 0 0.7em 0;
         }
 
     .main-menu * {

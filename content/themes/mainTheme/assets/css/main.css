@@ -191,7 +191,7 @@ ul {
         font-size: 1.5em;
     }
 
-    p, .editor__warning {
+    p, .editor__warning, .editor__paragraph {
         padding: 0.5em 2em 0.5em 2em;
     }
 

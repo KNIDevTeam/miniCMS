@@ -10,6 +10,7 @@ use Admin\Classes\crud\Page;
 use Admin\Classes\crud\PagesRepo;
 use Admin\Classes\crud\TemplateRepo;
 use Admin\Classes\MediaManager;
+use Admin\Classes\crud\validation\PageNameValidator;
 
 
 class PagesController extends ControllerAbstract
@@ -25,6 +26,7 @@ class PagesController extends ControllerAbstract
         parent::__construct($request, $router);
         $this->pagesRepo = new PagesRepo($pagesPath, new PageFactory());
         $this->templatesRepo = new TemplateRepo($templatesPath, new TemplateFactory());
+        $this->validator = new PageNameValidator();
     }
 
     public static function setUp($router)
@@ -82,7 +84,7 @@ class PagesController extends ControllerAbstract
     public function addPage()
     {
         $error = '';
-        if (isset($this->getParams['error'])) $error = $this->getParams['error'];
+        if (isset($this->getParams['error'])) $error = urldecode($this->getParams['error']);
         $this->view->set(['err' => $error, 'pages' => $this->pagesRepo->getPagesNamesList(), 'templates' => $this->templatesRepo->listTemplates()]);
         $this->view->render('pages.addNew');
     }
@@ -92,10 +94,23 @@ class PagesController extends ControllerAbstract
         $name = urldecode(str_replace(" ", "_", $this->postParams['name']));
         $template = urldecode($this->postParams['template']);
         $parent = urldecode($this->postParams['parent']);
-        if ($this->pagesRepo->createPage($name, $parent, $template, $this->templatesRepo))
-            redirect($this->router->getRoute('editPage') . "?name=" . $name);
+        if ($this->validator->validate($name, $template, $parent, $this->pagesRepo, $this->templatesRepo)) {
+            if ($this->pagesRepo->createPage($name, $parent, $template, $this->templatesRepo))
+                redirect($this->router->getRoute('editPage') . "?name=" . $name);
+            else
+                redirect($this->router->getRoute('addPage') . "?error=utworzenie strony nie powiodło się spróbuj ponownie później");
+
+        }
         else
-            redirect($this->router->getRoute('addPage') . "?error=no cos sie syplo"); #some error for now because i don't have any validation in adding logic
+        {
+            $errors = $this->validator->getErrors();
+            $errorString = "";
+            foreach($errors as $error)
+            {
+                $errorString = $errorString.$error;
+            }
+            redirect($this->router->getRoute('addPage') . "?error=".$errorString);
+        }
     }
 
     public function deletePage()

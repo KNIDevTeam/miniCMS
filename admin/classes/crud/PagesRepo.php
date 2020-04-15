@@ -40,14 +40,13 @@ class PagesRepo implements PagesRepoInterface
     {
         $parentPath = $this->pagesPath;
         if(strcmp($parent, "none")) {
-            if (!in_array($parent, array_keys($this->pagesList))) throw new \Exception('No such page'); #It's enough validation for now I think but i can be wrong
+            if (!in_array($parent, array_keys($this->pagesList))) return false;
             $parentPath = $this->pagesList[$parent]->getPath();
         }
         $newPage = new Page($name, $parentPath."/".$name);
         $newPage->createPage($templateRepo->getTemplate($template));
         $this->addExistingPage($name, $newPage);
-        #TODO add some validation and return
-        return true; # just for now later if there will be some validation i wont need to change any logic higher
+        return true;
     }
 
     public function getPagesNamesList()

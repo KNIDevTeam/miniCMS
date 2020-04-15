@@ -15,7 +15,6 @@ class TemplateRepo implements TemplateRepoInterface
     {
         $this->templateFactory = $templateFactory;
         $this->TemplatesPath = $startPath;
-        #TODO add some validation to getting this path
         return $this->generate();
     }
 
@@ -36,6 +35,13 @@ class TemplateRepo implements TemplateRepoInterface
         return $this->templateList;
     }
 
+    public function ListTemplatesNames()
+    {
+        $listOfNames = array();
+        foreach ($this->templateList as $name => $template) array_push($listOfNames, $name);
+        return $listOfNames;
+    }
+
     private function generate()
     {
         $startPath = $this->TemplatesPath;
@@ -51,8 +57,6 @@ class TemplateRepo implements TemplateRepoInterface
             $this->templateList[$name] = $this->templateFactory->buildTemplate($name, $directory);
         else
             $this->initialised = false;
-            #TODO maybe we want to accept same templates names and take only first one to consider
-            # it's working kind'a this now but it's considered not initialised then
     }
 
     private function listTemplateDirectory($dirname)

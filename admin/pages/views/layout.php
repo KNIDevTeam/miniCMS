@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <img class="logo" src="assets/images/logo_mini.png"></img>
+            <img class="logo" src="<?php asset('assets/images/logo_mini.png') ?>"></img>
         </header>
 
         <nav id="menu" class="slide-in">

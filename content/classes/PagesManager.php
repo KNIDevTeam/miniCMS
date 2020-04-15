@@ -49,6 +49,7 @@ class PagesManager
         foreach (array_slice($files, 2) as $file) {
             if (is_dir($path.$file) && $this->areNecessaryFiles($path.$file, $file)) {
                 if (strtolower($file) == $this->currentPageName) {
+                    $this->currentPage['title'] = str_replace('_', ' ', $file);
                     $this->pageExists = true;
                     $this->currentPage['content'] = $this->getFile($path.$file, $file.'.json.cmp');
                 }

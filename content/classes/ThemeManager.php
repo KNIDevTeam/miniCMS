@@ -15,14 +15,13 @@ class ThemeManager
      *
      * @param $pageInfo
      * @param $menu
-     * @param $siteTitle
      */
-    public function __construct($pageInfo, $menu, $siteTitle)
+    public function __construct($pageInfo, $menu)
     {
         $this->pageInfo = $pageInfo;
         $this->menu = $menu;
         $this->baseUrl = BASE_URL.'content/themes/'.$this->themeName.'/';
-        $this->siteTitle = $siteTitle;
+        $this->siteTitle = $pageInfo['title'];
     }
 
     /**

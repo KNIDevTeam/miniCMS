@@ -86,7 +86,7 @@ ul {
                 position: absolute;
                 width: 100%;
                 height: 100%;
-                border: 2px solid #c9d7ff;
+                border: 2px solid #b5c5ff;
                 border-radius: 10px;
                 left: 3px;
                 bottom: 3px;
@@ -98,7 +98,7 @@ ul {
                 position: absolute;
                 width: 100%;
                 height: 100%;
-                border: 2px solid #c9d7ff;
+                border: 2px solid #b5c5ff;
                 border-radius: 10px;
                 right: 3px;
                 top: 3px;
@@ -143,6 +143,14 @@ ul {
 
     .links {
         font-size: 13pt;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        font-weight: 700;
+        line-height: 1.3;
+        margin: 0 0 0.5em 0;
+        letter-spacing: -0.05em;
     }
 
     h2 {
@@ -227,7 +235,7 @@ ul {
         color: #ddd;
     }
 
-    @media screen and (max-width: 690px) {
+    @media screen and (max-width: 736px) {
 
         .page-name::after {
             display: none;
@@ -302,17 +310,6 @@ ul {
         }
 
         .logo {
-            right: 0;
-            left: unset;
-            width: 20%;
-            top: 20%;
-        }
-
-    }
-
-    @media screen and (max-width: 690px) {
-
-        .logo {
             width: 20%;
             left: 40%;
             bottom: 5%;
@@ -343,31 +340,6 @@ ul {
         border-radius: 20px;
         text-align: center;
     }
-
-    /*.preface {
-        padding: 2em 0 2em 0;
-        margin-bottom: 5em;
-        position: relative;
-        z-index: 1;
-        color: #fff;
-        font-size: 14pt;
-
-        max-height: 20em;
-        overflow: hidden;
-        background: linear-gradient(to right, #9eb7ff, #ddc9ff);
-    }
-
-    .preface::before {
-        content: '';
-        position: absolute;
-        left: -400px;
-        top: 0;
-        width: 120vw;
-        height: 100%;
-        background: linear-gradient(to right, #9eb7ff, #ddc9ff);
-        z-index: -1;
-        overflow: clip;
-    }*/
 
     input {
         padding: 1em;
@@ -483,7 +455,7 @@ ul {
         .alt {
             color: #fff;
             box-shadow: 0 3px 20px 3px #dbdfff;
-            background: linear-gradient(to bottom right, #9eb7ff, #ddc9ff);
+            background: linear-gradient(to bottom right, #a1b5ff, #abe5ff);
         }
 
         .tile::before {
@@ -491,7 +463,7 @@ ul {
             position: absolute;
             width: 100%;
             height: 100%;
-            border: solid 2px #c9d7ff;
+            border: solid 2px #b5c5ff;
             border-radius: 20px;
             left: 3px;
             bottom: 3px;

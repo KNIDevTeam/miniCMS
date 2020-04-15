@@ -27,7 +27,7 @@ class Page implements PageInterface
         return $this->valid;
     }
 
-    public function createPage(Template $template)
+    public function createPage(TemplateInterface $template)
     {
         mkdir($this->getPath());
         //TODO refactor this, for now it copies crap to .info.json file and is unreadable
@@ -35,7 +35,11 @@ class Page implements PageInterface
         $startOfNewPath = $this->getPath()."/".$this->getName();
         copy($startOfTemplatePath.".template.json", $startOfNewPath.".json");
         copy($startOfTemplatePath.".template.json.cmp", $startOfNewPath.".json.cmp");
-        copy($startOfTemplatePath.".template.json", $startOfNewPath.".info.json");
+
+        $file = fopen($startOfNewPath.".info.json", 'w');
+        fwrite($file, $this->generateInfo($template));
+        fclose($file);
+
         return true;
     }
 
@@ -99,6 +103,16 @@ class Page implements PageInterface
         closedir($dir_handle);
         rmdir($dirname);
         return true;
+    }
+
+    private function generateInfo(TemplateInterface $template)
+    {
+        $result = [];
+        $result['name'] = $this->name;
+        $result['template'] = $template->getName();
+        $result['created'] = date('m/d/Y h:i:s a', time());
+        $result['modified'] = date('m/d/Y h:i:s a', time());
+        return json_encode($result);
     }
 
 }

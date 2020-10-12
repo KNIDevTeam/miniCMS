@@ -10,8 +10,6 @@ use MiniCMS\Admin\Classes\Core as AdminCore;
 require('../config.php');
 require('../includes/core/AutoLoader.php');
 
-$autoLoader = new Core\AutoLoader();
-
 if (DEBUG)
     error_reporting(E_ALL);
 else
@@ -20,7 +18,7 @@ else
 set_error_handler('MiniCMS\Includes\Core\Error::errorHandler');
 set_exception_handler('MiniCMS\Includes\Core\Error::exceptionHandler');
 
-$router = new AdminCore\Router();
+$router = AdminCore\Router::getInstance();
 
 // Set errors routes
 $router->setErrorsRoutes();

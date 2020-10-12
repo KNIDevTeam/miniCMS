@@ -42,6 +42,13 @@ class ThemeManager
         echo ob_get_clean();
     }
 
+    public function render404()
+    {
+        $this->addBlock('title', 'Error - 404');
+        $this->addBlock('content', 'Error - 404. Podana strona nie została znaleziona');
+        $this->render();
+    }
+    
     /**
      * Get block.
      *

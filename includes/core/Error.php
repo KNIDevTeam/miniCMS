@@ -39,7 +39,11 @@ class Error
             echo '<p>Stack trace:<pre>' . $exception->getTraceAsString() . '</pre></p>';
             echo '<p>Thrown in "' . $exception->getFile() . '" on line ' . $exception->getLine() . '</p>';
             die();
-        } else
-            Request::getInstance()->abort($code);
+        } else {
+            if ($code == 404) {
+                Request::getInstance()->abort($code);
+            } else
+                echo "Wystąpił nieoczekiwany błąd";
+        }
     }
 }

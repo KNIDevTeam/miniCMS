@@ -47,3 +47,5 @@ class AutoLoader
         }
     }
 }
+
+$autoLoader = new AutoLoader();

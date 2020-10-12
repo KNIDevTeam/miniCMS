@@ -4,25 +4,23 @@ define('TYPE', 'ADMIN');
 
 session_start();
 
-use Admin\Classes\Core as Core;
+use MiniCMS\Includes\Core as Core;
+use MiniCMS\Admin\Classes\Core as AdminCore;
 
 require('../config.php');
-require('classes/core/Functions.php');
-require('classes/core/AutoLoader.php');
+require('../includes/core/AutoLoader.php');
 
 $autoLoader = new Core\AutoLoader();
-$utils = new Core\Utils();
 
 if (DEBUG)
     error_reporting(E_ALL);
 else
     error_reporting(0);
 
-set_error_handler('Admin\Classes\Core\Error::errorHandler');
-set_exception_handler('Admin\Classes\Core\Error::exceptionHandler');
+set_error_handler('MiniCMS\Includes\Core\Error::errorHandler');
+set_exception_handler('MiniCMS\Includes\Core\Error::exceptionHandler');
 
-$request = new Core\Request();
-$router = new Core\Router($request);
+$router = new AdminCore\Router();
 
 // Set errors routes
 $router->setErrorsRoutes();

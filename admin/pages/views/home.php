@@ -1,16 +1,7 @@
-<?php $this->extend('layout') ?>
-
 <?php $this->section('title', 'Strona główna') ?>
 
 <?php $this->startSection('content') ?>
 <main id="main">
-    <!-- <div class="preface">
-        <div class="page-name">mini.pw.edu.pl/~loremipsum</div>
-        <div class="page-description">Przegląd strony</div>
-
-        
-    </div> -->
-
     <div class="tile nohover fullwidth" id="search">
         <div class="flex-start"><i class="fas fa-search"></i> Szukaj</div>
         <div class="flex-end"><i class="fas fa-bars"></i><i class="fas fa-envelope"></i><i class="fas fa-bell"></i></div>
@@ -61,8 +52,8 @@
     </div>
 
     <div class="form-popup" id="addPageForm">
-        <form action="<?php echo route("adding"); ?>" class="form-container" method="post">
-            <?php crsf() ?>
+        <form action="<?php echo $this->router->route("adding"); ?>" class="form-container" method="post">
+            <?php $this->security->getForm() ?>
             <h2>Kreator tworzenia nowej podstrony</h2>
             <br>
             <label for="pageName"><b>Nazwa strony</b></label>

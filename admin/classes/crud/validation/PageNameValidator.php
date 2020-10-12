@@ -1,8 +1,8 @@
 <?php
 
-namespace Admin\Classes\crud\validation;
-use admin\classes\crud\validation\PageValidatorInterface;
-use admin\classes\Validator;
+namespace MiniCMS\admin\Classes\crud\validation;
+use MiniCMS\admin\classes\crud\validation\PageValidatorInterface;
+use MiniCMS\admin\classes\Validator;
 
 class PageNameValidator implements PageValidatorInterface
 {

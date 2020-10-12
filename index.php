@@ -3,30 +3,31 @@
 define('TYPE', 'USER');
 
 require('config.php');
-require('includes/AutoLoader.php');
+require('includes/core/AutoLoader.php');
 
-$autoLoader = new MiniCMS\Includes\AutoLoader();
-$utils = new MiniCMS\Includes\Utils();
+use MiniCMS\Includes\Core as Core;
+
+$autoLoader = new Core\AutoLoader();
 
 if (DEBUG)
     error_reporting(E_ALL);
 else
     error_reporting(0);
 
-set_error_handler('MiniCMS\Admin\Classes\Core\Error::errorHandler');
-set_exception_handler('MiniCMS\Admin\Classes\Core\Error::exceptionHandler');
+set_error_handler('MiniCMS\Includes\Core\Error::errorHandler');
+set_exception_handler('MiniCMS\Includes\Core\Error::exceptionHandler');
 
-$request = new MiniCMS\Content\Classes\Request();
-$pagesManager = new MiniCMS\Content\Classes\PagesManager($request->page);
+$request = Core\Request::getInstance();
+$pagesManager = new MiniCMS\Includes\PagesManager();
 
-if ($request->page == '')
-    header('Location: Home');
+if ($request->path == '')
+    $request->redirect('Home');
 
 if ($pagesManager->pageExists()) {
-    $themeManager = new MiniCMS\Includes\ThemeManager();
+    $themeManager = new Core\ThemeManager();
     $themeManager->addBlock('title', $pagesManager->getCurrentPage()['title']);
     $themeManager->addBlock('menu', $pagesManager->getMenu());
     $themeManager->addBlock('content', $pagesManager->getCurrentPage()['content']);
     $themeManager->render();
 } else
-    echo 'Error 404';
+    $request->abort('404');

@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Classes\crud;
+namespace MiniCMS\Admin\Classes\crud;
 
 
 class Page implements PageInterface

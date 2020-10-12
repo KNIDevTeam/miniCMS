@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Admin\Classes\crud;
+namespace MiniCMS\Admin\Classes\crud;
 
 
 interface TemplateInterface

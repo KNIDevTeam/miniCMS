@@ -1,6 +1,8 @@
 <?php
 
-namespace Admin\Classes;
+namespace MiniCMS\Admin\Classes;
+
+use MiniCMS\Includes\Core\Request;
 
 class MediaManager
 {
@@ -40,7 +42,7 @@ class MediaManager
     {
         try {
             move_uploaded_file($this->file['tmp_name'], $this->absDatePath.$this->file['name']);
-            $this->fileUrl = BASE_URL.$this->datePath.$this->file['name'];
+            $this->fileUrl = Request::getInstance()->baseUrl.$this->datePath.$this->file['name'];
             return true;
         } catch (\Exception $e) {
             return false;

@@ -1,27 +1,21 @@
 <?php
 
-namespace Admin\Classes\Core;
+namespace MiniCMS\Admin\Classes\Core;
 
-abstract class ControllerAbstract implements ControllerInterface
+abstract class ControllerAbstract extends BaseAdminClass implements ControllerInterface
 {
-    protected $request;
     protected $view;
-    protected $router;
     protected $postParams;
     protected $getParams;
 
     /**
      * ControllerAbstract constructor.
-     *
-     * @param $request
-     * @param $router
      */
-    public function __construct($request, $router)
+    public function __construct()
     {
-        $this->request = $request;
-        $this->router = $router;
+        parent::__construct();
+
         $this->view = new View($this->router->getMenu());
-        $this->view->setRouter($this->router);
 
         $this->setParams();
     }

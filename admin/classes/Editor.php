@@ -1,6 +1,10 @@
 <?php
 
-namespace Admin\Classes;
+namespace MiniCMS\Admin\Classes;
+
+use MiniCMS\Admin\Classes\Core\Router;
+use MiniCMS\Includes\Core\Request;
+use MiniCMS\Includes\Core\Security;
 
 class Editor
 {
@@ -61,8 +65,8 @@ class Editor
         $toolPath = $this->assetsPath . "templates/" . $this->pageType . "/". $this->pageType . ".tools.json";
         $pageTools = file_get_contents($toolPath);
         $pageTools = $this->setEndpoints($pageTools);
-        $saveToolPath = route("savePage");
-        $crsfToken = ajaxCrsf();
+        $saveToolPath = Router::getInstance()->route("savePage");
+        $crsfToken = Security::getInstance()->getCRSF();
         return "
 			<script src='{$this->getAssetsPath("header.min.js")}'></script><!-- Header -->
 			<script src='{$this->getAssetsPath("simple-image.min.js")}'></script><!-- Image -->
@@ -178,7 +182,7 @@ class Editor
 
     private function getAssetsPath($assetName)
     {
-        $modulesPath = BASE_ADMIN_URL . 'assets/js/editor/modules/' . $assetName;
+        $modulesPath = Request::getInstance()->baseAdminUrl . 'assets/js/editor/modules/' . $assetName;
         return str_replace('\\', '/', $modulesPath);
     }
 
@@ -230,8 +234,10 @@ class Editor
 
     private function setEndpoints($pageTools)
     {
-        $pageTools = str_replace('endpointURL', route('saveFile'), $pageTools);
-        $pageTools = str_replace('endpointImageFile', route('saveImageFile'), $pageTools);
-        return str_replace('endpointImageUrl', route('saveImageUrl'), $pageTools);
+        $router = Router::getInstance();
+
+        $pageTools = str_replace('endpointURL', $router->route('saveFile'), $pageTools);
+        $pageTools = str_replace('endpointImageFile', $router->route('saveImageFile'), $pageTools);
+        return str_replace('endpointImageUrl', $router->route('saveImageUrl'), $pageTools);
     }
 }

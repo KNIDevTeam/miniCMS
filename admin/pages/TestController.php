@@ -1,9 +1,9 @@
 <?php
 
-namespace Admin\Pages;
+namespace MiniCMS\Admin\Pages;
 
-use Admin\Classes\Core\ControllerAbstract;
-use Admin\Classes\Validator;
+use MiniCMS\Admin\Classes\Core\ControllerAbstract;
+use MiniCMS\Admin\Classes\Validator;
 
 class TestController extends ControllerAbstract
 {

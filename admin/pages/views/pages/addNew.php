@@ -1,5 +1,3 @@
-<?php $this->extend('layout') ?>
-
 <?php $this->section('title', 'Edycja strony') ?>
 
 <?php $this->startSection('content') ?>
@@ -9,7 +7,7 @@
         echo $err;
     ?>
     <form action="adding" method="post">
-        <?php crsf() ?>
+        <?php $this->security->getForm() ?>
         <input type="text" name="name" placeholder="name"><br>
         <input type="text" name="template" placeholder="template"><br>
         <input type="text" name="parent" placeholder="parent"><br>

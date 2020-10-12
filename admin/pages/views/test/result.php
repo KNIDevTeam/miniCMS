@@ -1,5 +1,3 @@
-<?php $this->extend('layout') ?>
-
 <?php $this->section('title', 'Results') ?>
 
 <?php $this->startSection('content') ?>

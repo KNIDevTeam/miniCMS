@@ -1,8 +1,8 @@
 <?php
 
-namespace Admin\Pages;
+namespace MiniCMS\Admin\Pages;
 
-use Admin\Classes\Core\ControllerAbstract;
+use MiniCMS\Admin\Classes\Core\ControllerAbstract;
 
 class HomeController extends ControllerAbstract
 {

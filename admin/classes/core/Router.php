@@ -1,27 +1,28 @@
 <?php
 
-namespace Admin\Classes\Core;
+namespace MiniCMS\Admin\Classes\Core;
 
-class Router
+use MiniCMS\Includes\Core\BaseClass;
+
+class Router extends BaseClass
 {
     private $routes = [];
     private $menu = [];
-    private $request;
-    private $security;
     private $currentRoute;
 
-    /**
-     * Router constructor.
-     *
-     * @param $request
-     */
-    public function __construct($request)
-    {
-        $this->request = $request;
-        $this->security = new Security();
+    /* Singleton needed start */
+    protected static $_instance;
 
-        $GLOBALS['_route_handler'] = [$this, 'route'];
+    public static function getInstance()
+    {
+        if (!isset(self::$_instance)) {
+            self::$_instance = new self();
+            self::$_instance->setUp();
+        }
+
+        return self::$_instance;
     }
+    /* Singleton needed end */
 
     /**
      * Set routes for errors.
@@ -29,7 +30,7 @@ class Router
     public function setErrorsRoutes()
     {
         if (file_exists(ABS_PATH . '/admin/classes/core/ErrorsController.php')) {
-            $class = 'Admin\Classes\Core\ErrorsController';
+            $class = 'MiniCMS\Admin\Classes\Core\ErrorsController';
             $class::setUp($this);
         } else
             die('Errors controller is broken!');
@@ -45,7 +46,7 @@ class Router
         foreach ($files as $file) {
             if (strpos($file, '.php')) {
                 $fileName = explode('.', $file)[0];
-                $class = 'Admin\Pages\\'.$fileName;
+                $class = 'MiniCMS\Admin\Pages\\'.$fileName;
                 $class::setUp($this);
             }
         }
@@ -59,7 +60,7 @@ class Router
      * @param $httpMethod
      * @param $controllerMethod
      * @param bool $onlyAjax
-     * @param bool $allowedNotCrsf
+     * @param bool $allowedNotCRSF
      */
     public function addRoute($name, $path, $httpMethod, $controllerMethod, $onlyAjax = false, $allowedNotCRSF = false)
     {
@@ -116,7 +117,7 @@ class Router
     {
         if ($route = $this->isRoute()) {
             if (class_exists($route['controllerClass'])) {
-                $controller = new $route['controllerClass']($this->request, $this);
+                $controller = new $route['controllerClass']();
                 if (!$route['onlyAjax'] || $this->request->isAjax) {
                     if (method_exists($controller, $route['controllerMethod'])) {
                         if (!$route['allowedNotCRSF'] && $route['httpMethod'] == 'post' && !$this->security->isValidCRSF()) {
@@ -167,7 +168,7 @@ class Router
      */
     public function route($routeName)
     {
-        return BASE_ADMIN_URL.$this->getRoute($routeName);
+        return $this->request->baseAdminUrl.$this->getRoute($routeName);
     }
 
     /**
@@ -215,7 +216,7 @@ class Router
     private function isRoute()
     {
         foreach ($this->routes as $name => $route)
-            if ($this->request->method == $route['httpMethod'] && $this->request->routePath == $route['path']) {
+            if ($this->request->method == $route['httpMethod'] && $this->request->path == $route['path']) {
                 $this->currentRoute = $name;
                 return $route;
             }

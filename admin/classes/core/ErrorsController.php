@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Classes\Core;
+namespace MiniCMS\Admin\Classes\Core;
 
 class ErrorsController extends ControllerAbstract
 {

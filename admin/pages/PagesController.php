@@ -1,16 +1,16 @@
 <?php
 
-namespace Admin\Pages;
+namespace MiniCMS\Admin\Pages;
 
-use Admin\Classes\Core\ControllerAbstract;
-use Admin\Classes\crud\PageFactory;
-use Admin\Classes\crud\TemplateFactory;
-use Admin\Classes\Editor;
-use Admin\Classes\crud\Page;
-use Admin\Classes\crud\PagesRepo;
-use Admin\Classes\crud\TemplateRepo;
-use Admin\Classes\MediaManager;
-use Admin\Classes\crud\validation\PageNameValidator;
+use MiniCMS\Admin\Classes\Core\ControllerAbstract;
+use MiniCMS\Admin\Classes\crud\PageFactory;
+use MiniCMS\Admin\Classes\crud\TemplateFactory;
+use MiniCMS\Admin\Classes\Editor;
+use MiniCMS\Admin\Classes\crud\Page;
+use MiniCMS\Admin\Classes\crud\PagesRepo;
+use MiniCMS\Admin\Classes\crud\TemplateRepo;
+use MiniCMS\Admin\Classes\MediaManager;
+use MiniCMS\Admin\Classes\crud\validation\PageNameValidator;
 
 
 class PagesController extends ControllerAbstract
@@ -18,12 +18,12 @@ class PagesController extends ControllerAbstract
     private $pagesRepo;
     private $templatesRepo;
 
-    public function __construct($request, $router)
+    public function __construct()
     {
         $pagesPath = ABS_PATH . "/content/pages";
         $templatesPath = ABS_PATH . "/admin/assets/editor/templates";
 
-        parent::__construct($request, $router);
+        parent::__construct();
         $this->pagesRepo = new PagesRepo($pagesPath, new PageFactory());
         $this->templatesRepo = new TemplateRepo($templatesPath, new TemplateFactory());
         $this->validator = new PageNameValidator();
@@ -96,9 +96,9 @@ class PagesController extends ControllerAbstract
         $parent = urldecode($this->postParams['parent']);
         if ($this->validator->validate($name, $template, $parent, $this->pagesRepo, $this->templatesRepo)) {
             if ($this->pagesRepo->createPage($name, $parent, $template, $this->templatesRepo))
-                redirect($this->router->getRoute('editPage') . "?name=" . $name);
+                $this->request->redirect($this->router->getRoute('editPage') . "?name=" . $name);
             else
-                redirect($this->router->getRoute('addPage') . "?error=utworzenie strony nie powiodło się spróbuj ponownie później");
+                $this->request->redirect($this->router->getRoute('addPage') . "?error=utworzenie strony nie powiodło się spróbuj ponownie później");
 
         }
         else
@@ -109,14 +109,14 @@ class PagesController extends ControllerAbstract
             {
                 $errorString = $errorString.$error;
             }
-            redirect($this->router->getRoute('addPage') . "?error=".$errorString);
+            $this->request->redirect($this->router->getRoute('addPage') . "?error=".$errorString);
         }
     }
 
     public function deletePage()
     {
         $this->pagesRepo->deletePage(urldecode($this->getParams['name']));
-        redirect($this->router->getRoute('showPages'));
+        $this->request->redirect($this->router->getRoute('showPages'));
     }
 
     public function saveFile()

@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Classes;
+namespace MiniCMS\Admin\Classes;
 
 class Compiler
 {

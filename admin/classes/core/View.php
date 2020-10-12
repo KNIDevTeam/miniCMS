@@ -1,36 +1,35 @@
 <?php
 
-namespace Admin\Classes\Core;
+namespace MiniCMS\Admin\Classes\Core;
 
-class View
+use MiniCMS\Includes\Core\ThemeManager;
+
+class View extends BaseAdminClass
 {
     private $viewsPath;
-    private $security;
-    private $router;
     private $sections;
-    private $layout;
     private $currentSection;
 
     /**
      * View constructor.
-     *
-     * @param $router
      */
-    public function __construct($router)
+    public function __construct()
     {
+        parent::__construct();
+
         $this->viewsPath = ABS_PATH.'/admin/pages/views/';
-        $this->security = new Security();
-        $this->router = $router;
     }
 
     /**
-     * Set route object as property.
+     * Get url to asset.
      *
-     * @param $router
+     * @param $path
+     *
+     * @return string
      */
-    public function setRouter($router)
+    public function asset($path)
     {
-        $this->router = $router;
+        return $this->request->baseAdminUrl.$path;
     }
 
     /**
@@ -42,6 +41,8 @@ class View
      */
     public function render($fileName)
     {
+        $this->addBaseSections();
+
         if (!empty($this->params))
             extract($this->params);
 
@@ -51,13 +52,14 @@ class View
 
             include_once($fileName);
 
-            $output = ob_get_clean();
+            $content = ob_get_clean();
 
-            if (isset($this->layout)) {
-                $this->includeLayout();
-                echo $this->layout;
-            } else
-                echo $output;
+            $themeManager = new ThemeManager();
+            $themeManager->addBlock('title', $this->getSection('title'));
+            $themeManager->addBlock('headerScripts', $this->getSection('headerScripts'));
+            $themeManager->addBlock('menu', $this->getMenu());
+            $themeManager->addBlock('content', $content);
+            $themeManager->render();
         }
     }
 
@@ -108,33 +110,6 @@ class View
     }
 
     /**
-     * Extend layout.
-     *
-     * @param $layout
-     *
-     * @throws \Exception
-     */
-    public function extend($layout)
-    {
-        if ($this->fileExists($layout))
-            $this->layout = $layout;
-    }
-
-    /**
-     * Include layout.
-     *
-     * @throws \Exception
-     */
-    public function includeLayout()
-    {
-        if ($this->fileExists($this->layout)) {
-            ob_start();
-            include_once($this->getFilePath($this->layout));
-            $this->layout = ob_get_clean();
-        }
-    }
-
-    /**
      * Get section by its name.
      *
      * @param $sectionName
@@ -144,6 +119,13 @@ class View
     public function getSection($sectionName)
     {
         return (isset($this->sections[$sectionName]) ? $this->sections[$sectionName] : '');
+    }
+
+    private function addBaseSections()
+    {
+        if ($this->fileExists('baseSections')) {
+            include_once($this->getFilePath('baseSections'));
+        }
     }
 
     /**

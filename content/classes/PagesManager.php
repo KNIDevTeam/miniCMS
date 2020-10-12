@@ -1,6 +1,6 @@
 <?php
 
-namespace Content\Classes;
+namespace MiniCMS\Content\Classes;
 
 class PagesManager
 {

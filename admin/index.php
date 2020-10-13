@@ -2,28 +2,11 @@
 
 define('TYPE', 'ADMIN');
 
-session_start();
+require "../includes/core/App.php";
 
-use MiniCMS\Includes\Core as Core;
-use MiniCMS\Admin\Classes\Core as AdminCore;
+$app = new \MiniCMS\Includes\Core\App();
+$app->init();
 
-require('../config.php');
-require('../includes/core/AutoLoader.php');
+$response = $app->handle(\MiniCMS\Includes\Core\Admin\Kernel::class);
 
-if (DEBUG)
-    error_reporting(E_ALL);
-else
-    error_reporting(0);
-
-set_error_handler('MiniCMS\Includes\Core\Error::errorHandler');
-set_exception_handler('MiniCMS\Includes\Core\Error::exceptionHandler');
-
-$router = AdminCore\Router::getInstance();
-
-// Set errors routes
-$router->setErrorsRoutes();
-
-// Set routes and menu from controllers and plugins
-$router->setUp();
-
-$router->dispatch();
+$response->send();

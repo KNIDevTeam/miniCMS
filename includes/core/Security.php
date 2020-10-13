@@ -31,7 +31,7 @@ class Security
     }
 
     /**
-     * Get CRSF token for form.
+     * Generate CRSF token input for form.
      */
     public function getForm()
     {

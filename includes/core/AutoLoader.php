@@ -6,6 +6,8 @@ use Exception;
 
 class AutoLoader
 {
+    private $app;
+
     /**
      * Register AutoLoader class.
      */
@@ -18,6 +20,7 @@ class AutoLoader
      * Auto load class by it's name.
      *
      * @param $className
+     * @throws Exception
      */
     public function autoload($className)
     {
@@ -36,15 +39,10 @@ class AutoLoader
 
         $file = ABS_PATH.$fullPath.$fileName.'.php';
 
-        try {
-            if (!file_exists($file))
-                throw new Exception('Class '.$className.' does not exist');
-            else {
-                require_once($file);
-            }
-        } catch(Exception $e) {
-            die($e->getMessage());
-        }
+        if (!file_exists($file))
+            throw new Exception('Class '.$className.' does not exist');
+        else
+            require_once($file);
     }
 }
 

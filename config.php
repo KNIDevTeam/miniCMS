@@ -1,6 +1,9 @@
 <?php
 
-define('ABS_PATH', __DIR__);
-define('DEBUG', false);
-define('SITE_NAME', 'mini.pw.edu.pl/~razorMeister');
-define('THEME', 'mini');
+return [
+    'DEBUG' => false,
+    'SITE_NAME' => 'mini.pw.edu.pl/~razorMeister',
+    'THEME' => 'default',
+    'MULTI_LANG' => true,
+    'DEFAULT_LANG' => 'pl'
+];

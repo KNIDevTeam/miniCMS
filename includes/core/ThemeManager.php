@@ -4,11 +4,14 @@ namespace MiniCMS\Includes\Core;
 
 class ThemeManager
 {
+    private const THEMES_PATH = ABS_PATH.'/content/themes/';
+
     private $themeName;
     private $themeUrl;
     private $blocks;
     private $isAdmin;
     private $isUser;
+    private $lang;
 
     /**
      * ThemeManager constructor.
@@ -19,6 +22,16 @@ class ThemeManager
         $this->setThemeUrl();
         $this->isAdmin = TYPE == 'ADMIN';
         $this->isUser = !$this->isAdmin;
+    }
+
+    /**
+     * Set lang object.
+     *
+     * @param $lang
+     */
+    public function setLang($lang)
+    {
+        $this->lang = $lang;
     }
 
     /**
@@ -33,22 +46,45 @@ class ThemeManager
     }
 
     /**
-     * Render view.
+     * Render view from theme.
+     *
+     * @return false|string
      */
     public function render()
     {
         ob_start();
-        include_once(ABS_PATH.'/content/themes/'.$this->themeName.'/'.(TYPE == 'ADMIN' ? 'admin' : 'user').'.php');
-        echo ob_get_clean();
+        require_once(self::THEMES_PATH.$this->themeName.'/'.(TYPE == 'ADMIN' ? 'admin' : 'user').'.php');
+        return ob_get_clean();
     }
 
-    public function render404()
+    /**
+     *  Render Error page from theme.
+     *
+     * @param $code
+     *
+     * @return false|string
+     */
+    public function renderError($code)
     {
-        $this->addBlock('title', 'Error - 404');
-        $this->addBlock('content', 'Error - 404. Podana strona nie została znaleziona');
-        $this->render();
+        $this->addBlock('title', $this->lang->_('errors.'.$code.'.title'));
+        $this->addBlock('content', $this->lang->_('errors.'.$code.'.desc'));
+        ob_start();
+        require_once(ABS_PATH.'/content/themes/'.$this->themeName.'/error.php');
+        return ob_get_clean();
     }
-    
+
+    /**
+     * Get translation from theme zone.
+     *
+     * @param $key
+     *
+     * @return mixed
+     */
+    private function _($key)
+    {
+        return $this->lang->_($key, 'theme');
+    }
+
     /**
      * Get block.
      *
@@ -78,7 +114,21 @@ class ThemeManager
      */
     private function setThemeUrl()
     {
-        $this->themeUrl = Request::getInstance()->baseUrl.'content/themes/'.$this->themeName.'/';
+        $this->themeUrl = BASE_URL.'content/themes/'.$this->themeName.'/';
     }
 
+    /**
+     * Generate language switcher form.
+     */
+    private function langSwitcher()
+    {
+        if (MULTI_LANG) {
+            echo "<form method='post' action='".BASE_URL."_language_switcher'>";
+            echo "<select name='lang' onchange='this.form.submit()'>";
+            echo "<option value='pl' ".($this->lang->getCurrentLang() == 'pl' ? 'selected' : '').">PL</option>";
+            echo "<option value='en' ".($this->lang->getCurrentLang() == 'en' ? 'selected' : '').">EN</option>";
+            echo "</select>";
+            echo "</form>";
+        }
+    }
 }

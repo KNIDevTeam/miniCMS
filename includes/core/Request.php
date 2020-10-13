@@ -5,35 +5,18 @@ namespace MiniCMS\Includes\Core;
 class Request
 {
     private $url;
-    private $baseUrl;
-    private $baseAdminUrl;
     private $method;
     private $userAgent;
     private $path;
     private $queryString;
     private $isAjax;
 
-    /* Singleton needed start */
-    protected static $_instance;
-
-    public static function getInstance()
-    {
-        if (!isset(self::$_instance)) {
-            self::$_instance = new self();
-            self::$_instance->setUp();
-        }
-
-        return self::$_instance;
-    }
-    /* Singleton needed end */
-
     /**
-     * Set up.
+     * Request constructor.
      */
-    private function setUp()
+    public function __construct()
     {
         $this->url = $_SERVER['REQUEST_URI'];
-        $this->setBaseUrl();
         $this->method = strtolower($_SERVER['REQUEST_METHOD']);
         $this->userAgent = $_SERVER['HTTP_USER_AGENT'];
         $this->path = $this->getPath();
@@ -42,7 +25,7 @@ class Request
     }
 
     /**
-     * Magic __get method/
+     * Magic __get method.
      *
      * @param $propertyName
      *
@@ -56,27 +39,6 @@ class Request
             return $this->$propertyName;
         else
             throw new \Exception("Property: ".$propertyName." does not exist.");
-    }
-
-    /**
-     * Redirect to specific path.
-     *
-     * @param $to
-     * @param string $type
-     */
-    public function redirect($to, $type = TYPE)
-    {
-        die(header('Location: '.((strtolower($type) == 'admin' ? $this->baseAdminUrl : $this->baseUrl).$to)));
-    }
-
-    /**
-     * Abort.
-     *
-     * @param $code
-     */
-    public function abort($code)
-    {
-        $this->redirect('error/'.$code);
     }
 
     /**
@@ -120,31 +82,5 @@ class Request
     private function getPath()
     {
         return strtolower(substr($_SERVER['QUERY_STRING'], 2));
-    }
-
-    /**
-     * Get base url of admin panel.
-     *
-     * @return string
-     */
-    private function setBaseUrl()
-    {
-        $path = '';
-        $i = 1;
-        $paths = explode('/', $_SERVER['SCRIPT_NAME']);
-
-        foreach ($paths as $single)
-            if ($i++ != count($paths))
-                $path .= $single.'/';
-
-        $url = (isset($_SERVER['HTTPS']) ? 'https' : 'http' ).'://'.$_SERVER['HTTP_HOST'].$path;
-
-        if (TYPE == 'ADMIN') {
-            $this->baseAdminUrl = $url;
-            $this->baseUrl = str_replace('admin/', '', $url);
-        } else {
-            $this->baseUrl = $url;
-            $this->baseAdminUrl = $url."admin/";
-        }
     }
 }

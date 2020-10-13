@@ -2,8 +2,6 @@
 
 namespace MiniCMS\Admin\Classes;
 
-use MiniCMS\Admin\Classes\Core\Router;
-use MiniCMS\Includes\Core\Request;
 use MiniCMS\Includes\Core\Security;
 
 class Editor
@@ -12,14 +10,17 @@ class Editor
     private $pagePath;
     private $pageType;
     private $assetsPath = ABS_PATH . '/admin/assets/editor/';
+    private $router;
 
-    public function __construct()
+    public function __construct($router)
     {
         //Initializing with default values
         $this->pageName = "New page";
         $this->pagePath = $this->assetsPath . "templates/default/default.template.json";
         $this->pagePath = str_replace('\\', '/', $this->pagePath);
         $this->pageType = "default";
+
+        $this->router = $router;
     }
 
     public function __destruct()
@@ -65,7 +66,7 @@ class Editor
         $toolPath = $this->assetsPath . "templates/" . $this->pageType . "/". $this->pageType . ".tools.json";
         $pageTools = file_get_contents($toolPath);
         $pageTools = $this->setEndpoints($pageTools);
-        $saveToolPath = Router::getInstance()->route("savePage");
+        $saveToolPath = $this->router->route("savePage");
         $crsfToken = Security::getInstance()->getCRSF();
         return "
 			<script src='{$this->getAssetsPath("header.min.js")}'></script><!-- Header -->
@@ -182,7 +183,7 @@ class Editor
 
     private function getAssetsPath($assetName)
     {
-        $modulesPath = Request::getInstance()->baseAdminUrl . 'assets/js/editor/modules/' . $assetName;
+        $modulesPath = BASE_ADMIN_URL . 'assets/js/editor/modules/' . $assetName;
         return str_replace('\\', '/', $modulesPath);
     }
 
@@ -234,10 +235,8 @@ class Editor
 
     private function setEndpoints($pageTools)
     {
-        $router = Router::getInstance();
-
-        $pageTools = str_replace('endpointURL', $router->route('saveFile'), $pageTools);
-        $pageTools = str_replace('endpointImageFile', $router->route('saveImageFile'), $pageTools);
-        return str_replace('endpointImageUrl', $router->route('saveImageUrl'), $pageTools);
+        $pageTools = str_replace('endpointURL', $this->router->route('saveFile'), $pageTools);
+        $pageTools = str_replace('endpointImageFile', $this->router->route('saveImageFile'), $pageTools);
+        return str_replace('endpointImageUrl', $this->router->route('saveImageUrl'), $pageTools);
     }
 }

@@ -1,1 +1,0 @@
-<?php if(!defined('MINI_CMS')) die('Math is golden') ?>

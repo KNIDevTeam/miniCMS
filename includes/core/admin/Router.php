@@ -2,6 +2,7 @@
 
 namespace MiniCMS\Includes\Core\Admin;
 
+use Exception;
 use MiniCMS\Includes\Core\Exceptions\NotFoundException;
 use MiniCMS\includes\core\Response;
 use MiniCMS\Includes\Core\Security;
@@ -78,7 +79,7 @@ class Router
      * @param $icon
      * @param int $parent
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function addMenu($name, $routeName, $icon, $parent = -1)
     {
@@ -91,7 +92,7 @@ class Router
             if (isset($this->menu[$parent]))
                 $this->menu[$parent]['children'][$name] = ['routeName' => $routeName, 'href' => $this->route($routeName), 'icon' => $icon];
             else
-                throw new \Exception("Parent menu: ".$parent." does not exists");
+                throw new Exception("Parent menu: ".$parent." does not exists");
         }
     }
 
@@ -111,6 +112,7 @@ class Router
      * @return mixed | Response
      *
      * @throws NotFoundException
+     * @throws Exception
      */
     public function dispatch()
     {
@@ -121,7 +123,7 @@ class Router
                 if (!$route['onlyAjax'] || $this->request->isAjax) {
                     if (method_exists($controller, $route['controllerMethod'])) {
                         if (!$route['allowedNotCRSF'] && $route['httpMethod'] == 'post' && !$this->security->isValidCRSF()) {
-                            throw new \Exception("CRSF token not found");
+                            throw new Exception("CRSF token not found");
                         } else {
                             $controllerMethod = $route['controllerMethod'];
 
@@ -136,11 +138,11 @@ class Router
                             return $response;
                         }
                     } else
-                        throw new \Exception("Method: ".$route['controllerMethod']." does not exist");
+                        throw new Exception("Method: ".$route['controllerMethod']." does not exist");
                 } else
-                    throw new \Exception("Only ajax calls allowed");
+                    throw new Exception("Only ajax calls allowed");
             } else
-                throw new \Exception("Class: ".$route['controllerClass']." does not exist");
+                throw new Exception("Class: ".$route['controllerClass']." does not exist");
         } else
             throw new NotFoundException();
     }
@@ -152,14 +154,14 @@ class Router
      *
      * @return mixed|string
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function getRoute($routeName)
     {
         if (isset($this->routes[$routeName]))
             return $this->routes[$routeName]['path'];
         else
-            throw new \Exception("Route: ".$routeName." not found");
+            throw new Exception("Route: ".$routeName." not found");
     }
 
     /**
@@ -169,7 +171,7 @@ class Router
      *
      * @return string
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function route($routeName)
     {

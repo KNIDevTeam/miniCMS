@@ -2,6 +2,7 @@
 
 namespace MiniCMS\Includes\Core;
 
+use Exception;
 use MiniCMS\Includes\Core\Exceptions\NotFoundException;
 
 class App
@@ -21,7 +22,7 @@ class App
     }
 
     /**
-     * Set needed object.
+     * Set needed objects.
      *  MiniCMS\Includes\Core\Lang
      *  MiniCMS\Includes\Core\Request
      */
@@ -45,7 +46,7 @@ class App
             return $k->execute();
         } catch(NotFoundException $e) {
             return $this->handleError(404, $e);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this->handleError(500, $e);
         }
     }
@@ -94,7 +95,7 @@ class App
             $cfg = require_once ABS_PATH."config.php";
             foreach ($cfg as $key => $value)
                 define($key, $value);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             die('Error while loading config file. E: '.$e->getMessage());
         }
     }
@@ -106,7 +107,7 @@ class App
     {
         try {
             require_once ABS_PATH."includes/core/AutoLoader.php";
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             die('Error while loading AutoLoader class. E: '.$e->getMessage());
         }
     }

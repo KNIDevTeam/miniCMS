@@ -10,7 +10,7 @@
     <div class="tiles">
         <div class="tiles-title fullwidth">Akcje</div>
         <a class="tile">
-            <span class="tile-title"><i class="fas fa-cog"></i>Ustawienia</span>
+            <span class="tile-title"><i class="fas fa-cog"></i><?php echo $this->_('home.settings') ?></span>
             <span class="tile-description">Skoro nie wiesz, kim jesteś, przynajmniej miej pewność, kim nie jesteś.</span>
         </a>
         <a id="#myLink" href="#" onclick="openAddPageForm()" class="tile">

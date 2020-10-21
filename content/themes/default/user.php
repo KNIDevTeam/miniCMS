@@ -23,12 +23,12 @@
                     <div class="page-description"> <?php echo $this->getBlock('title') ?> </div>
                 </div>
                 <div class="flex-end">
-                    <div class="additional-info"> <?php echo $this->_('desc', 'theme'); ?> </div>
+                    <div class="additional-info"> <?php echo $this->_('a.b', 'theme'); ?> </div>
                     <div class="language-switcher"> <?php echo $this->langSwitcher(); ?> </div>
                 </div>
             </div>
 
-            <img class="logo" src="<?php echo $this->asset('assets/images/logo_mini.png') ?>"></img>
+            <img class="logo" src="<?php echo $this->asset('assets/images/logo_mini.png') ?>">
         </header>
 
         <nav id="menu" class="slide-in">

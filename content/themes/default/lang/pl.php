@@ -1,5 +1,8 @@
 <?php
 
 return [
-    'desc' => 'Sth in Polish'
+    'desc' => 'Sth in Polish',
+	'a' => [
+		'b' => 'dasdads',
+	]
 ];

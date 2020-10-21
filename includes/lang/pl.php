@@ -12,7 +12,8 @@ return [
         ]
     ],
     'home' => [
-      'title' => 'Strona główna'
+      'title' => 'Strona główna',
+	  'settings' => 'Ustawienia'
     ],
     'pages' => [
         'title' => 'Strony'

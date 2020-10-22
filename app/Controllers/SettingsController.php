@@ -1,10 +1,10 @@
 <?php
 
-namespace MiniCMS\Admin\Controllers;
+namespace App\Controllers;
 
-use MiniCMS\Admin\Classes\Validator;
-use MiniCMS\Includes\Core\Admin\ControllerAbstract;
-use MiniCMS\Includes\Core\Response;
+use App\Classes\Validator;
+use Core\Admin\ControllerAbstract;
+use Core\Response;
 
 class SettingsController extends ControllerAbstract
 {

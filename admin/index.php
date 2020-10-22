@@ -2,11 +2,11 @@
 
 define('TYPE', 'ADMIN');
 
-require "../Includes/Core/App.php";
+require "../core/App.php";
 
-$app = new \MiniCMS\Includes\Core\App();
+$app = new Core\App();
 $app->init();
 
-$response = $app->handle(\MiniCMS\Includes\Core\Admin\Kernel::class);
+$response = $app->handle(Core\Admin\Kernel::class);
 
 $response->send();

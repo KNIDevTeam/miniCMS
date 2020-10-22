@@ -33,7 +33,7 @@ class AutoLoader
         $fullPathArray = array_slice($fullPathArray, 1);
 
         if (count($fullPathArray) > 1)
-            $fullPath = DIRECTORY_SEPARATOR.strtolower(implode(DIRECTORY_SEPARATOR, array_slice($fullPathArray, 0, count($fullPathArray)-1))).DIRECTORY_SEPARATOR;
+            $fullPath = DIRECTORY_SEPARATOR.implode(DIRECTORY_SEPARATOR, array_slice($fullPathArray, 0, count($fullPathArray)-1)).DIRECTORY_SEPARATOR;
         else
             $fullPath = DIRECTORY_SEPARATOR;
 

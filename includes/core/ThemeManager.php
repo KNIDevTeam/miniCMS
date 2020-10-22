@@ -4,7 +4,7 @@ namespace MiniCMS\Includes\Core;
 
 class ThemeManager
 {
-    private const THEMES_PATH = ABS_PATH.'/content/themes/';
+    private const THEMES_PATH = ABS_PATH.'/Content/themes/';
 
     private $themeName;
     private $themeUrl;

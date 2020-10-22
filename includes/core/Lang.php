@@ -66,7 +66,7 @@ class Lang
      */
     private function getCoreTranslations()
     {
-        return require_once ABS_PATH."includes/lang/".$this->currentLang.".php";
+        return require_once ABS_PATH."Includes/Lang/".$this->currentLang.".php";
     }
 
     /**
@@ -76,6 +76,6 @@ class Lang
      */
     private function getThemeTranslations()
     {
-        return require_once ABS_PATH."content/themes/".THEME."/lang/".$this->currentLang.".php";
+        return require_once ABS_PATH."Content/themes/".THEME."/lang/".$this->currentLang.".php";
     }
 }

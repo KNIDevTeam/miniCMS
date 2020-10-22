@@ -144,8 +144,8 @@ class App
         $url = (isset($_SERVER['HTTPS']) ? 'https' : 'http' ).'://'.$_SERVER['HTTP_HOST'].$path;
 
         if (TYPE == 'ADMIN')
-            return ['baseAdminUrl' => $url, 'baseUrl' => str_replace('admin/', '', $url)];
+            return ['baseAdminUrl' => $url, 'baseUrl' => str_replace('Admin/', '', $url)];
         else
-            return ['baseAdminUrl' => $url."admin/", 'baseUrl' => $url];
+            return ['baseAdminUrl' => $url."Admin/", 'baseUrl' => $url];
     }
 }

@@ -2,7 +2,7 @@
 
 define('TYPE', 'USER');
 
-require "includes/core/App.php";
+require "Includes/Core/App.php";
 
 $app = new \MiniCMS\Includes\Core\App();
 $app->init();

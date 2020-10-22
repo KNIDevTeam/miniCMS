@@ -9,7 +9,7 @@ use MiniCMS\Includes\Core\Security;
 
 class Router
 {
-    private const CONTROLLERS_PATH = ABS_PATH.'/admin/controllers';
+    private const CONTROLLERS_PATH = ABS_PATH.'/Admin/Controllers';
 
     private $routes = [];
     private $menu = [];

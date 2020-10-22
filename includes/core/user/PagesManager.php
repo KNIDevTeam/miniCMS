@@ -18,7 +18,7 @@ class PagesManager
     public function __construct($path)
     {
         $this->currentPageName = $path;
-        $this->pages = $this->scanPages(ABS_PATH.'content/pages');
+        $this->pages = $this->scanPages(ABS_PATH.'Content/pages');
         $this->menu = $this->generateMenu($this->pages);
     }
 

@@ -7,7 +7,7 @@ use MiniCMS\Includes\Core\ThemeManager;
 
 class View
 {
-    private const VIEWS_PATH = ABS_PATH.'/admin/views/';
+    private const VIEWS_PATH = ABS_PATH.'/Admin/Views/';
 
     private $sections;
     private $currentSection;

@@ -1,6 +1,6 @@
 <?php
 
-    namespace MiniCMS\Admin\Classes\crud;
+    namespace MiniCMS\Admin\Classes\Crud;
 
     class Template implements TemplateInterface
     {

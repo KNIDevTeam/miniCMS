@@ -1,5 +1,5 @@
 <?php
-namespace MiniCMS\Admin\Classes\crud\validation;
+namespace MiniCMS\Admin\Classes\Crud\Validation;
 
 interface PageValidatorInterface
 {

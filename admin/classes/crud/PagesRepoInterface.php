@@ -1,7 +1,7 @@
 <?php
 
 
-namespace MiniCMS\Admin\Classes\crud;
+namespace MiniCMS\Admin\Classes\Crud;
 
 
 interface PagesRepoInterface

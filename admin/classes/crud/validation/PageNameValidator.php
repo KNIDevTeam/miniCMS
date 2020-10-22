@@ -1,6 +1,6 @@
 <?php
 
-namespace MiniCMS\admin\Classes\crud\validation;
+namespace MiniCMS\admin\Classes\Crud\Validation;
 use MiniCMS\admin\classes\crud\validation\PageValidatorInterface;
 use MiniCMS\admin\classes\Validator;
 

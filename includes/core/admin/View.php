@@ -45,15 +45,16 @@ class View
     }
 
     /**
-     * Get translation from core zone.
+     * Get translation.
      *
      * @param $key
+     * @param string $zone
      *
      * @return mixed
      */
-    private function _($key)
+    private function _($key, $zone = 'core')
     {
-        return $this->lang->_($key, 'core');
+        return $this->lang->_($key, $zone);
     }
 
     /**

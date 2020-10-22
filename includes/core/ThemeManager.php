@@ -74,15 +74,16 @@ class ThemeManager
     }
 
     /**
-     * Get translation from theme zone.
+     * Get translation default from theme zone.
      *
      * @param $key
+     * @param string $zone
      *
      * @return mixed
      */
-    private function _($key)
+    private function _($key, $zone = 'theme')
     {
-        return $this->lang->_($key, 'theme');
+        return $this->lang->_($key, $zone);
     }
 
     /**

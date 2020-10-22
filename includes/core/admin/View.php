@@ -16,6 +16,7 @@ class View
     private $router;
     private $security;
     private $lang;
+    private $params;
 
     /**
      * View constructor.
@@ -30,6 +31,11 @@ class View
         $this->router = $router;
         $this->security = Security::getInstance();
         $this->lang = $lang;
+
+        if (isset($_SESSION['_redirect_data'])) {
+            $this->set($_SESSION['_redirect_data']);
+            unset($_SESSION['_redirect_data']);
+        }
     }
 
     /**

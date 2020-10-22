@@ -69,6 +69,20 @@ class Response
     }
 
     /**
+     * Add data to response.
+     *
+     * @param $data
+     *
+     * @return Response
+     */
+    public function with($data)
+    {
+        $_SESSION['_redirect_data'] = $data;
+
+        return $this;
+    }
+
+    /**
      * Send response to client browser.
      */
     public function send()

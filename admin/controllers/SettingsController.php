@@ -4,6 +4,7 @@ namespace MiniCMS\Admin\Controllers;
 
 use MiniCMS\Admin\Classes\Validator;
 use MiniCMS\Includes\Core\Admin\ControllerAbstract;
+use MiniCMS\Includes\Core\Response;
 
 class SettingsController extends ControllerAbstract
 {

@@ -15,6 +15,10 @@ return [
       'title' => 'Strona główna',
 	  'settings' => 'Ustawienia'
     ],
+    'settings' => [
+        'title' => 'Ustawienia',
+        'updateSuccess' => 'Ustawienia zostały zapisane pomyślnie'
+    ],
     'pages' => [
         'title' => 'Strony'
     ],

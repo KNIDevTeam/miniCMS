@@ -16,7 +16,7 @@ class View
     private $router;
     private $security;
     private $lang;
-    private $params;
+    private $params = [];
 
     /**
      * View constructor.
@@ -140,7 +140,7 @@ class View
      */
     public function set($array)
     {
-        $this->params = $array;
+        $this->params = array_merge($this->params, $array);
     }
 
     /**

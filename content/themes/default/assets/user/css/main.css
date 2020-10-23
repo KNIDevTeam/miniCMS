@@ -343,7 +343,7 @@ ul {
 /* Main */
 
     main {
-        padding: 0 3em 1.5em 450px;
+        padding: 0 3em 1.5em 0;
         min-height: 50vh;
         overflow-x: hidden;
     }

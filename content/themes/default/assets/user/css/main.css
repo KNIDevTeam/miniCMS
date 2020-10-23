@@ -388,13 +388,13 @@ ul {
         left: 30px;
         top: 16em;
         
-        min-width: 230px;
+        min-width: 200px;
 
-        padding: 1em;
+        padding: 1em 0.5em 1em 0.5em;
 
-        border-radius: 20px;
+        border-radius: 15px;
         background-color: #fff;
-        box-shadow: 0 2px 10px 2px rgb(0, 0, 0, 0.07);
+        box-shadow: 0 20px 25px 1px rgb(0, 0, 0, 0.07);
     }
 
         nav.fixed-nav {
@@ -413,7 +413,7 @@ ul {
         }
 
         nav li {
-            padding: 0.7em 0 0.7em 0;
+            padding: 0.9em 0 0 0;
         }
 
     .main-menu * {

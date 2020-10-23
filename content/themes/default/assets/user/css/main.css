@@ -316,6 +316,14 @@ ul {
             line-height: 2.5em;
         }
 
+        .preface select {
+            appearance: none;
+            font-family: "Roboto";
+            border-radius: 10px;
+            width: 3em;
+            text-align: center;
+        }
+
     @media screen and (max-width: 1390px) {
 
         .additional-info {

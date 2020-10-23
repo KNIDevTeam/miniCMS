@@ -1,5 +1,8 @@
 <?php
 
 return [
-    'desc' => 'Sth in ENGLISH'
+    'desc' => 'Sth in ENGLISH',
+    'header' => [
+		'lang' => 'Language',
+	]
 ];

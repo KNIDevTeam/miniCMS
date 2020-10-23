@@ -23,7 +23,7 @@
                     <div class="page-description"> <?php echo $this->getBlock('title') ?> </div>
                 </div>
                 <div class="flex-end">
-                    <div class="additional-info"> <?php echo $this->_('a.b', 'theme'); ?> </div>
+                    <div class="additional-info"> <?php echo $this->_('header.lang', 'theme'); ?> </div>
                     <div class="language-switcher"> <?php echo $this->langSwitcher(); ?> </div>
                 </div>
             </div>

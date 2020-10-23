@@ -2,7 +2,7 @@
 
 return [
     'desc' => 'Sth in Polish',
-	'a' => [
-		'b' => 'dasdads',
+	'header' => [
+		'lang' => 'Język',
 	]
 ];

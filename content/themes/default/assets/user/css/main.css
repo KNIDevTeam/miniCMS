@@ -283,8 +283,8 @@ ul {
 
     header {
         position: relative;
-        top: 4em;
-        margin-bottom: 8em;
+        
+        margin-bottom: 4em;
         padding-left: 400px;
         background: linear-gradient(to right, #4f68c3, #6abee3);
         max-height: 20em;
@@ -386,7 +386,7 @@ ul {
 
         position: absolute;
         left: 30px;
-        top: 20em;
+        top: 16em;
         
         min-width: 230px;
 

@@ -43,7 +43,7 @@ class Response
     {
         $this->code = 200;
         $this->addHeader('Content-type', 'application/json');
-        $this->content = $content;
+        $this->content = is_array($content) ? json_encode($content) : $content;
 
         return $this;
     }

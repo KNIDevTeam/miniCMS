@@ -478,8 +478,8 @@ ul {
 
     footer {
         margin: 5em 0 0 0;
-        padding: 3% 30% 5% 400px;
-        background-color: #333;
+        padding: 3% 30% 3% 400px;
+        background-color: #3f3f3f;
         color: #fefefe;
 
         display: flex;

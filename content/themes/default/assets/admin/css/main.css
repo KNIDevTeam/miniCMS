@@ -258,8 +258,8 @@ ul {
 
     header {
         position: relative;
-        top: 4em;
-        margin-bottom: 8em;
+        
+        margin-bottom: 4em;
         padding-left: 400px;
         background: linear-gradient(to right, #4f68c3, #6abee3);
         max-height: 20em;
@@ -279,12 +279,12 @@ ul {
     }
 
     .preface {
-        padding: 3em 0 3em 0;
+        padding: 2.8em 0 2.8em 0;
         margin-bottom: 3em;
         position: relative;
         z-index: 1;
         color: #fff;
-        font-size: 14pt;
+        font-size: 16pt;
         display: flex;
         justify-content: space-between;
     }
@@ -293,6 +293,14 @@ ul {
             margin-right: 5em;
             font-size: 1.2em;
             line-height: 2.5em;
+        }
+
+        .preface select {
+            appearance: none;
+            font-family: "Roboto";
+            border-radius: 10px;
+            width: 3em;
+            text-align: center;
         }
 
     @media screen and (max-width: 1390px) {
@@ -324,7 +332,7 @@ ul {
 /* Main */
 
     main {
-        padding: 5em 7em 5em 400px;
+        padding: 0 7em 5em 400px;
         min-height: 100vh;
         overflow-x: hidden;
     }
@@ -533,12 +541,12 @@ ul {
     }
 
     .flex-start {
-        display: flex;
+        
         justify-content: flex-start;
     }
 
     .flex-end {
-        display: flex;
+       
         justify-content: flex-end;
     }
 
@@ -596,14 +604,14 @@ ul {
 
         position: absolute;
         left: 50px;
-        top: 20em;
+        top: 18em;
         min-width: 230px;
        
-        padding: 2em 0 0 0;
+        padding: 2em;
 
         border-radius: 20px;
         background-color: #fff;
-        box-shadow: 0 2px 10px 2px rgb(0, 0, 0, 0.07);
+        box-shadow: 0 20px 25px 1px rgb(0, 0, 0, 0.07);
     }
 
         nav.fixed-nav {
@@ -654,7 +662,7 @@ ul {
     @media screen and (max-width: 1350px) {
 
         nav {
-            height: 70%;
+            padding: 1em;
         }
 
     }
@@ -706,8 +714,8 @@ ul {
 
     footer {
         margin: 5em 0 0 0;
-        padding: 3% 30% 5% 400px;
-        background-color: #333;
+        padding: 3% 30% 3% 25%;
+        background-color: #3f3f3f;
         color: #fefefe;
 
         display: flex;

@@ -299,12 +299,13 @@ ul {
     }
 
     .preface {
-        padding: 3em 0 3em 0;
+        padding: 2.8em 0 2.8em 0;
         margin-bottom: 3em;
         position: relative;
         z-index: 1;
         color: #fff;
-        font-size: 14pt;
+        font-size: 16pt;
+        
         display: flex;
         justify-content: space-between;
     }
@@ -386,7 +387,7 @@ ul {
 
         position: absolute;
         left: 30px;
-        top: 16em;
+        top: 18em;
         
         min-width: 200px;
 

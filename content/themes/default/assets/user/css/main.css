@@ -324,14 +324,6 @@ ul {
             text-align: center;
         }
 
-    @media screen and (max-width: 1390px) {
-
-        .additional-info {
-            display: none;
-        }
-
-    }
-
     @media screen and (max-width: 736px) {
 
         header {
@@ -339,8 +331,8 @@ ul {
         }
 
         .logo {
-            width: 20%;
-            left: 40%;
+            width: 13%;
+            left: 44%;
             bottom: 5%;
             top: unset;
             right: unset;
@@ -351,7 +343,7 @@ ul {
 /* Main */
 
     main {
-        padding: 0 7em 1.5em 400px;
+        padding: 0 3em 1.5em 450px;
         min-height: 50vh;
         overflow-x: hidden;
     }
@@ -375,7 +367,7 @@ ul {
     @media screen and (max-width: 736px) {
 
         main {
-            padding-left: 2em;
+            padding-left: 1.5em;
             padding-right: 1em;
         }
 
@@ -486,7 +478,7 @@ ul {
 
     footer {
         margin: 5em 0 0 0;
-        padding: 3% 30% 3% 400px;
+        padding: 3% 30% 3% 25%;
         background-color: #3f3f3f;
         color: #fefefe;
 

@@ -322,6 +322,7 @@ ul {
             border-radius: 10px;
             width: 3em;
             text-align: center;
+            
         }
 
     @media screen and (max-width: 736px) {
@@ -487,6 +488,11 @@ ul {
         flex-direction: row;
         justify-content: space-between;
     }
+
+        footer .languages {
+            font-weight: 300;
+            font-size: 0.8em;
+        }
 
 
     @media screen and (max-width: 736px) {

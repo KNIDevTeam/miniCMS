@@ -343,7 +343,7 @@ ul {
 /* Main */
 
     main {
-        padding: 0 3em 1.5em 0;
+        padding: 0 3em 1.5em 400px;
         min-height: 50vh;
         overflow-x: hidden;
     }
@@ -392,10 +392,11 @@ ul {
         min-width: 200px;
 
         padding: 1em 0.5em 1em 0.5em;
+        font-size: 1.2em;
 
         border-radius: 15px;
-        background-color: #fff;
-        box-shadow: 0 20px 25px 1px rgb(0, 0, 0, 0.07);
+        /*background-color: #fff;
+        box-shadow: 0 20px 25px 1px rgb(0, 0, 0, 0.07);*/
     }
 
         nav.fixed-nav {
@@ -414,7 +415,7 @@ ul {
         }
 
         nav li {
-            padding: 0.9em 0 0 0;
+            padding: 1.25em 0 0 0;
         }
 
     .main-menu * {

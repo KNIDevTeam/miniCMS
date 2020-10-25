@@ -769,6 +769,7 @@ ul {
     }
 
         footer .languages {
+            margin-top: 1em;
             font-weight: 300;
             font-size: 0.8em;
         }

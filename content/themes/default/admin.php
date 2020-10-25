@@ -43,7 +43,12 @@
         <?php echo $this->getBlock('content') ?>
 
         <footer id="footer">
-            <div class="flex-start bold">miniCMS</div>
+            <div class="flex-start bold">miniCMS
+            <div class="languages">
+                <a>Polski</a><br>
+                <a>English</a>
+            </div>
+            </div>
             <a href="#" class="flex-end">&copy; KNI dev team 2020</a>
         </footer>
     </div>

@@ -6,7 +6,8 @@
     <?php
         echo $err;
     ?>
-    <form action="adding" method="post">
+    <form action="adding" method="post" class="pageform">
+        <div class="form-title">Dodaj nową stronę</div>
         <?php $this->security->getForm() ?>
         <input type="text" name="name" placeholder="name"><br>
         <input type="text" name="template" placeholder="template"><br>

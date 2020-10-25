@@ -489,10 +489,6 @@ ul {
         justify-content: space-between;
     }
 
-        footer .languages {
-            font-weight: 300;
-            font-size: 0.8em;
-        }
 
 
     @media screen and (max-width: 736px) {

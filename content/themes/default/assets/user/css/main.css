@@ -299,7 +299,7 @@ ul {
     }
 
     .preface {
-        padding: 2.8em 0 2.8em 0;
+        padding: 1.8em 0 1.8em 0;
         margin-bottom: 3em;
         position: relative;
         z-index: 1;
@@ -388,7 +388,7 @@ ul {
 
         position: absolute;
         left: 30px;
-        top: 18em;
+        top: 15em;
         
         min-width: 200px;
 

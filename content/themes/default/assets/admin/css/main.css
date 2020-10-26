@@ -198,7 +198,7 @@ ul {
     }
 
     footer {
-        font-size: 12pt;
+        font-size: 13pt;
     }
 
     nav {
@@ -757,15 +757,29 @@ ul {
     }
 
     footer {
-        margin: 5em 0 0 0;
-        padding: 3% 30% 3% 25%;
-        background-color: #3f3f3f;
-        color: #fefefe;
+        /*margin: 5em 0 0 0;
+        padding: 3% 30% 3% 25%;*/
+        position: relative;
+        margin: 8em 3em 2em 3em;
+        width: 45%;
+        left: 25%;
+        /*background-color: #3f3f3f;
+        color: #fefefe;*/
 
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
+
+        footer::after {
+            position: absolute;
+            background-color: #ddd;
+            top: -2em;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            content: "";
+        }
 
         footer .languages {
             margin-top: 1em;

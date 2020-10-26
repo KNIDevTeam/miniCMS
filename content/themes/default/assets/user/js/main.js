@@ -22,4 +22,6 @@ $(window).on("scroll", function() {
 /* Fix main padding according to menu width */
 
 if($(window).width() > 736)
-    $("main").css("padding-left", `${$("nav")[0].getBoundingClientRect().width+125}px`);
+    $("main").css("padding-left", `${$("nav")[0].getBoundingClientRect().width+125}px`),
+    $("footer").css({"margin-left": `${$("nav")[0].getBoundingClientRect().width+125}px`,
+    "margin-right": `${$("nav")[0].getBoundingClientRect().width}px`});

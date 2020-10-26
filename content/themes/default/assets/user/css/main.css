@@ -132,14 +132,20 @@ ul {
             }
 
     .page-name {
-        font-size: 2em;
+        font-size: 1.5em;
         position: relative;
     }
 
-        .page-name::after {
+    .page-description {
+        font-size: 2em;
+        letter-spacing: -0.015em;
+        position: relative;
+    }
+
+        .page-description::after {
             position: absolute;
             left: 0;
-            bottom: -1.5em;
+            bottom: -0.5em;
             width: 100%;
             height: 3px;
             background-color: #fff;
@@ -283,10 +289,10 @@ ul {
     header {
         position: relative;
         
-        margin-bottom: 4em;
+        margin-bottom: 6em;
         padding-left: 400px;
         background: linear-gradient(to right, #4f68c3, #6abee3);
-        max-height: 20em;
+        max-height: 15em;
         overflow: hidden;
     }
 
@@ -305,9 +311,18 @@ ul {
         color: #fff;
         font-size: 16pt;
         
+        
         display: flex;
         justify-content: space-between;
     }
+
+        .preface .page-name {
+
+        }
+
+        .preface .page-description {
+            font-weight: 700;
+        }
     
         .preface .additional-info {
             margin-right: 5em;
@@ -386,8 +401,8 @@ ul {
         z-index: 2;
 
         position: absolute;
-        left: 30px;
-        top: 15em;
+        left: 40px;
+        top: 18em;
         
         min-width: 200px;
 

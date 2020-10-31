@@ -124,12 +124,10 @@ class ThemeManager
     private function langSwitcher()
     {
         if (MULTI_LANG) {
-            echo "<form method='post' action='".BASE_URL."_language_switcher'>";
-            echo "<select name='lang' onchange='this.form.submit()'>";
-            echo "<option value='pl' ".($this->lang->getCurrentLang() == 'pl' ? 'selected' : '').">PL</option>";
-            echo "<option value='en' ".($this->lang->getCurrentLang() == 'en' ? 'selected' : '').">EN</option>";
-            echo "</select>";
-            echo "</form>";
+            echo '<div class="languages">';
+            echo '<a href="'.BASE_URL.'_language_switcher?lang=pl" class="'.($this->lang->getCurrentLang() == 'pl' ? 'lang-active' : 'lang-inactive').'">Polski</a><br>';
+            echo '<a href="'.BASE_URL.'_language_switcher?lang=en" class="'.($this->lang->getCurrentLang() == 'en' ? 'lang-active' : 'lang-inactive').'">English</a>';
+            echo '</div>';
         }
     }
 }

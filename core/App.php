@@ -18,6 +18,7 @@ class App
         session_start();
         $this->setConst();
         $this->setAutoLoader();
+        $this->loadSettings();
         $this->setErrorHandler();
     }
 
@@ -90,9 +91,16 @@ class App
         $baseUrls = $this->getBaseUrls();
         define('BASE_URL', $baseUrls['baseUrl']);
         define('BASE_ADMIN_URL', $baseUrls['baseAdminUrl']);
+    }
 
+    /**
+     * Load settings from /config.php file. Set them as constants.
+     */
+    private function loadSettings()
+    {
         try {
-            $cfg = require_once ABS_PATH."config.php";
+            $settingsManager = new SettingsManager();
+            $cfg = $settingsManager->getSettings();
             foreach ($cfg as $key => $value)
                 define($key, $value);
         } catch (Exception $e) {

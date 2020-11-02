@@ -5,9 +5,12 @@ namespace App\Controllers;
 use App\Classes\Validator;
 use Core\Admin\ControllerAbstract;
 use Core\Response;
+use Core\SettingsManager;
 
 class SettingsController extends ControllerAbstract
 {
+    private $settingsManager;
+
     public static function setUp($router, $lang)
     {
         $router->addRoute('settings', 'settings', 'get', 'index');
@@ -15,11 +18,14 @@ class SettingsController extends ControllerAbstract
         $router->addMenu($lang->_('settings.title'), 'settings', 'fa-wrench', -1);
     }
 
+    public function before()
+    {
+        $this->settingsManager = new SettingsManager();
+    }
+
     public function index()
     {
-        $settings = require(ABS_PATH.'config.php');
-
-        $this->view->set(['settings' => $settings]);
+        $this->view->set(['settings' => $this->settingsManager->getSettings()]);
 
         return new Response($this->view->render('settings.index'));
     }

@@ -35,7 +35,7 @@ class Kernel
         if ($this->request->path == '')
            return (new Response())->redirect('Home');
 
-        if (MULTI_LANG && $this->request->method == 'post' && $this->request->path == '_language_switcher') {
+        if (MULTI_LANG && $this->request->method == 'get' && $this->request->path == '_language_switcher') {
             $this->switchLang();
             return (new Response())->redirect();
         }
@@ -58,6 +58,6 @@ class Kernel
      */
     private function switchLang()
     {
-        $_SESSION['lang'] = $_POST['lang'];
+        $_SESSION['lang'] = $this->request->queryString['lang'];
     }
 }

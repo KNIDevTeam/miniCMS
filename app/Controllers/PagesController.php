@@ -21,7 +21,7 @@ class PagesController extends ControllerAbstract
     public function __construct($request, $router, $lang)
     {
         $pagesPath = ABS_PATH . "/content/pages";
-        $templatesPath = ABS_PATH . "/public/admin/assets/editor/templates";
+        $templatesPath = ABS_PATH . "/admin/assets/editor/templates";
 
         parent::__construct($request, $router, $lang);
         $this->pagesRepo = new PagesRepo($pagesPath, new PageFactory());

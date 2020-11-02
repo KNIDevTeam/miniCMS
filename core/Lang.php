@@ -4,6 +4,9 @@ namespace Core;
 
 class Lang
 {
+    private const APP_LANG_PATH = ABS_PATH.'app/Lang/';
+    private const THEME_LANG_PATH = ABS_PATH.'content/themes/'.THEME.'/lang/';
+
     private $currentLang;
     private $translations;
 
@@ -60,22 +63,22 @@ class Lang
     }
 
     /**
-     * Get core translations from inlcudes/core/lang.
+     * Get core translations from /app/Lang/.
      *
      * @return mixed
      */
     private function getCoreTranslations()
     {
-        return require_once ABS_PATH."app/Lang/".$this->currentLang.".php";
+        return require_once self::APP_LANG_PATH.$this->currentLang.'.php';
     }
 
     /**
-     * Get theme translations from content/themes/CURRENT_THEME/lang.
+     * Get theme translations from /content/themes/CURRENT_THEME/lang.
      *
      * @return mixed
      */
     private function getThemeTranslations()
     {
-        return require_once ABS_PATH."content/themes/".THEME."/lang/".$this->currentLang.".php";
+        return require_once self::THEME_LANG_PATH.$this->currentLang.'.php';
     }
 }

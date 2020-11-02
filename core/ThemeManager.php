@@ -4,7 +4,7 @@ namespace Core;
 
 class ThemeManager
 {
-    private const THEMES_PATH = ABS_PATH.'/content/themes/';
+    private const THEMES_PATH = ABS_PATH.'content/themes/';
 
     private $themeName;
     private $themeUrl;
@@ -69,7 +69,7 @@ class ThemeManager
         $this->addBlock('title', $this->lang->_('errors.'.$code.'.title'));
         $this->addBlock('content', $this->lang->_('errors.'.$code.'.desc'));
         ob_start();
-        require_once(ABS_PATH.'/content/themes/'.$this->themeName.'/error.php');
+        require_once(ABS_PATH.'content/themes/'.$this->themeName.'/error.php');
         return ob_get_clean();
     }
 

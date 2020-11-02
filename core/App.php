@@ -24,7 +24,7 @@ class App
     /**
      * Set needed objects.
      *  Core\Lang
-     *  MCore\Request
+     *  Core\Request
      */
     public function init()
     {

@@ -3,13 +3,16 @@
 namespace App\Classes;
 
 use Core\Request;
+use Exception;
 
 class MediaManager
 {
-    private $mediaPath = 'content/media/';
+    private const MEDIA_PATH = 'content/media/';
+
     private $datePath;
     private $file;
     private $fileUrl;
+    private $absDatePath;
 
     /**
      * MediaManager constructor.
@@ -18,8 +21,8 @@ class MediaManager
      */
     public function __construct($file)
     {
-        $this->datePath = $this->mediaPath.date('Y').'/'.date('m').'/';
-        $this->absDatePath = ABS_PATH.'/'.$this->datePath;
+        $this->datePath = self::MEDIA_PATH.date('Y').'/'.date('m').'/';
+        $this->absDatePath = ABS_PATH.$this->datePath;
         $this->checkDatePath();
         $this->file = $file;
     }
@@ -44,7 +47,7 @@ class MediaManager
             move_uploaded_file($this->file['tmp_name'], $this->absDatePath.$this->file['name']);
             $this->fileUrl = BASE_URL.$this->datePath.$this->file['name'];
             return true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
     }

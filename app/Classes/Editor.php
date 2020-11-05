@@ -6,17 +6,18 @@ use Core\Security;
 
 class Editor
 {
+    private const ASSETS_PATH = ABS_PATH.'admin/assets/editor/';
+
     private $pageName;
     private $pagePath;
     private $pageType;
-    private $assetsPath = ABS_PATH . '/admin/assets/editor/';
     private $router;
 
     public function __construct($router)
     {
         //Initializing with default values
         $this->pageName = "New page";
-        $this->pagePath = $this->assetsPath . "templates/default/default.template.json";
+        $this->pagePath = self::ASSETS_PATH . "templates/default/default.template.json";
         $this->pagePath = str_replace('\\', '/', $this->pagePath);
         $this->pageType = "default";
 
@@ -63,7 +64,7 @@ class Editor
     {
         $pageContent = $this->loadFile($this->pagePath);
         echo $this->pagePath;
-        $toolPath = $this->assetsPath . "templates/" . $this->pageType . "/". $this->pageType . ".tools.json";
+        $toolPath = self::ASSETS_PATH . "templates/" . $this->pageType . "/". $this->pageType . ".tools.json";
         $pageTools = file_get_contents($toolPath);
         $pageTools = $this->setEndpoints($pageTools);
         $saveToolPath = $this->router->route("savePage");
@@ -192,7 +193,7 @@ class Editor
         try {
             if ($this->checkFile($pagePath)) return file_get_contents($pagePath);
         } catch (\Exception $e) {
-            return file_get_contents($this->assetsPath . "error-loading.en.json");
+            return file_get_contents(self::ASSETS_PATH . "error-loading.en.json");
         }
     }
 

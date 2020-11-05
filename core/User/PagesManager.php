@@ -4,6 +4,8 @@ namespace Core\User;
 
 class PagesManager
 {
+    private const PAGES_PATH = ABS_PATH.'content/pages/';
+
     private $currentPageName;
     private $currentPage;
     private $pages = [];
@@ -18,7 +20,7 @@ class PagesManager
     public function __construct($path)
     {
         $this->currentPageName = $path;
-        $this->pages = $this->scanPages(ABS_PATH.'Content/pages');
+        $this->pages = $this->scanPages(self::PAGES_PATH);
         $this->menu = $this->generateMenu($this->pages);
     }
 

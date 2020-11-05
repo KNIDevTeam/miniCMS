@@ -23,8 +23,8 @@ class App
 
     /**
      * Set needed objects.
-     *  MiniCMS\Includes\Core\Lang
-     *  MiniCMS\Includes\Core\Request
+     *  Core\Lang
+     *  Core\Request
      */
     public function init()
     {

@@ -4,7 +4,7 @@ namespace Core;
 
 class ThemeManager
 {
-    private const THEMES_PATH = ABS_PATH.'/content/themes/';
+    private const THEMES_PATH = ABS_PATH.'content/themes/';
 
     private $themeName;
     private $themeUrl;
@@ -69,7 +69,7 @@ class ThemeManager
         $this->addBlock('title', $this->lang->_('errors.'.$code.'.title'));
         $this->addBlock('content', $this->lang->_('errors.'.$code.'.desc'));
         ob_start();
-        require_once(ABS_PATH.'/content/themes/'.$this->themeName.'/error.php');
+        require_once(ABS_PATH.'content/themes/'.$this->themeName.'/error.php');
         return ob_get_clean();
     }
 
@@ -124,12 +124,10 @@ class ThemeManager
     private function langSwitcher()
     {
         if (MULTI_LANG) {
-            echo "<form method='post' action='".BASE_URL."_language_switcher'>";
-            echo "<select name='lang' onchange='this.form.submit()'>";
-            echo "<option value='pl' ".($this->lang->getCurrentLang() == 'pl' ? 'selected' : '').">PL</option>";
-            echo "<option value='en' ".($this->lang->getCurrentLang() == 'en' ? 'selected' : '').">EN</option>";
-            echo "</select>";
-            echo "</form>";
+            echo '<div class="languages">';
+            echo '<a href="'.BASE_URL.'_language_switcher?lang=pl" class="'.($this->lang->getCurrentLang() == 'pl' ? 'lang-active' : 'lang-inactive').'">Polski</a><br>';
+            echo '<a href="'.BASE_URL.'_language_switcher?lang=en" class="'.($this->lang->getCurrentLang() == 'en' ? 'lang-active' : 'lang-inactive').'">English</a>';
+            echo '</div>';
         }
     }
 }

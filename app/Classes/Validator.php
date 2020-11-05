@@ -2,6 +2,8 @@
 
 namespace App\Classes;
 
+use Exception;
+
 class Validator
 {
     private $inputs;
@@ -25,7 +27,7 @@ class Validator
      *
      * @return bool
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function validate()
     {
@@ -55,7 +57,7 @@ class Validator
                         if (!$this->$rule($name, $value, $param))
                             $positive = false;
                     } else
-                        throw new \Exception("Rule: ".$rule." is invalid");
+                        throw new Exception("Rule: ".$rule." is invalid");
 
                 }
             } else if (!$found && in_array('required', $rules)) {
@@ -85,7 +87,7 @@ class Validator
      * @param $replace
      * @param string $rule
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function addError($name, $search, $replace, $rule = '')
     {
@@ -103,7 +105,7 @@ class Validator
      *
      * @return mixed
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function getErrorInfo($rule, $search, $replace)
     {
@@ -118,7 +120,7 @@ class Validator
         ];
 
         if (!isset($info[$rule]))
-            throw new \Exception('No error info for rule: '.$rule);
+            throw new Exception('No error info for rule: '.$rule);
         else
             return str_replace($search, $replace, $info[$rule]);
     }
@@ -140,12 +142,12 @@ class Validator
      *
      * @return bool
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function isParam($param)
     {
         if (!$param)
-            throw new \Exception('Rule '.$this->getPreviousMethod().' must contain parameter.');
+            throw new Exception('Rule '.$this->getPreviousMethod().' must contain parameter.');
         else
             return true;
     }
@@ -160,7 +162,7 @@ class Validator
      *
      * @return bool
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function required($name, $value, $param)
     {
@@ -183,7 +185,7 @@ class Validator
      *
      * @return bool
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function minLength($name, $value, $param)
     {
@@ -207,7 +209,7 @@ class Validator
      *
      * @return bool
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function maxLength($name, $value, $param)
     {
@@ -231,7 +233,7 @@ class Validator
      *
      * @return bool
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function number($name, $value, $param)
     {
@@ -252,7 +254,7 @@ class Validator
      *
      * @return bool
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function min($name, $value, $param)
     {
@@ -276,7 +278,7 @@ class Validator
      *
      * @return bool
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function max($name, $value, $param)
     {
@@ -300,7 +302,7 @@ class Validator
      *
      * @return bool
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function inArray($name, $value, $param)
     {

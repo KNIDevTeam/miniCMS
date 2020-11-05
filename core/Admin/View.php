@@ -4,10 +4,11 @@ namespace Core\Admin;
 
 use Core\Security;
 use Core\ThemeManager;
+use Exception;
 
 class View
 {
-    private const VIEWS_PATH = ABS_PATH.'/app/Views/';
+    private const VIEWS_PATH = ABS_PATH.'app/Views/';
 
     private $sections;
     private $currentSection;
@@ -70,7 +71,7 @@ class View
      *
      * @return false|string
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function render($fileName)
     {
@@ -122,7 +123,7 @@ class View
     /**
      * End current section.
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function endSection()
     {
@@ -130,7 +131,7 @@ class View
             $this->sections[$this->currentSection] = ob_get_contents();
             unset($this->currentSection);
         } else
-            throw new \Exception("Section wasn't opened");
+            throw new Exception("Section wasn't opened");
     }
     
     /**
@@ -156,9 +157,9 @@ class View
     }
 
     /**
-     * Add base sections from admin/views/baseSections.php.
+     * Add base sections from app/Views/baseSections.php.
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function addBaseSections()
     {
@@ -228,12 +229,12 @@ class View
      *
      * @return bool
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function fileExists($fileName)
     {
         if (!file_exists($this->getFilePath($fileName)))
-            throw new \Exception("View | File: ".$fileName." does not exists.");
+            throw new Exception("View | File: ".$fileName." does not exists.");
 
         return true;
     }

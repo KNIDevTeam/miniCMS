@@ -9,7 +9,7 @@ use Core\Security;
 
 class Router
 {
-    private const CONTROLLERS_PATH = ABS_PATH.'/app/Controllers';
+    private const CONTROLLERS_PATH = ABS_PATH.'app/Controllers';
 
     private $routes = [];
     private $menu = [];

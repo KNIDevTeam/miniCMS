@@ -11,6 +11,7 @@
     <title><?php echo $this->getBlock('title') ?></title>
 
     <!-- Stylesheets -->
+    <link rel="stylesheet" href="<?php echo $this->asset('assets/global/css/styles.css') ?>" />
     <link rel="stylesheet" href="<?php echo $this->asset('assets/user/css/main.css') ?>" />
 </head>
 
@@ -21,10 +22,6 @@
                 <div class="flex-start">
                     <div class="page-name"><?php echo SITE_NAME ?></div>
                     <div class="page-description"> <?php echo $this->getBlock('title') ?> </div>
-                </div>
-                <div class="flex-end">
-                    <div class="additional-info"> <?php echo $this->_('header.lang', 'theme'); ?> </div>
-                    <div class="language-switcher"> <?php echo $this->langSwitcher(); ?> </div>
                 </div>
             </div>
 
@@ -41,10 +38,9 @@
 
         <footer id="footer">
             <div class="flex-start bold">miniCMS
-            <div class="languages">
-                <a>Polski</a><br>
-                <a>English</a>
-            </div>
+                <div class="languages">
+                    <?php echo $this->langSwitcher(); ?>
+                </div>
             </div>
             <a href="#" class="flex-end">&copy; KNI dev team 2020</a>
         </footer>

@@ -1,0 +1,170 @@
+
+.tiles {
+  display: flex;
+  justify-content: space-around;
+  padding: 1.5em 0 1.5em 0;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.tiles > a {
+  border-bottom: none;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  margin: 1.5em;
+  width: 25%;
+
+  border-radius: 20px;
+  background-color: #fff;
+  position: relative;
+
+  box-shadow: 0 5px 10px 5px rgb(0, 0, 0, 0.05);
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.big {
+  width: 25%;
+}
+
+.fullwidth {
+  width: 95%;
+}
+
+.alt {
+  color: #fff;
+  box-shadow: 0 3px 20px 3px #dbdfff;
+  background: linear-gradient(to bottom right, #a1b5ff, #abe5ff);
+}
+
+.tile::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: solid 2px #b5c5ff;
+  border-radius: 20px;
+  left: 3px;
+  bottom: 3px;
+
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+  pointer-events: none;
+}
+
+.tiles .alt::before {
+  border-color: #d6daff;
+}
+
+.tile::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  box-shadow: 0 1px 15px 1px #c9d7ff;
+  pointer-events: none;
+}
+
+.tile:hover {
+  -webkit-transform: scale(1.04, 1.04);
+  transform: scale(1.04, 1.04);
+}
+
+.tile:hover::before {
+  left: -2px;
+  bottom: -2px;
+}
+
+.tile:hover::after {
+  opacity: 0.5;
+}
+
+.nohover:hover {
+  transform: none;
+}
+
+.nohover:hover::before {
+  left: 3px;
+  bottom: 3px;
+}
+
+.nohover:hover::after {
+  opacity: 0;
+}
+
+.tile i {
+  display: inline-block;
+  width: 1.5em;
+}
+
+.tile a {
+  border-bottom: none;
+}
+
+#search {
+  box-shadow: none;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.flex-start {
+
+  justify-content: flex-start;
+}
+
+.flex-end {
+
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 1835px) {
+
+  .tile {
+    width: 20%;
+  }
+
+  .fullwidth {
+    width: 90%;
+  }
+
+}
+
+@media screen and (max-width: 1350px) {
+
+  .tile {
+    width: 30%;
+  }
+
+  .fullwidth {
+    width: 90%;
+  }
+
+}
+
+@media screen and (max-width: 990px) {
+
+  .tile {
+    width: 60%;
+  }
+
+  .fullwidth {
+    width: 80%;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+
+  .tile {
+    width: 70%;
+  }
+
+}

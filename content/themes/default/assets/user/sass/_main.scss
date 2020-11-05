@@ -1,0 +1,28 @@
+main {
+  padding: 0 3em 1.5em 400px;
+  min-height: 50vh;
+  overflow-x: hidden;
+}
+
+.image {
+  max-width: 70%;
+  margin: 5em auto;
+}
+
+.image img {
+  width: 100%;
+}
+
+.editor__delimiter {
+  height: 2px;
+  width: 30%;
+  background-color: #777;
+  margin: 2em 0 2em 0;
+}
+
+@media screen and (max-width: 736px) {
+  main {
+    padding-left: 1.5em;
+    padding-right: 1em;
+  }
+}

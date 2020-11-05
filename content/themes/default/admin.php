@@ -11,6 +11,7 @@
     <title>Admin » <?php echo $this->getBlock('title') ?></title>
 
     <!-- Stylesheets -->
+    <link rel="stylesheet" href="<?php echo $this->asset('assets/global/css/styles.css') ?>" />
     <link rel="stylesheet" href="<?php echo $this->asset('assets/admin/css/main.css') ?>" />
     <link rel="stylesheet" href="<?php echo $this->asset('assets/admin/css/addpage.css') ?>" />
 
@@ -29,7 +30,6 @@
                 </div>
                 <div class="flex-end">
                     <div class="additional-info"> ADMINISTRATOR</div>
-                    <div class="language-switcher"> <?php echo $this->langSwitcher(); ?> </div>
                 </div>
             </div>
 
@@ -44,10 +44,9 @@
 
         <footer id="footer">
             <div class="flex-start bold">miniCMS
-            <div class="languages">
-                <a>Polski</a><br>
-                <a>English</a>
-            </div>
+                <div class="languages">
+                    <?php echo $this->langSwitcher(); ?>
+                </div>
             </div>
             <a href="#" class="flex-end">&copy; KNI dev team 2020</a>
         </footer>

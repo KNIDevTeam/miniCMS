@@ -1,0 +1,106 @@
+
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  z-index: 2;
+
+  position: absolute;
+  left: 50px;
+  top: 15em;
+  min-width: 230px;
+
+  padding: 2em;
+
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 20px 25px 1px rgb(0, 0, 0, 0.07);
+}
+
+nav.fixed-nav {
+  position: fixed;
+  top: 50px;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: column;
+}
+
+nav i {
+  display: inline-block;
+  width: 1.5em;
+}
+
+nav li {
+  padding: 1em 0 1em 0;
+  margin: 0 auto 0 auto;
+}
+
+.expand {
+  cursor: pointer;
+}
+
+.expand-button {
+  padding-left: 5px;
+  position: relative;
+  float: right;
+  padding-right: 2em;
+}
+
+.submenu {
+  display: none;
+  padding-left: 1em;
+}
+
+#menu-button {
+  cursor: pointer;
+  font-size: 2.2em;
+  padding: 0 0 0 14%;
+  border-bottom: none;
+
+  z-index: 2;
+}
+
+@media screen and (max-width: 1350px) {
+
+  nav {
+    padding: 1em;
+  }
+
+}
+
+@media screen and (max-width: 736px) {
+
+  nav {
+    padding: 2em 0 2em 1em;
+    margin: 0 0 1em 0;
+    position: static;
+    width: 100%;
+    height: auto;
+
+    display: block;
+
+    text-align: center;
+    border-radius: 0;
+    margin-bottom: 0;
+    box-shadow: none;
+  }
+
+  nav h2 {
+    padding-left: 0;
+  }
+
+  nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  nav.fixed-nav {
+    position: static;
+    top: unset;
+  }
+
+}

@@ -1,0 +1,30 @@
+@import "_type.scss";
+@import "_nav.scss";
+@import "_tiles.scss";
+@import "_main.scss";
+@import "_editor.scss";
+
+footer {
+  width: 45%;
+  left: 25%;
+
+  @media screen and (max-width: 1350px) {
+    & {
+      padding-right: 10em;
+    }
+  }
+
+  @media screen and (max-width: 736px) {
+    & {
+      padding-left: 10em;
+      padding-right: 10em;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    & {
+      padding-left: 5em;
+      padding-right: 5em;
+    }
+  }
+}

@@ -21,7 +21,10 @@ $(window).on("scroll", function() {
 
 /* Fix main padding according to menu width */
 
-if($(window).width() > 736)
-    $("main").css("padding-left", `${$("nav")[0].getBoundingClientRect().width+125}px`),
-    $("footer").css({"margin-left": `${$("nav")[0].getBoundingClientRect().width+125}px`,
-    "margin-right": `${$("nav")[0].getBoundingClientRect().width}px`});
+if(window.matchMedia('(min-width: 737px)').matches) {
+    // 40px - nav left property
+    // 2em = 1em(nav padding left and right) + 2em separation
+
+    $("main").css("padding-left", "calc(" + $("nav")[0].getBoundingClientRect().width + "px + 40px + 3em)");
+    $("footer").css("margin-left", "calc(" + $("nav")[0].getBoundingClientRect().width + "px + 40px + 3em)");
+}

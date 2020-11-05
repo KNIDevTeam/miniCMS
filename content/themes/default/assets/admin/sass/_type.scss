@@ -1,8 +1,4 @@
 
-main {
-  font-size: 12pt;
-}
-
 form {
   font-size: 1.25em;
   position: relative;
@@ -42,34 +38,6 @@ nav a, .fancy-a {
   font-weight: 700;
   font-size: 1.25em;
   cursor: pointer;
-}
-
-nav a {
-  border-bottom: none;
-  position: relative;
-  padding-right: 1em;
-}
-
-nav a::after {
-  position: absolute;
-  left: -0.7em;
-  bottom: -20%;
-  height: 0;
-  width: 3px;
-  content: '';
-  background-color: #748de8;
-  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-nav a.active::after {
-  height: 140%;
-}
-
-nav a:hover::after {
-  height: 140%;
-  bottom: unset;
-  top: -20%;
 }
 
 .fancy-a::before, .fancy-a::after {
@@ -142,63 +110,12 @@ h2 {
   letter-spacing: -0.05em;
 }
 
-nav h2 {
-  padding-left: 1em;
-}
-
 .gradient {
   background: linear-gradient(to left, #6c87c3, #cac4ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-
-nav {
-  font-size: 14pt;
-}
-
-nav a {
-  font-weight: 700;
-}
-
-.submenu a {
-  font-weight: 300;
-}
-
-.expand-button {
-  font-weight: 300;
-  position: relative;
-  top: 0.2em;
-  font-size: 0.8em;
-}
-
-.tile-title {
-  font-size: 18pt;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  text-align: center;
-  margin: 0 0 0.5em 0;
-}
-
-.tiles-title {
-  font-size: 18pt;
-  margin-bottom: 0.8em;
-  letter-spacing: -0.05em;
-  text-align: left;
-}
-
-.tile-bigtitle {
-  letter-spacing: 0.2em;
-  text-align: center;
-  font-size: 40pt;
-}
-
-.tile-description {
-  font-size: 13pt;
-  font-weight: 300;
-  letter-spacing: normal;
-  text-align: center;
-}
 
 #search {
   line-height: 1.3;
@@ -211,12 +128,4 @@ nav a {
   width: 50%;
   margin: 1em 0 1em 0;
   color: #ddd;
-}
-
-@media screen and (max-width: 736px) {
-
-  .page-name::after {
-    display: none;
-  }
-
 }

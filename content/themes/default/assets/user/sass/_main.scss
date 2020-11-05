@@ -2,27 +2,48 @@ main {
   padding: 0 3em 1.5em 400px;
   min-height: 50vh;
   overflow-x: hidden;
-}
+  font-size: 13pt;
 
-.image {
-  max-width: 70%;
-  margin: 5em auto;
-}
+  & ul {
+    list-style: disc;
+    padding: 1em 3em 1em 3em;
+  }
 
-.image img {
-  width: 100%;
-}
+  & ol {
+    padding: 1em 3em 1em 3em;
+  }
 
-.editor__delimiter {
-  height: 2px;
-  width: 30%;
-  background-color: #777;
-  margin: 2em 0 2em 0;
-}
+  & .attache {
+    padding: 0.5em 2em 0.5em 2em;
+  }
 
-@media screen and (max-width: 736px) {
-  main {
-    padding-left: 1.5em;
-    padding-right: 1em;
+  & .image {
+    max-width: 70%;
+    margin: 5em auto;
+
+    & img {
+      width: 100%;
+    }
+  }
+
+  & .editor__delimiter {
+    height: 2px;
+    width: 30%;
+    background-color: #777;
+    margin: 2em 0 2em 0;
+  }
+
+  @media screen and (max-width: 736px) {
+    & {
+      padding-left: 1.5em;
+      padding-right: 1em;
+    }
   }
 }
+
+
+
+
+
+
+

@@ -15,42 +15,104 @@ nav {
   border-radius: 20px;
   background-color: #fff;
   box-shadow: 0 20px 25px 1px rgb(0, 0, 0, 0.07);
-}
 
-nav.fixed-nav {
-  position: fixed;
-  top: 50px;
-}
+  font-size: 14pt;
 
-nav ul {
-  display: flex;
-  flex-direction: column;
-}
+  & a {
+    border-bottom: none;
+    position: relative;
+    padding-right: 1em;
+    font-weight: 700;
 
-nav i {
-  display: inline-block;
-  width: 1.5em;
-}
+    &::after {
+      position: absolute;
+      left: -0.7em;
+      bottom: -20%;
+      height: 0;
+      width: 3px;
+      content: '';
+      background-color: #748de8;
+      -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
 
-nav li {
-  padding: 1em 0 1em 0;
-  margin: 0 auto 0 auto;
-}
+    &:hover::after {
+      height: 140%;
+      bottom: unset;
+      top: -20%;
+    }
+  }
 
-.expand {
-  cursor: pointer;
-}
+  & h2 {
+    padding-left: 1em;
+  }
 
-.expand-button {
-  padding-left: 5px;
-  position: relative;
-  float: right;
-  padding-right: 2em;
-}
+  &.fixed-nav {
+    position: fixed;
+    top: 50px;
+  }
 
-.submenu {
-  display: none;
-  padding-left: 1em;
+  & ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & i {
+    display: inline-block;
+    width: 1.5em;
+  }
+
+  & li {
+    padding: 1em 0 1em 0;
+    margin: 0 auto 0 auto;
+  }
+
+  & .submenu {
+    display: none;
+    padding-left: 1em;
+
+    & a {
+      font-weight: 300;
+    }
+  }
+
+  @media screen and (max-width: 1350px) {
+    & {
+      padding: 1em;
+    }
+  }
+
+  @media screen and (max-width: 736px) {
+    & {
+      padding: 2em 0 2em 1em;
+      margin: 0 0 1em 0;
+      position: static;
+      width: 100%;
+      height: auto;
+
+      display: block;
+
+      text-align: center;
+      border-radius: 0;
+      box-shadow: none;
+
+      & h2 {
+        padding-left: 0;
+      }
+
+      & ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+      }
+
+      &.fixed-nav {
+        position: static;
+        top: unset;
+      }
+    }
+  }
 }
 
 #menu-button {
@@ -60,47 +122,4 @@ nav li {
   border-bottom: none;
 
   z-index: 2;
-}
-
-@media screen and (max-width: 1350px) {
-
-  nav {
-    padding: 1em;
-  }
-
-}
-
-@media screen and (max-width: 736px) {
-
-  nav {
-    padding: 2em 0 2em 1em;
-    margin: 0 0 1em 0;
-    position: static;
-    width: 100%;
-    height: auto;
-
-    display: block;
-
-    text-align: center;
-    border-radius: 0;
-    margin-bottom: 0;
-    box-shadow: none;
-  }
-
-  nav h2 {
-    padding-left: 0;
-  }
-
-  nav ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-  }
-
-  nav.fixed-nav {
-    position: static;
-    top: unset;
-  }
-
 }

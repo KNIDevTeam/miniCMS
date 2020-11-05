@@ -22,6 +22,36 @@ nav {
     top: 50px;
   }
 
+  & a {
+    border-bottom: none;
+    position: relative;
+    padding-right: 2em;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+
+    &::after {
+      position: absolute;
+      left: -0.7em;
+      bottom: -20%;
+      height: 0;
+      width: 3px;
+      content: '';
+      background-color: #748de8;
+      -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    &:hover::after {
+      height: 140%;
+      bottom: unset;
+      top: -20%;
+    }
+  }
+
+  & h2 {
+    padding-left: 1em;
+  }
+
   & ul {
     display: flex;
     flex-direction: column;
@@ -48,6 +78,10 @@ nav {
     & .submenu {
       display: none;
       padding-left: 1em;
+
+      & a {
+        font-weight: 300;
+      }
     }
   }
 

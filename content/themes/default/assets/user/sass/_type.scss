@@ -1,40 +1,9 @@
-main {
-  font-size: 13pt;
-}
 
 a {
   color: inherit;
   transition: color 0.2s ease, border 0.2s ease;
   text-decoration: none;
   border-bottom: dotted 1px rgba(88, 88, 88, 0.5);
-}
-
-nav a {
-  border-bottom: none;
-  position: relative;
-  padding-right: 2em;
-}
-
-nav a::after {
-  position: absolute;
-  left: -0.7em;
-  bottom: -20%;
-  height: 0;
-  width: 3px;
-  content: '';
-  background-color: #748de8;
-  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-nav a.active::after {
-  height: 140%;
-}
-
-nav a:hover::after {
-  height: 140%;
-  bottom: unset;
-  top: -20%;
 }
 
 
@@ -136,10 +105,6 @@ h2 {
   padding: 0.5em 0 0.5em 0;
 }
 
-nav h2 {
-  padding-left: 1em;
-}
-
 h3 {
   font-size: 1.5em;
 }
@@ -161,19 +126,6 @@ code {
   font-family: "Source Code Pro", Helvetica, serif;
 }
 
-main ul {
-  list-style: disc;
-  padding: 1em 3em 1em 3em;
-}
-
-main ol {
-  padding: 1em 3em 1em 3em;
-}
-
-main .attache {
-  padding: 0.5em 2em 0.5em 2em;
-}
-
 .editor__warning_title {
   font-weight: 700;
   font-size: 1.2em;
@@ -184,33 +136,4 @@ main .attache {
   background: linear-gradient(to left, #6c87c3, #cac4ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-nav {
-  font-size: 14pt;
-}
-
-nav a {
-  font-weight: 700;
-
-  letter-spacing: 0.03em;
-}
-
-.sub-menu a {
-  font-weight: 300;
-}
-
-.expand-button {
-  font-weight: 300;
-  position: relative;
-  top: 0.2em;
-  font-size: 0.8em;
-}
-
-@media screen and (max-width: 736px) {
-
-  .page-name::after {
-    display: none;
-  }
-
 }

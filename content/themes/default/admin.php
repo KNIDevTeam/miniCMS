@@ -36,11 +36,13 @@
             <img class="logo" src="<?php echo $this->asset('assets/images/logo_mini.png') ?>"></img>
         </header>
 
-        <nav id="menu" class="slide-in">
-            <?php echo $this->getBlock('menu') ?>
-        </nav>
+        <div class="container">
+            <nav id="menu" class="slide-in">
+                <?php echo $this->getBlock('menu') ?>
+            </nav>
 
-        <?php echo $this->getBlock('content') ?>
+            <?php echo $this->getBlock('content') ?>
+        </div>
 
         <footer id="footer">
             <div class="flex-start bold">miniCMS

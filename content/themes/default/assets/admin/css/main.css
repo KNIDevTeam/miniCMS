@@ -1,3 +1,10 @@
+body {
+  color: #666;
+  font-family: "Roboto", Helvetica, sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
 form {
   font-size: 1.25em;
   position: relative;
@@ -134,7 +141,7 @@ nav {
   z-index: 2;
   position: absolute;
   left: 50px;
-  top: 15em;
+  top: 1em;
   min-width: 230px;
   padding: 2em;
   border-radius: 20px;

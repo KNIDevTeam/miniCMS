@@ -27,6 +27,10 @@ ul {
   min-height: 100vh;
 }
 
+.container {
+  position: relative;
+}
+
 header {
   position: relative;
   margin-bottom: 4em;

@@ -6,7 +6,7 @@ nav {
 
   position: absolute;
   left: 40px;
-  top: 18em;
+  top: 1em;
 
   min-width: 200px;
 
@@ -28,6 +28,10 @@ nav {
     padding-right: 2em;
     font-weight: 700;
     letter-spacing: 0.03em;
+
+    &.active::after {
+      height: 140%;
+    }
 
     &::after {
       position: absolute;

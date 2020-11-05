@@ -11,7 +11,8 @@
     <title><?php echo $this->getBlock('title') ?></title>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="<?php echo $this->asset('assets/user/css/styles.css') ?>" />
+    <link rel="stylesheet" href="<?php echo $this->asset('assets/global/css/styles.css') ?>" />
+    <link rel="stylesheet" href="<?php echo $this->asset('assets/user/css/main.css') ?>" />
 </head>
 
 <body>

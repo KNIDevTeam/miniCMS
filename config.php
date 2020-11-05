@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'DEBUG' => true,
+    'DEBUG' => false,
     'SITE_NAME' => 'Dr hab. Anna Dembińskajeszczewięcej',
     'THEME' => 'default',
     'MULTI_LANG' => true,

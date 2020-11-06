@@ -152,9 +152,6 @@ nav {
   min-width: 200px;
   padding: 1em 0.5em 1em 0.5em;
   font-size: 1.2em;
-  border-radius: 15px;
-  background-color: #fff;
-  box-shadow: 0 20px 25px 1px rgba(0, 0, 0, 0.07);
 }
 nav.fixed-nav {
   position: fixed;
@@ -267,5 +264,3 @@ main .editor__delimiter {
     padding-right: 1em;
   }
 }
-
-/*# sourceMappingURL=main.css.map */

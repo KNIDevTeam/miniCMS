@@ -59,12 +59,12 @@ header .preface {
   justify-content: space-between;
 }
 header .preface .page-name {
-  font-size: 1.7em;
+  font-size: 1.2em;
   position: relative;
 }
 header .preface .page-description {
-  font-size: 1.4em;
-  letter-spacing: -0.015em;
+  font-size: 1.8em;
+  letter-spacing: 0.015em;
   position: relative;
 }
 header .preface .page-description::after {
@@ -72,7 +72,7 @@ header .preface .page-description::after {
   left: 0;
   bottom: -0.5em;
   width: 100%;
-  height: 3px;
+  height: 2px;
   background-color: #fff;
   content: "";
 }

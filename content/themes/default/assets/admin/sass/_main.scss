@@ -14,7 +14,7 @@ main {
   margin-left: auto;
   margin-right: auto;
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: $radius;
   text-align: center;
 }
 
@@ -61,8 +61,8 @@ input[type="submit"]:hover {
   width: 50%;
   left: 20%;
   padding: 1.5em;
-  border-radius: 10px;
-  box-shadow: 0 20px 25px 1px rgb(0, 0, 0, 0.07);
+  border-radius: $radius;
+  box-shadow: $shadow;
 }
 
 .pageform .form-title {

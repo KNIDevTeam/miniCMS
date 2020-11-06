@@ -36,9 +36,8 @@ nav {
       height: 0;
       width: 3px;
       content: '';
-      background-color: #748de8;
-      -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      background-color: $palette2;
+      transition: $smooth-transition;
     }
 
     &:hover::after {

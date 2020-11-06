@@ -2,7 +2,7 @@ header {
   position: relative;
   margin-bottom: 4em;
   padding-left: 400px;
-  background: linear-gradient(to right, #4f68c3, #6abee3);
+  background: linear-gradient(to right, $header1, $header2);
   max-height: 15em;
   overflow: hidden;
 

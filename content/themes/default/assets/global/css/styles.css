@@ -1,3 +1,6 @@
+/* box shadow */
+/* border radius */
+/* color palette */
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,700,900");
 * {
   margin: 0;
@@ -6,7 +9,7 @@
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  font-family: Roboto;
+  font-family: "Roboto";
 }
 
 ul {
@@ -124,8 +127,6 @@ footer {
   position: relative;
   margin: 4em 3em 2em 3em;
   font-size: 13pt;
-  /*background-color: #3f3f3f;
-  color: #fefefe; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -163,5 +164,3 @@ footer .languages {
     padding-right: 0;
   }
 }
-
-/*# sourceMappingURL=styles.css.map */

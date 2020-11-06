@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap");
+/* box shadow */
+/* border radius */
+/* color palette */
 body {
   color: #666;
   font-family: "Roboto", Helvetica, sans-serif;
@@ -14,7 +17,6 @@ a {
 }
 
 .fancy-a::before, .fancy-a::after {
-  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
@@ -44,7 +46,7 @@ footer a, #menu-button a {
   position: absolute;
   width: 100%;
   height: 100%;
-  border: 2px solid #c9d7ff;
+  border: 2px solid #b5c5ff;
   border-radius: 10px;
   left: 3px;
   bottom: 3px;
@@ -56,7 +58,7 @@ footer a, #menu-button a {
   position: absolute;
   width: 100%;
   height: 100%;
-  border: 2px solid #c9d7ff;
+  border: 2px solid #b5c5ff;
   border-radius: 10px;
   right: 3px;
   top: 3px;
@@ -175,7 +177,6 @@ nav a::after {
   width: 3px;
   content: "";
   background-color: #748de8;
-  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 nav a:hover::after {

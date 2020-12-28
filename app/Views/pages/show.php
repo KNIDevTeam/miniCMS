@@ -1,4 +1,4 @@
-<?php $this->section('title', 'Edycja strony') ?>
+<?php $this->section('title', 'Strony') ?>
 
 <?php $this->startSection('content') ?>
 <main id="main">

@@ -138,9 +138,12 @@
     padding: 1em;
    
     & .tile-description {
+      width: 25%;
+      margin: auto;
       margin-top: -3em;
       opacity: 0;
       transition: $smooth-transition;
+      text-align: left;
     }
     &:hover {
       & .tile-description {

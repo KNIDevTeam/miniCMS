@@ -268,6 +268,7 @@ nav .submenu a {
   position: relative;
   box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.05);
   transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  /* customs */
 }
 .tile::before {
   content: "";
@@ -328,30 +329,38 @@ nav .submenu a {
   letter-spacing: normal;
   text-align: center;
 }
-
-.big {
+.tile.big {
   width: 25%;
 }
-
-.fullwidth {
+.tile.fullwidth {
   width: 95%;
 }
-
-.alt {
+.tile.alt {
   color: #fff;
   box-shadow: 0 3px 20px 3px #dbdfff;
   background: linear-gradient(to bottom right, #a1b5ff, #abe5ff);
 }
-
-.nohover:hover {
+.tile.nohover:hover {
   transform: none;
 }
-.nohover:hover::before {
+.tile.nohover:hover::before {
   left: 3px;
   bottom: 3px;
 }
-.nohover:hover::after {
+.tile.nohover:hover::after {
   opacity: 0;
+}
+.tile.thin {
+  padding: 1em;
+}
+.tile.thin .tile-description {
+  margin-top: -3em;
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.tile.thin:hover .tile-description {
+  margin-top: 0;
+  opacity: 100%;
 }
 
 #search {

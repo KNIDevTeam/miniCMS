@@ -334,9 +334,6 @@ nav .submenu a {
 .tile.big {
   width: 25%;
 }
-.tile.fullwidth {
-  width: 95%;
-}
 .tile.alt {
   color: #fff;
   box-shadow: 0 3px 20px 3px #dbdfff;
@@ -363,6 +360,10 @@ nav .submenu a {
 .tile.thin:hover .tile-description {
   margin-top: 0;
   opacity: 100%;
+}
+
+.fullwidth {
+  width: 95%;
 }
 
 #search {

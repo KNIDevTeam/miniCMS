@@ -115,10 +115,6 @@
     width: 25%;
   }
   
-  &.fullwidth {
-    width: 95%;
-  }
-  
   &.alt {
     color: #fff;
     box-shadow: 0 3px 20px 3px #dbdfff;
@@ -156,9 +152,9 @@
 
 }
 
-
-
-
+.fullwidth {
+  width: 95%;
+}
 
 #search {
   box-shadow: none;

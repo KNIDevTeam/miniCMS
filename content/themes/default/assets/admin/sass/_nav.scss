@@ -23,6 +23,7 @@ nav {
     position: relative;
     padding-right: 1em;
     font-weight: 700;
+    
 
     &::after {
       position: absolute;
@@ -59,9 +60,11 @@ nav {
   & i {
     display: inline-block;
     width: 1.5em;
+    margin-right: 1em;
   }
 
   & li {
+    width: 100%;
     padding: 1em 0 1em 0;
     margin: 0 auto 0 auto;
   }
